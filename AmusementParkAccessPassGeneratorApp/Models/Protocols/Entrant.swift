@@ -8,12 +8,15 @@
 import  Foundation
 
 protocol Entrant {
-    var firstName: String? { get }
-    var lastName: String? { get }
-    var streetAddress: String? { get }
-    var city: String? { get }
-    var state: String? { get }
-    var zipcode: String? { get }
-    var dateOfBirth: Date? { get }
+    var firstName: String? { get set }
+    var lastName: String? { get set }
+    var streetAddress: String? { get set }
+    var city: String? { get set }
+    var state: String? { get set }
+    var zipcode: String? { get set }
+    var dateOfBirth: Date? { get set }
+    
+    init(selectedPassType: PassSubCategory,firstName: String?, lastName: String?, streetAddress: String?,
+    city: String?, state: String?, zipcode: String?, dateOfBirth: Date?) throws
 }
 

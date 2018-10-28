@@ -1,19 +1,15 @@
 //
-//  MultiSwipeRejectable.swift
+//  GuestPass.swift
 //  AmusementParkAccessPassGeneratorApp
 //
 //  Created by Abhilash Muraleedharan on 28/10/18.
 //  Copyright © 2018 AbhilashApps. All rights reserved.
 //
+
 import Foundation
 
-protocol MultiSwipeRejectable: class, Swipable {
-    var lastAccessTime: Date? { get set }
-    func canSwipe() -> Bool
-    func updateLastAccessTime()
-}
-
-extension MultiSwipeRejectable {
+class GuestPass: ParkPass {
+    var lastAccessTime: Date?
     
     func updateLastAccessTime() {
         lastAccessTime = Date()

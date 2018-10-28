@@ -11,14 +11,14 @@ enum PassCategory {
     case manager
 }
 
-enum PassSubCategory {
-    case classicGuestPass
-    case vipGuestPass
-    case freeChildGuestPass
-    case hourlyEmployeeFoodServicePass
-    case hourlyEmployeeRideServicePass
-    case hourlyEmployeeMaintenancePass
-    case managerPass
+enum PassSubCategory: String {
+    case classicGuestPass = "Classic Guest Pass"
+    case vipGuestPass = "VIP Guest Pass"
+    case freeChildGuestPass = "Free Child Guest Pass"
+    case hourlyEmployeeFoodServicePass = "Hourly Employee Food Service Pass"
+    case hourlyEmployeeRideServicePass = "Hourly Employee Ride Service Pass"
+    case hourlyEmployeeMaintenancePass = "Hourly Employee Maintenance Pass"
+    case managerPass = "Manager Pass"
 }
 
 extension PassCategory {
@@ -50,13 +50,13 @@ extension PassSubCategory {
         }
     }
     
-    var parkDiscounts: [ParkDiscount] {
+    var parkDiscount: ParkDiscount? {
         switch self {
-        case .classicGuestPass, .freeChildGuestPass: return []
-        case .vipGuestPass: return [ParkDiscount.foodDiscount(percentage: 10.0), ParkDiscount.merchandiseDiscount(percentage: 20.0)]
+        case .classicGuestPass, .freeChildGuestPass: return nil
+        case .vipGuestPass: return ParkDiscount.vipGuestDiscount
         case .hourlyEmployeeFoodServicePass,.hourlyEmployeeMaintenancePass, .hourlyEmployeeRideServicePass:
-            return [ParkDiscount.foodDiscount(percentage: 15.0), ParkDiscount.merchandiseDiscount(percentage: 25.0)]
-        case .managerPass: return [ParkDiscount.foodDiscount(percentage: 25.0), ParkDiscount.merchandiseDiscount(percentage: 25.0)]
+            return ParkDiscount.employeeDiscount
+        case .managerPass: return ParkDiscount.managerDiscount
         }
     }
     

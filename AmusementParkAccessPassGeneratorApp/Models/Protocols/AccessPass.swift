@@ -12,6 +12,6 @@ protocol AccessPass {
     var passType: PassSubCategory { get }
     var accessibleAreas: [ParkAccessArea] { get }
     var ridePrivileges: [RidePrivilege] { get }
-    var parkDiscounts: [ParkDiscount] { get }
+    var parkDiscount: ParkDiscount? { get set }
 }
 

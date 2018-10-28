@@ -8,19 +8,25 @@
 
 import Foundation
 
-class ClassicGuestPass: ParkPass, MultiSwipeRejectable {
-    var lastAccessTime: Date?
+class ClassicGuestPass: GuestPass {
+    
     init(firstName: String? = nil, lastName: String? = nil,
          streetAddress: String? = nil, city: String? = nil,
          state: String? = nil, zipcode: String? = nil,
-         dateOfBirth: Date? = nil) {
-        super.init(passType: .classicGuestPass, firstName: firstName,
-                   lastName: lastName, streetAddress: streetAddress,
-                   city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth)
+         dateOfBirth: Date? = nil) throws {
+        do {
+             try super.init(passType: .classicGuestPass, firstName: firstName,
+                           lastName: lastName, streetAddress: streetAddress,
+                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth)
+        } catch MissingInformationError.incompleteData(let error) {
+            throw MissingInformationError.incompleteData(error: error)
+        } catch let error {
+            throw MissingInformationError.incompleteData(error: "Unknown Error. \(error.localizedDescription)")
+        }
     }
 }
 
-extension ClassicGuestPass {
+extension ClassicGuestPass: Swipable {
     
     func swipe(at checkpoint: ParkAccessArea) -> (result: String, isPositive: Bool) {
         let result: String
@@ -30,11 +36,11 @@ extension ClassicGuestPass {
             if accessibleAreas.contains(checkpoint) {
                 result = "Hi, Classic Guest Pass User. You have been granted access to \(checkpoint.rawValue)."
                 isPositive = true
+                updateLastAccessTime()
             } else {
                 result = "Sorry, as a Classic Guest Pass user, you don't have access to \(checkpoint.rawValue)."
                 isPositive = false
             }
-            updateLastAccessTime()
         } else {
             result = UNAUTHORIZED_SWIPE_MSG
             isPositive = false
@@ -42,18 +48,18 @@ extension ClassicGuestPass {
         return (result: result, isPositive: isPositive)
     }
     
-    func swipe(for parkDiscount: ParkDiscount) -> (result: String, isPositive: Bool) {
+    func swipe(for parkDiscount: ParkDiscount?) -> (result: String, isPositive: Bool) {
         let result: String
         let isPositive: Bool
         
         if canSwipe() {
-            if  parkDiscounts.contains(parkDiscount){
-                result = "Hi Classic Guest Pass user, You are eligible for \(parkDiscount.rawValue)"
-                isPositive = true
-            } else {
-                result = "Sorry, as a Classic Guest Pass user, You are not eligible for \(parkDiscount.rawValue)"
-                isPositive = false
+            guard let discount = parkDiscount else {
+               result = "Sorry, as a Classic Guest Pass user, You are not eligible for any discount"
+               isPositive = false
+               return (result: result, isPositive: isPositive)
             }
+            result = "Hi, Classic Guest Pass user, You are eligible for \(discount.rawValue)"
+            isPositive = true
             updateLastAccessTime()
         } else {
             result = UNAUTHORIZED_SWIPE_MSG
@@ -70,11 +76,11 @@ extension ClassicGuestPass {
             if ridePrivileges.contains(ridePrivilege) {
                 result = "Hi Classic Guest Pass user, You have \(ridePrivilege.rawValue) access."
                 isPositive = true
+                updateLastAccessTime()
             } else {
                 result = "Sorry, as a Classic Guest Pass user, you don't have \(ridePrivilege.rawValue) access."
                 isPositive = false
             }
-            updateLastAccessTime()
         } else {
             result = UNAUTHORIZED_SWIPE_MSG
             isPositive = false
