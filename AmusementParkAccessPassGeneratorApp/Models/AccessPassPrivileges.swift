@@ -18,16 +18,16 @@ enum RidePrivilege: String {
     case skipAllRideLinesAccess = "Skip all ride lines"
 }
 
-enum ParkDiscount {
-    case foodDiscount(percentage: Double)
-    case merchandiseDiscount(percentage: Double)
+enum ParkDiscount: String {
+    case employeeDiscount = "15% discount on food and 25% discount on merchandise"
+    case vipGuestDiscount = "10% discount on food and 20% discount on merchandise"
+    case managerDiscount = "25% discount on food and 25% discount on merchandise"
     
-    var information: String {
+    func getDiscountValues() -> (foodDiscount: Double, merchandiseDiscount: Double) {
         switch self {
-        case .foodDiscount(let percentage):
-            return "Food Discount of \(percentage) %"
-        case .merchandiseDiscount(let percentage):
-            return "Merchandise discount of \(percentage) %"
+        case .employeeDiscount: return (foodDiscount: 15.0, merchandiseDiscount: 25.0)
+        case .vipGuestDiscount: return (foodDiscount: 10.0, merchandiseDiscount: 20.0)
+        case .managerDiscount: return (foodDiscount: 25.0, merchandiseDiscount: 25.0)
         }
     }
 }

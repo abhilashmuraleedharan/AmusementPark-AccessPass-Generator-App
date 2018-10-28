@@ -19,9 +19,11 @@
 		CC0D24DD2185855200FA2718 /* AccessPassPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24DC2185855200FA2718 /* AccessPassPrivileges.swift */; };
 		CC0D24DF2185866000FA2718 /* Swipable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24DE2185866000FA2718 /* Swipable.swift */; };
 		CC0D24E5218591BF00FA2718 /* ParkPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24E4218591BF00FA2718 /* ParkPass.swift */; };
-		CC0D24ED2185BA4200FA2718 /* ClassicParkPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24EC2185BA4200FA2718 /* ClassicParkPass.swift */; };
+		CC0D24ED2185BA4200FA2718 /* ClassicGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24EC2185BA4200FA2718 /* ClassicGuestPass.swift */; };
 		CC0D24F12185D9F600FA2718 /* UnAuthorizedSwipeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24F02185D9F600FA2718 /* UnAuthorizedSwipeMessage.swift */; };
 		CC0D24F32185DB9500FA2718 /* MultiSwipeRejectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24F22185DB9500FA2718 /* MultiSwipeRejectable.swift */; };
+		CC0D24FA2185E16500FA2718 /* VIPGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24F92185E16500FA2718 /* VIPGuestPass.swift */; };
+		CC0D24FC2185E90000FA2718 /* FreeChildGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24FB2185E90000FA2718 /* FreeChildGuestPass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,9 +41,11 @@
 		CC0D24DC2185855200FA2718 /* AccessPassPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPassPrivileges.swift; sourceTree = "<group>"; };
 		CC0D24DE2185866000FA2718 /* Swipable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipable.swift; sourceTree = "<group>"; };
 		CC0D24E4218591BF00FA2718 /* ParkPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkPass.swift; sourceTree = "<group>"; };
-		CC0D24EC2185BA4200FA2718 /* ClassicParkPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicParkPass.swift; sourceTree = "<group>"; };
+		CC0D24EC2185BA4200FA2718 /* ClassicGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGuestPass.swift; sourceTree = "<group>"; };
 		CC0D24F02185D9F600FA2718 /* UnAuthorizedSwipeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnAuthorizedSwipeMessage.swift; sourceTree = "<group>"; };
 		CC0D24F22185DB9500FA2718 /* MultiSwipeRejectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSwipeRejectable.swift; sourceTree = "<group>"; };
+		CC0D24F92185E16500FA2718 /* VIPGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPGuestPass.swift; sourceTree = "<group>"; };
+		CC0D24FB2185E90000FA2718 /* FreeChildGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeChildGuestPass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +127,9 @@
 		CC0D24F62185E0C400FA2718 /* GuestPass */ = {
 			isa = PBXGroup;
 			children = (
-				CC0D24EC2185BA4200FA2718 /* ClassicParkPass.swift */,
+				CC0D24EC2185BA4200FA2718 /* ClassicGuestPass.swift */,
+				CC0D24F92185E16500FA2718 /* VIPGuestPass.swift */,
+				CC0D24FB2185E90000FA2718 /* FreeChildGuestPass.swift */,
 			);
 			path = GuestPass;
 			sourceTree = "<group>";
@@ -213,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC0D24FC2185E90000FA2718 /* FreeChildGuestPass.swift in Sources */,
 				CC0D24DB218583CC00FA2718 /* PassCategories.swift in Sources */,
 				CC0D24D321857FE100FA2718 /* ParkEntrant.swift in Sources */,
 				CC0D24DF2185866000FA2718 /* Swipable.swift in Sources */,
@@ -220,7 +227,8 @@
 				CC0D24BE2185740E00FA2718 /* ViewController.swift in Sources */,
 				CC0D24E5218591BF00FA2718 /* ParkPass.swift in Sources */,
 				CC0D24CF21857B0900FA2718 /* AccessPass.swift in Sources */,
-				CC0D24ED2185BA4200FA2718 /* ClassicParkPass.swift in Sources */,
+				CC0D24FA2185E16500FA2718 /* VIPGuestPass.swift in Sources */,
+				CC0D24ED2185BA4200FA2718 /* ClassicGuestPass.swift in Sources */,
 				CC0D24D121857B5700FA2718 /* Entrant.swift in Sources */,
 				CC0D24F32185DB9500FA2718 /* MultiSwipeRejectable.swift in Sources */,
 				CC0D24BC2185740E00FA2718 /* AppDelegate.swift in Sources */,
