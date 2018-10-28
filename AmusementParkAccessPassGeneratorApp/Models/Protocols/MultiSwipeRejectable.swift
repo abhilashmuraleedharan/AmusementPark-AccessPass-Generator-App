@@ -16,7 +16,7 @@ protocol MultiSwipeRejectable: class, Swipable {
 extension MultiSwipeRejectable {
     
     func updateLastAccessTime() {
-        self.lastAccessTime = Date()
+        lastAccessTime = Date()
     }
     
     func canSwipe() -> Bool {

@@ -14,7 +14,7 @@ enum ParkAccessArea: String {
 }
 
 enum RidePrivilege: String {
-    case allRidesAccess = "Access to all rides"
+    case allRidesAccess = "All rides"
     case skipAllRideLinesAccess = "Skip all ride lines"
 }
 
@@ -22,7 +22,6 @@ enum ParkDiscount {
     case foodDiscount(percentage: Double)
     case merchandiseDiscount(percentage: Double)
     
-    /*
     var information: String {
         switch self {
         case .foodDiscount(let percentage):
@@ -30,5 +29,5 @@ enum ParkDiscount {
         case .merchandiseDiscount(let percentage):
             return "Merchandise discount of \(percentage) %"
         }
-    }*/
+    }
 }
