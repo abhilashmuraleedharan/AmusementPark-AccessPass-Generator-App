@@ -10,6 +10,8 @@ import Foundation
 
 class ClassicGuestPass: GuestPass {
     
+    var didShowBirthDayGreeting = false
+    
     init(firstName: String? = nil, lastName: String? = nil,
          streetAddress: String? = nil, city: String? = nil,
          state: String? = nil, zipcode: String? = nil,
@@ -28,9 +30,16 @@ class ClassicGuestPass: GuestPass {
 
 extension ClassicGuestPass: Swipable {
     
-    func swipe(at checkpoint: ParkAccessArea) -> (result: String, isPositive: Bool) {
+    func swipe(at checkpoint: ParkAccessArea) -> (result: String, isPositive: Bool, bdayGreeting: String?) {
         let result: String
         let isPositive: Bool
+        var bdayGreeting: String?
+        
+        if isTodayBirthday() {
+            if let firstname = passOwner.firstName {
+                bdayGreeting = "Many Many Happy Returns Of The Day, \(firstname)"
+            }
+        }
         
         if canSwipe() {
             if accessibleAreas.contains(checkpoint) {
@@ -45,18 +54,36 @@ extension ClassicGuestPass: Swipable {
             result = UNAUTHORIZED_SWIPE_MSG
             isPositive = false
         }
-        return (result: result, isPositive: isPositive)
+        
+        if didShowBirthDayGreeting {
+            return (result: result, isPositive: isPositive, nil)
+        } else {
+            didShowBirthDayGreeting = true
+            return (result: result, isPositive: isPositive, bdayGreeting: bdayGreeting)
+        }
     }
     
-    func swipe(for parkDiscount: ParkDiscount?) -> (result: String, isPositive: Bool) {
+    func swipe(for parkDiscount: ParkDiscount?) -> (result: String, isPositive: Bool, bdayGreeting: String?) {
         let result: String
         let isPositive: Bool
+        var bdayGreeting: String?
+        
+        if isTodayBirthday() {
+            if let firstname = passOwner.firstName {
+                bdayGreeting = "Many Many Happy Returns Of The Day, \(firstname)"
+            }
+        }
         
         if canSwipe() {
             guard let discount = parkDiscount else {
                result = "Sorry, as a Classic Guest Pass user, You are not eligible for any discount"
                isPositive = false
-               return (result: result, isPositive: isPositive)
+                if didShowBirthDayGreeting {
+                    return (result: result, isPositive: isPositive, nil)
+                } else {
+                    didShowBirthDayGreeting = true
+                    return (result: result, isPositive: isPositive, bdayGreeting: bdayGreeting)
+                }
             }
             result = "Hi, Classic Guest Pass user, You are eligible for \(discount.rawValue)"
             isPositive = true
@@ -65,12 +92,25 @@ extension ClassicGuestPass: Swipable {
             result = UNAUTHORIZED_SWIPE_MSG
             isPositive = false
         }
-        return (result: result, isPositive: isPositive)
+        
+        if didShowBirthDayGreeting {
+            return (result: result, isPositive: isPositive, nil)
+        } else {
+            didShowBirthDayGreeting = true
+            return (result: result, isPositive: isPositive, bdayGreeting: bdayGreeting)
+        }
     }
     
-    func swipe(for ridePrivilege: RidePrivilege) -> (result: String, isPositive: Bool) {
+    func swipe(for ridePrivilege: RidePrivilege) -> (result: String, isPositive: Bool, bdayGreeting: String?) {
         let result: String
         let isPositive: Bool
+        var bdayGreeting: String?
+        
+        if isTodayBirthday() {
+            if let firstname = passOwner.firstName {
+                bdayGreeting = "Many Many Happy Returns Of The Day, \(firstname)"
+            }
+        }
         
         if canSwipe() {
             if ridePrivileges.contains(ridePrivilege) {
@@ -85,7 +125,12 @@ extension ClassicGuestPass: Swipable {
             result = UNAUTHORIZED_SWIPE_MSG
             isPositive = false
         }
-        return (result: result, isPositive: isPositive)
+        if didShowBirthDayGreeting {
+            return (result: result, isPositive: isPositive, nil)
+        } else {
+            didShowBirthDayGreeting = true
+            return (result: result, isPositive: isPositive, bdayGreeting: bdayGreeting)
+        }
     }
     
 }

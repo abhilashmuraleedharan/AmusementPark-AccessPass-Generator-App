@@ -1,5 +1,5 @@
 //
-//  MissinginformationErrors.swift
+//  Errors.swift
 //  AmusementParkAccessPassGeneratorApp
 //
 //  Created by Abhilash Muraleedharan on 28/10/18.
@@ -15,5 +15,9 @@ enum MissingInformationError : Error {
     case missingState(error: String)
     case missingZipcode(error: String)
     case incompleteData(error: String)
+}
+
+enum AgeDependentError: Error {
+    case notChild(error: String)
 }
 

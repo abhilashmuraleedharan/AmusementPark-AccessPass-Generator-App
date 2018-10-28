@@ -24,7 +24,11 @@
 		CC0D24FA2185E16500FA2718 /* VIPGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24F92185E16500FA2718 /* VIPGuestPass.swift */; };
 		CC0D24FC2185E90000FA2718 /* FreeChildGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24FB2185E90000FA2718 /* FreeChildGuestPass.swift */; };
 		CC0D24FE2185EC4C00FA2718 /* GuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24FD2185EC4C00FA2718 /* GuestPass.swift */; };
-		CC0D25012185FE0500FA2718 /* MissinginformationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D25002185FE0500FA2718 /* MissinginformationErrors.swift */; };
+		CC0D25012185FE0500FA2718 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D25002185FE0500FA2718 /* Errors.swift */; };
+		CC0D250B218626FE00FA2718 /* HourlyEmployeeFoodServicesPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D250A218626FE00FA2718 /* HourlyEmployeeFoodServicesPass.swift */; };
+		CC0D250D2186271C00FA2718 /* HourlyEmployeeRideServicesPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D250C2186271C00FA2718 /* HourlyEmployeeRideServicesPass.swift */; };
+		CC0D250F2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D250E2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift */; };
+		CC0D251121862A2B00FA2718 /* ManagerPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D251021862A2B00FA2718 /* ManagerPass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +51,11 @@
 		CC0D24F92185E16500FA2718 /* VIPGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPGuestPass.swift; sourceTree = "<group>"; };
 		CC0D24FB2185E90000FA2718 /* FreeChildGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeChildGuestPass.swift; sourceTree = "<group>"; };
 		CC0D24FD2185EC4C00FA2718 /* GuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestPass.swift; sourceTree = "<group>"; };
-		CC0D25002185FE0500FA2718 /* MissinginformationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissinginformationErrors.swift; sourceTree = "<group>"; };
+		CC0D25002185FE0500FA2718 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		CC0D250A218626FE00FA2718 /* HourlyEmployeeFoodServicesPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyEmployeeFoodServicesPass.swift; sourceTree = "<group>"; };
+		CC0D250C2186271C00FA2718 /* HourlyEmployeeRideServicesPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyEmployeeRideServicesPass.swift; sourceTree = "<group>"; };
+		CC0D250E2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyEmployeeMaintenancePass.swift; sourceTree = "<group>"; };
+		CC0D251021862A2B00FA2718 /* ManagerPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +108,7 @@
 				CC0D24DA218583CC00FA2718 /* PassCategories.swift */,
 				CC0D24DC2185855200FA2718 /* AccessPassPrivileges.swift */,
 				CC0D24F02185D9F600FA2718 /* UnAuthorizedSwipeMessage.swift */,
-				CC0D25002185FE0500FA2718 /* MissinginformationErrors.swift */,
+				CC0D25002185FE0500FA2718 /* Errors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -140,6 +148,9 @@
 		CC0D24F72185E0D300FA2718 /* EmployeePass */ = {
 			isa = PBXGroup;
 			children = (
+				CC0D250A218626FE00FA2718 /* HourlyEmployeeFoodServicesPass.swift */,
+				CC0D250C2186271C00FA2718 /* HourlyEmployeeRideServicesPass.swift */,
+				CC0D250E2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift */,
 			);
 			path = EmployeePass;
 			sourceTree = "<group>";
@@ -147,6 +158,7 @@
 		CC0D24F82185E0E000FA2718 /* ManagerPass */ = {
 			isa = PBXGroup;
 			children = (
+				CC0D251021862A2B00FA2718 /* ManagerPass.swift */,
 			);
 			path = ManagerPass;
 			sourceTree = "<group>";
@@ -227,16 +239,20 @@
 				CC0D24D321857FE100FA2718 /* ParkEntrant.swift in Sources */,
 				CC0D24FE2185EC4C00FA2718 /* GuestPass.swift in Sources */,
 				CC0D24DF2185866000FA2718 /* Swipable.swift in Sources */,
+				CC0D250B218626FE00FA2718 /* HourlyEmployeeFoodServicesPass.swift in Sources */,
 				CC0D24DD2185855200FA2718 /* AccessPassPrivileges.swift in Sources */,
 				CC0D24BE2185740E00FA2718 /* ViewController.swift in Sources */,
 				CC0D24E5218591BF00FA2718 /* ParkPass.swift in Sources */,
 				CC0D24CF21857B0900FA2718 /* AccessPass.swift in Sources */,
-				CC0D25012185FE0500FA2718 /* MissinginformationErrors.swift in Sources */,
+				CC0D25012185FE0500FA2718 /* Errors.swift in Sources */,
+				CC0D251121862A2B00FA2718 /* ManagerPass.swift in Sources */,
 				CC0D24FA2185E16500FA2718 /* VIPGuestPass.swift in Sources */,
 				CC0D24ED2185BA4200FA2718 /* ClassicGuestPass.swift in Sources */,
 				CC0D24D121857B5700FA2718 /* Entrant.swift in Sources */,
+				CC0D250D2186271C00FA2718 /* HourlyEmployeeRideServicesPass.swift in Sources */,
 				CC0D24BC2185740E00FA2718 /* AppDelegate.swift in Sources */,
 				CC0D24F12185D9F600FA2718 /* UnAuthorizedSwipeMessage.swift in Sources */,
+				CC0D250F2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
