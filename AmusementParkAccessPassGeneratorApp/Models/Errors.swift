@@ -17,7 +17,7 @@ enum MissingInformationError : Error {
     case incompleteData(error: String)
 }
 
-enum AgeDependentError: Error {
+enum PassQualificationError: Error {
     case notChild(error: String)
 }
 

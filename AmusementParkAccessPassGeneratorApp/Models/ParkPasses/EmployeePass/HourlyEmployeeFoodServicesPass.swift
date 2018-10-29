@@ -10,12 +10,10 @@ import Foundation
 
 class HourlyEmployeeFoodServicesPass: ParkPass {
     
-    var didShowBirthDayGreeting = false
-    
-    init(firstName: String? = nil, lastName: String? = nil,
-         streetAddress: String? = nil, city: String? = nil,
-         state: String? = nil, zipcode: String? = nil,
-         dateOfBirth: Date? = nil) throws {
+    init(firstName: String?, lastName: String?,
+         streetAddress: String?, city: String?,
+         state: String?, zipcode: String?,
+         dateOfBirth: Date?) throws {
         do {
             try super.init(passType: .hourlyEmployeeFoodServicePass, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,

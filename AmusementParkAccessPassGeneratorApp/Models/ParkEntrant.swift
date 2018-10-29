@@ -16,7 +16,9 @@ class ParkEntrant: Entrant {
     var zipcode: String?
     var dateOfBirth: Date?
     
-    required init(selectedPassType: PassSubCategory, firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipcode: String?, dateOfBirth: Date?) throws {
+    required init(selectedPassType: PassSubCategory, firstName: String?, lastName: String?,
+                  streetAddress: String?, city: String?, state: String?, zipcode: String?,
+                  dateOfBirth: Date?) throws {
         switch selectedPassType {
         case .classicGuestPass, .vipGuestPass:
             self.firstName = firstName

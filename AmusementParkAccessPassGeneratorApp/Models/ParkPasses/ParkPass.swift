@@ -15,9 +15,9 @@ class ParkPass: AccessPass {
     let ridePrivileges: [RidePrivilege]
     var parkDiscount: ParkDiscount?
     
-    init(passType: PassSubCategory, firstName: String? = nil, lastName: String? = nil,
-                     streetAddress: String? = nil, city:String? = nil, state: String? = nil,
-                     zipcode: String? = nil, dateOfBirth: Date? = nil) throws {
+    init(passType: PassSubCategory, firstName: String?, lastName: String?,
+                     streetAddress: String?, city:String?, state: String?,
+                     zipcode: String?, dateOfBirth: Date?) throws {
         let entrant: ParkEntrant
         do {
             try entrant = ParkEntrant(selectedPassType: passType, firstName: firstName,

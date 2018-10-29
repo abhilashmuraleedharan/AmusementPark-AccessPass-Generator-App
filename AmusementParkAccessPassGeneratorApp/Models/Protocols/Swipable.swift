@@ -13,110 +13,101 @@ protocol Swipable: class {
     var accessibleAreas: [ParkAccessArea] { get }
     var ridePrivileges: [RidePrivilege] { get }
     var parkDiscount: ParkDiscount? { get set }
-    var didShowBirthDayGreeting: Bool { get set }
     
-    func swipe(at checkpoint: ParkAccessArea) -> (result: String, isPositive: Bool, bdayGreeting: String?)
-    func swipe(for parkDiscount: ParkDiscount?) -> (result: String, isPositive: Bool, bdayGreeting: String?)
-    func swipe(for ridePrivilege: RidePrivilege) -> (result: String, isPositive: Bool, bdayGreeting: String?)
+    func swipe(at checkpoint: ParkAccessArea) -> (result: String, isPositive: Bool)
+    func swipe(for parkDiscount: ParkDiscount?) -> (result: String, isPositive: Bool)
+    func swipe(for ridePrivilege: RidePrivilege) -> (result: String, isPositive: Bool)
 }
 
 extension Swipable {
     
-    func swipe(at checkpoint: ParkAccessArea) -> (result: String, isPositive: Bool, bdayGreeting: String?) {
-        let result: String
+    func swipe(at checkpoint: ParkAccessArea) -> (result: String, isPositive: Bool) {
+        var result = ""
         let isPositive: Bool
-        var bdayGreeting: String?
+        let bdayGreeting = getBirthDayGreetingIfBirthDay()
         
-        if isTodayBirthday() {
-            if let firstname = passOwner.firstName {
-                bdayGreeting = "Many Many Happy Returns Of The Day, \(firstname)"
-            }
+        if let greeting = bdayGreeting {
+            result = greeting
         }
         
         if accessibleAreas.contains(checkpoint) {
-            result = "Hi, \(passType.rawValue) user. You have been granted access to \(checkpoint.rawValue)."
+            result += "You are a \(passType.rawValue) user. You have access to \(checkpoint.rawValue)."
             isPositive = true
         } else {
-            result = "Sorry, as a \(passType.rawValue) user, you don't have access to \(checkpoint.rawValue)."
+            result += "Sorry, you're a \(passType.rawValue) user. You don't have access to \(checkpoint.rawValue)."
             isPositive = false
         }
         
-        if didShowBirthDayGreeting {
-            return (result: result, isPositive: isPositive, nil)
-        } else {
-            didShowBirthDayGreeting = true
-            return (result: result, isPositive: isPositive, bdayGreeting: bdayGreeting)
-        }
+        return (result: result, isPositive: isPositive)
     }
     
-    func swipe(for parkDiscount: ParkDiscount?) -> (result: String, isPositive: Bool, bdayGreeting: String?) {
-        let result: String
+    func swipe(for parkDiscount: ParkDiscount?) -> (result: String, isPositive: Bool) {
+        var result = ""
         let isPositive: Bool
-        var bdayGreeting: String?
+        let bdayGreeting = getBirthDayGreetingIfBirthDay()
         
-        if isTodayBirthday() {
-            if let firstname = passOwner.firstName {
-                bdayGreeting = "Many Many Happy Returns Of The Day, \(firstname)"
-            }
+        if let greeting = bdayGreeting {
+            result = greeting
         }
         
         guard let discount = parkDiscount else {
-            result = "Sorry, as a \(passType.rawValue) user, You are not eligible for any discount"
+            result += "Sorry, you're a \(passType.rawValue) user. You are not eligible for park discounts."
             isPositive = false
-            if didShowBirthDayGreeting {
-                return (result: result, isPositive: isPositive, nil)
-            } else {
-                didShowBirthDayGreeting = true
-                return (result: result, isPositive: isPositive, bdayGreeting: bdayGreeting)
-            }
+            return (result: result, isPositive: isPositive)
         }
-        result = "Hi, \(passType.rawValue) user, You are eligible for \(discount.rawValue)"
+        
+        result += "You are a \(passType.rawValue) user. You are eligible to have \(discount.rawValue)."
         isPositive = true
         
-        if didShowBirthDayGreeting {
-            return (result: result, isPositive: isPositive, nil)
-        } else {
-            didShowBirthDayGreeting = true
-            return (result: result, isPositive: isPositive, bdayGreeting: bdayGreeting)
-        }
+        return (result: result, isPositive: isPositive)
     }
     
-    func swipe(for ridePrivilege: RidePrivilege) -> (result: String, isPositive: Bool, bdayGreeting: String?) {
-        let result: String
+    func swipe(for ridePrivilege: RidePrivilege) -> (result: String, isPositive: Bool) {
+        var result = ""
         let isPositive: Bool
-        var bdayGreeting: String?
+        let bdayGreeting = getBirthDayGreetingIfBirthDay()
         
-        if isTodayBirthday() {
-            if let firstname = passOwner.firstName {
-                bdayGreeting = "Many Many Happy Returns Of The Day, \(firstname)"
-            }
+        if let greeting = bdayGreeting {
+            result = greeting
         }
         
         if ridePrivileges.contains(ridePrivilege) {
-            result = "Hi, \(passType.rawValue) user, You have \(ridePrivilege.rawValue) access."
+            result += "You are a \(passType.rawValue) user. You have \(ridePrivilege.rawValue) access."
             isPositive = true
             
         } else {
-            result = "Sorry, as a \(passType.rawValue) user, you don't have \(ridePrivilege.rawValue) access."
+            result += "Sorry, you're a \(passType.rawValue) user. You don't have \(ridePrivilege.rawValue) access."
             isPositive = false
         }
         
-        if didShowBirthDayGreeting {
-            return (result: result, isPositive: isPositive, nil)
-        } else {
-            didShowBirthDayGreeting = true
-            return (result: result, isPositive: isPositive, bdayGreeting: bdayGreeting)
-        }
+        return (result: result, isPositive: isPositive)
     }
     
     func isTodayBirthday() -> Bool {
         if let dateOfBirth = passOwner.dateOfBirth {
             let todayMonthAndDay = Calendar.current.dateComponents([.month, .day], from: Date())
-            let dateOfBirthMonthAndDay = Calendar.current.dateComponents([.month, .day], from: dateOfBirth)
-            return todayMonthAndDay == dateOfBirthMonthAndDay
+            let passOwnerBirthDay = Calendar.current.dateComponents([.month, .day], from: dateOfBirth)
+            return todayMonthAndDay == passOwnerBirthDay
         } else {
             return false
         }
+    }
+    
+    func getBirthDayGreetingIfBirthDay() -> String? {
+        var bdayGreeting: String?
+        if isTodayBirthday() {
+            bdayGreeting = "Happy BirthDay"
+            if let firstName = passOwner.firstName {
+                bdayGreeting! += " \(firstName)\n"
+            } else {
+                if let lastName = passOwner.lastName {
+                    bdayGreeting! += " \(lastName)\n"
+                } else {
+                    bdayGreeting! += "\n"
+                }
+            }
+        }
+        return bdayGreeting
     }
 }
 
