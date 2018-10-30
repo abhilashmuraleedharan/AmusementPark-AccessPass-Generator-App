@@ -18,6 +18,7 @@ class HourlyEmployeeFoodServicesPass: ParkPass {
             try super.init(passType: .hourlyEmployeeFoodServicePass, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
                            city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth)
+            displayPassInformation()
         } catch MissingInformationError.incompleteData(let error) {
             throw MissingInformationError.incompleteData(error: error)
         } catch let error {

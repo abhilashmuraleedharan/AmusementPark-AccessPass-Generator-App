@@ -19,7 +19,8 @@ class FreeChildGuestPass: GuestPass {
                            city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth)
             if !qualifiedAsChild() {
                 throw PassQualificationError.notChild(error: "Not a child under 5 years of age. Cannot issue Free Child Guest Pass")
-            } 
+            }
+            displayPassInformation()
         } catch MissingInformationError.incompleteData(let error) {
             throw MissingInformationError.incompleteData(error: error)
         } catch let error {

@@ -57,5 +57,27 @@ class ParkPass: AccessPass {
     }
 }
 
+extension ParkPass {
+    
+    func displayPassInformation() {
+        var entrantName = ""
+        
+        if let firstName = passOwner.firstName, let lastName = passOwner.lastName {
+            entrantName = "\(firstName) \(lastName)"
+        } else {
+            if let firstName = passOwner.firstName {
+                entrantName = "\(firstName)"
+            } else {
+                if let lastName = passOwner.lastName {
+                    entrantName = "\(lastName)"
+                } else {
+                    entrantName = "Anonymous Entrant"
+                }
+            }
+        }
+        print("\nSuccessfully created a new \(passType.rawValue) for \(entrantName).\n")
+    }
+}
+
 
 

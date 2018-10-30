@@ -18,6 +18,7 @@ class ManagerPass: ParkPass {
             try super.init(passType: .managerPass, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
                            city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth)
+            displayPassInformation()
         } catch MissingInformationError.incompleteData(let error) {
             throw MissingInformationError.incompleteData(error: error)
         } catch let error {

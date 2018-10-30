@@ -15,7 +15,7 @@ protocol Swipable: class {
     var parkDiscount: ParkDiscount? { get set }
     
     func swipe(at checkpoint: ParkAccessArea) -> (result: String, isPositive: Bool)
-    func swipe(for parkDiscount: ParkDiscount?) -> (result: String, isPositive: Bool)
+    func swipe(for parkDiscount: ParkDiscount) -> (result: String, isPositive: Bool)
     func swipe(for ridePrivilege: RidePrivilege) -> (result: String, isPositive: Bool)
 }
 
@@ -41,7 +41,7 @@ extension Swipable {
         return (result: result, isPositive: isPositive)
     }
     
-    func swipe(for parkDiscount: ParkDiscount?) -> (result: String, isPositive: Bool) {
+    func swipe(for parkDiscount: ParkDiscount) -> (result: String, isPositive: Bool) {
         var result = ""
         let isPositive: Bool
         let bdayGreeting = getBirthDayGreetingIfBirthDay()
@@ -50,14 +50,19 @@ extension Swipable {
             result = greeting
         }
         
-        guard let discount = parkDiscount else {
+        guard let discount = self.parkDiscount else {
             result += "Sorry, you're a \(passType.rawValue) user. You are not eligible for park discounts."
             isPositive = false
             return (result: result, isPositive: isPositive)
         }
         
-        result += "You are a \(passType.rawValue) user. You are eligible to have \(discount.rawValue)."
-        isPositive = true
+        if discount == parkDiscount {
+            result += "You are a \(passType.rawValue) user. You are eligible to have \(discount.rawValue)."
+            isPositive = true
+        } else {
+            result += "Sorry, you're a \(passType.rawValue) user. You are not eligible to have \(discount.rawValue)."
+            isPositive = false
+        }
         
         return (result: result, isPositive: isPositive)
     }
