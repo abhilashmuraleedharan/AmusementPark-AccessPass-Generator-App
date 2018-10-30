@@ -97,13 +97,17 @@ extension Swipable {
         var bdayGreeting: String?
         if isTodayBirthday() {
             bdayGreeting = "Happy BirthDay"
-            if let firstName = passOwner.firstName {
-                bdayGreeting! += " \(firstName)\n"
+            if let firstName = passOwner.firstName, let lastName = passOwner.lastName {
+                bdayGreeting! += " \(firstName) \(lastName)\n"
             } else {
-                if let lastName = passOwner.lastName {
-                    bdayGreeting! += " \(lastName)\n"
+                if let firstName = passOwner.firstName {
+                    bdayGreeting! += " \(firstName)\n"
                 } else {
-                    bdayGreeting! += "\n"
+                    if let lastName = passOwner.lastName {
+                        bdayGreeting! += " \(lastName)\n"
+                    } else {
+                        bdayGreeting! += "\n"
+                    }
                 }
             }
         }
