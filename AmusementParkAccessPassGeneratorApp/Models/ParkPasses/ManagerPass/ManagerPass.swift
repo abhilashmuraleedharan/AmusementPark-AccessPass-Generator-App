@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ManagerPass: ParkPass {
+class ManagerPass: ParkPass, Swipable {
     
     init(firstName: String?, lastName: String?,
          streetAddress: String?, city: String?,

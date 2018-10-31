@@ -32,8 +32,9 @@ class FreeChildGuestPass: GuestPass {
 extension FreeChildGuestPass {
     
     func qualifiedAsChild() -> Bool {
-        let maxAllowedChildDateOfBirth = Calendar.current.date(byAdding: .year, value: -5, to: Date())!;
-        let dob = passOwner.dateOfBirth!
-        return dob < maxAllowedChildDateOfBirth ? false : true
+        let maxAllowedChildDateOfBirth = Calendar.current.date(byAdding: .year, value: -5, to: Date())!
+        if let dob = passOwner.dateOfBirth {
+            return dob < maxAllowedChildDateOfBirth ? false : true
+        } else { return false }
     }
 }

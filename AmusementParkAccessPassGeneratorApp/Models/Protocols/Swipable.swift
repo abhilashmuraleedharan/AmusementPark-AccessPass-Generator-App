@@ -31,13 +31,12 @@ extension Swipable {
         }
         
         if accessibleAreas.contains(checkpoint) {
-            result += "You are a \(passType.rawValue) user. You have access to \(checkpoint.rawValue)."
+            result += "You have access to \(checkpoint.rawValue)."
             isPositive = true
         } else {
-            result += "Sorry, you're a \(passType.rawValue) user. You don't have access to \(checkpoint.rawValue)."
+            result += "Sorry, You don't have access to \(checkpoint.rawValue)."
             isPositive = false
         }
-        
         return (result: result, isPositive: isPositive)
     }
     
@@ -51,19 +50,18 @@ extension Swipable {
         }
         
         guard let discount = self.parkDiscount else {
-            result += "Sorry, you're a \(passType.rawValue) user. You are not eligible for park discounts."
+            result += "Sorry, You are not eligible for park discounts."
             isPositive = false
             return (result: result, isPositive: isPositive)
         }
         
         if discount == parkDiscount {
-            result += "You are a \(passType.rawValue) user. You are eligible to have \(discount.rawValue)."
+            result += "You are eligible to have \(discount.rawValue)."
             isPositive = true
         } else {
-            result += "Sorry, you're a \(passType.rawValue) user. You are not eligible to have \(discount.rawValue)."
+            result += "Sorry, You are not eligible to have \(discount.rawValue)."
             isPositive = false
         }
-        
         return (result: result, isPositive: isPositive)
     }
     
@@ -77,14 +75,13 @@ extension Swipable {
         }
         
         if ridePrivileges.contains(ridePrivilege) {
-            result += "You are a \(passType.rawValue) user. You have \(ridePrivilege.rawValue) access."
+            result += "You have \(ridePrivilege.rawValue) access."
             isPositive = true
             
         } else {
-            result += "Sorry, you're a \(passType.rawValue) user. You don't have \(ridePrivilege.rawValue) access."
+            result += "Sorry, You don't have \(ridePrivilege.rawValue) access."
             isPositive = false
         }
-        
         return (result: result, isPositive: isPositive)
     }
     

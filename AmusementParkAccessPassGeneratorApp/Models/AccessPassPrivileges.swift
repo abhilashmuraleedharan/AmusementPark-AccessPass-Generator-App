@@ -15,7 +15,7 @@ enum ParkAccessArea: String {
 
 enum RidePrivilege: String {
     case allRidesAccess = "All Rides"
-    case skipAllRideLinesAccess = "Skip all ride lines"
+    case skipAllRideLinesAccess = "Skip All Ride Lines"
 }
 
 enum ParkDiscount: String {

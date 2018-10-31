@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HourlyEmployeeMaintenancePass: ParkPass {
+class HourlyEmployeeMaintenancePass: ParkPass, Swipable {
     
     init(firstName: String?, lastName: String?,
          streetAddress: String?, city: String?,
