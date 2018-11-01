@@ -5,6 +5,8 @@
 //  Created by Abhilash Muraleedharan on 28/10/18.
 //  Copyright © 2018 AbhilashApps. All rights reserved.
 //
+
+/// Defines the different areas of the amusement park that needs an appropriate pass to get access.
 enum ParkAccessArea: String {
     case amusementArea = "Amusement Area"
     case kitchenArea = "Kitchen Area"
@@ -13,11 +15,13 @@ enum ParkAccessArea: String {
     case officeArea = "Office Area"
 }
 
+/// Defines the type of privileges a pass owner can have for rides in the amusement park.
 enum RidePrivilege: String {
     case allRidesAccess = "All Rides"
     case skipAllRideLinesAccess = "Skip All Ride Lines"
 }
 
+/// Defines the type of discounts offered by the park to different pass owners.
 enum ParkDiscount: String {
     case employeeDiscount = "15% discount on food and 25% discount on merchandise"
     case vipGuestDiscount = "10% discount on food and 20% discount on merchandise"

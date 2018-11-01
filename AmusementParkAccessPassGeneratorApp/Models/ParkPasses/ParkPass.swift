@@ -20,7 +20,7 @@ class ParkPass: AccessPass {
                      zipcode: String?, dateOfBirth: Date?) throws {
         let entrant: ParkEntrant
         do {
-            try entrant = ParkEntrant(selectedPassType: passType, firstName: firstName,
+            entrant = try ParkEntrant(selectedPassType: passType, firstName: firstName,
                                       lastName: lastName, streetAddress: streetAddress,
                                       city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth)
             self.passOwner = entrant
