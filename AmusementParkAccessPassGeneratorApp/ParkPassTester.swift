@@ -10,7 +10,7 @@ import Foundation
 
 typealias SwipeResult = (result: String, isPositive: Bool)
 
-/// Simulater to test various passes issued by the Amusement Park Pass App.
+/// Simulator to test various passes issued by the Amusement Park Pass App.
 struct ParkPassTester {
     
     /// Method that runs all the park pass related tests.
