@@ -19,9 +19,9 @@ class ClassicGuestPass: GuestPass {
                            city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth)
              displayPassInformation()
         } catch MissingInformationError.incompleteData(let error) {
-            throw MissingInformationError.incompleteData(error: error)
+            throw MissingInformationError.incompleteData(errorMessage: error)
         } catch let error {
-            throw MissingInformationError.incompleteData(error: "Unknown Error. \(error.localizedDescription)")
+            throw MissingInformationError.incompleteData(errorMessage: "Unknown Error. \(error.localizedDescription)")
         }
     }
 }

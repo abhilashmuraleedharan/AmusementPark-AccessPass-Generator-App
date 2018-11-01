@@ -66,7 +66,7 @@ extension PassSubCategory {
         }
     }
     
-    /// Sub Category Pass type, this computed property returns the collection of ride privileges available for that pass type.
+    /// Based on the Sub Category Pass type, this computed property returns the collection of ride privileges available for that pass type.
     var ridePrivileges: [RidePrivilege] {
         switch self {
         case .vipGuestPass: return [RidePrivilege.allRidesAccess, RidePrivilege.skipAllRideLinesAccess]

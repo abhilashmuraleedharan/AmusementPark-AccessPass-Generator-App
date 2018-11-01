@@ -61,7 +61,7 @@ extension AccessPassGeneratorAppTester {
     func testClassicGuestPass() {
         print("\n\n********** Testing Classic Guest Pass with no Entrant information. *********** \n")
         do {
-            let classicGuestPass = try ClassicGuestPass(firstName: nil, lastName: nil, dateOfBirth: nil, streetAddress: nil, city: nil, state: nil, zipcode: nil)
+            let classicGuestPass = try ClassicGuestPass()
             testRideAccess(of: classicGuestPass)
             testAreaAccess(of: classicGuestPass)
             testSkipAllRideLinesAccess(of: classicGuestPass)
@@ -77,7 +77,7 @@ extension AccessPassGeneratorAppTester {
     func testVIPGuestPass() {
         print("\n\n********** Testing VIP Guest Pass with only first name and last name information. ************ \n")
         do {
-            let vipGuestPass = try VIPGuestPass(firstName: "Vito", lastName: "Corleone", dateOfBirth: nil, streetAddress: nil, city: nil, state: nil, zipcode: nil)
+            let vipGuestPass = try VIPGuestPass(firstName: "Vito", lastName: "Corleone")
             testRideAccess(of: vipGuestPass)
             testAreaAccess(of: vipGuestPass)
             testSkipAllRideLinesAccess(of: vipGuestPass)
@@ -107,8 +107,8 @@ extension AccessPassGeneratorAppTester {
             dateComponents.day = 13
             let calendar = Calendar.current
             let customDate = calendar.date(from: dateComponents)
-            // To ensure a date of birth that makes the entrant only 4 years of age with a b'day other than
-            // today thereby preventing triggering of "Swiping on a b'day" bonus feature. This feature is tested
+            // Below step is done to ensure a date of birth that makes the entrant only 4 years of age with a b'day other than
+            // today, thereby preventing the triggering of "Swiping on a b'day" bonus feature. This feature is tested
             // separately in testSwipeOnBirthDay()
             let childDateOfBirth = Calendar.current.date(byAdding: .year, value: -4, to: customDate!)!
             let childGuestPass = try FreeChildGuestPass(dateOfBirth: childDateOfBirth)
@@ -234,14 +234,13 @@ extension AccessPassGeneratorAppTester {
         }
     }
     
-    /// Method that tests whether the bonus requirement of displaying personlized messages to an entrant when swiped on a b'day is met or not.
+    /// Method that tests whether the bonus requirement of displaying personlized greeting messages to an entrant when swiped on a b'day is met or not.
     func testSwipeOnBirthDay() {
         print("\n********************* Testing whether personalized b'day greeting messages are displayed when an entrant swipes on his/her b'day ********************\n")
-        print("1. Create a Classic Guest Pass with only date of birth and swipe on his/her b'day")
+        print("1. Create a Classic Guest Pass including date of birth information and swipe on his/her b'day")
         let entrantDateOfBirth = Calendar.current.date(byAdding: .year, value: -29, to: Date())!
         do {
-            let classicGuestPass = try ClassicGuestPass(firstName: nil, lastName: nil, dateOfBirth: entrantDateOfBirth,
-                                                        streetAddress: nil, city: nil, state: nil, zipcode: nil)
+            let classicGuestPass = try ClassicGuestPass(firstName: "John", lastName: "Ritter", dateOfBirth: entrantDateOfBirth)
             swipe(classicGuestPass, at: .amusementArea)
         } catch let error {
             print(error)
@@ -258,7 +257,7 @@ extension AccessPassGeneratorAppTester {
         print("3. Create a VIP Guest Pass with full name and date of birth and swipe on his/her b'day")
         let vipDateOfBirth = Calendar.current.date(byAdding: .year, value: -40, to: Date())!
         do {
-            let vipGuestPass = try VIPGuestPass(firstName: "Felipa", lastName: "Herman", dateOfBirth: vipDateOfBirth, streetAddress: nil, city: nil, state: nil, zipcode: nil)
+            let vipGuestPass = try VIPGuestPass(firstName: "Felipa", lastName: "Herman", dateOfBirth: vipDateOfBirth)
             swipe(vipGuestPass, for: .skipAllRideLinesAccess)
         } catch let error {
             print(error)
@@ -306,7 +305,7 @@ extension AccessPassGeneratorAppTester {
         print("\nChecking skip all ride lines access of \(pass.passType.rawValue)")
         print("==================================================================================\n")
         swipe(pass, for: .skipAllRideLinesAccess)
-        // To prevent triggering of "unauthorized swipe within 5 seconds" feature during test automation.
+        // To prevent triggering of "unauthorized swipe within 5 seconds" feature during test automation, wait for 6 seconds.
         sleep(6)
     }
     
@@ -317,7 +316,7 @@ extension AccessPassGeneratorAppTester {
         print("\nTesting ride access of \(pass.passType.rawValue)")
         print("==================================================================================\n")
         swipe(pass, for: .allRidesAccess)
-        // To prevent triggering of "unauthorized swipe within 5 seconds" feature during test automation.
+        // To prevent triggering of "unauthorized swipe within 5 seconds" feature during test automation, wait for 6 seconds.
         sleep(6)
     }
     

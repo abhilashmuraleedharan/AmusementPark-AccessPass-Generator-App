@@ -15,7 +15,7 @@ enum ParkAccessArea: String {
     case officeArea = "Office Area"
 }
 
-/// Defines the type of privileges a pass owner can have for rides in the amusement park.
+/// Defines the type of privileges a pass owner can have for the rides in the amusement park.
 enum RidePrivilege: String {
     case allRidesAccess = "All Rides"
     case skipAllRideLinesAccess = "Skip All Ride Lines"

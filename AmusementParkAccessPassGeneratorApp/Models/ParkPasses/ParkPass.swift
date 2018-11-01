@@ -31,28 +31,28 @@ class ParkPass: AccessPass {
             
         } catch MissingInformationError.missingCity(let error){
             let errorDescription = error + " requires city information."
-            throw MissingInformationError.incompleteData(error: errorDescription)
+            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
         } catch MissingInformationError.missingDateOfBirth(let error) {
             let errorDescription = error + " requires date of birth information."
-            throw MissingInformationError.incompleteData(error: errorDescription)
+            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
         } catch MissingInformationError.missingFirstName(let error) {
             let errorDescription = error + " requires first name."
-            throw MissingInformationError.incompleteData(error: errorDescription)
+            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
         } catch MissingInformationError.missingLastName(let error) {
             let errorDescription = error + " requires last name."
-            throw MissingInformationError.incompleteData(error: errorDescription)
+            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
         } catch MissingInformationError.missingState(let error) {
             let errorDescription = error + " requires state information."
-            throw MissingInformationError.incompleteData(error: errorDescription)
+            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
         } catch MissingInformationError.missingStreetAddress(let error) {
             let errorDescription = error + " requires street address."
-            throw MissingInformationError.incompleteData(error: errorDescription)
+            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
         } catch MissingInformationError.missingZipcode(let error) {
             let errorDescription = error + " requires zipcode."
-            throw MissingInformationError.incompleteData(error: errorDescription)
+            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
         } catch let error {
             let errorDescription = "Unknown Error. \(error.localizedDescription)"
-            throw MissingInformationError.incompleteData(error: errorDescription)
+            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
         }
     }
 }

@@ -8,6 +8,7 @@
 import  Foundation
 
 protocol Swipable: class, AccessPass{
+    
     /// Method that handles the swipe action of an entrant at any access areas within the park.
     /// Returns a tuple containing the swipe result message and swipe status.
     /// - Parameters:
