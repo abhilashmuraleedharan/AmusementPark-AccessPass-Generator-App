@@ -29,7 +29,7 @@
 		CC0D250D2186271C00FA2718 /* HourlyEmployeeRideServicesPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D250C2186271C00FA2718 /* HourlyEmployeeRideServicesPass.swift */; };
 		CC0D250F2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D250E2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift */; };
 		CC0D251121862A2B00FA2718 /* ManagerPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D251021862A2B00FA2718 /* ManagerPass.swift */; };
-		CC19B2FD2188CD7A00BAA109 /* ParkPassTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC19B2FC2188CD7A00BAA109 /* ParkPassTester.swift */; };
+		CC19B2FD2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +57,7 @@
 		CC0D250C2186271C00FA2718 /* HourlyEmployeeRideServicesPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyEmployeeRideServicesPass.swift; sourceTree = "<group>"; };
 		CC0D250E2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyEmployeeMaintenancePass.swift; sourceTree = "<group>"; };
 		CC0D251021862A2B00FA2718 /* ManagerPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPass.swift; sourceTree = "<group>"; };
-		CC19B2FC2188CD7A00BAA109 /* ParkPassTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkPassTester.swift; sourceTree = "<group>"; };
+		CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPassGeneratorAppTester.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0D24CD2185743800FA2718 /* Models */,
-				CC19B2FC2188CD7A00BAA109 /* ParkPassTester.swift */,
+				CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */,
 				CC0D24BB2185740E00FA2718 /* AppDelegate.swift */,
 				CC0D24BD2185740E00FA2718 /* ViewController.swift */,
 				CC0D24BF2185740E00FA2718 /* Main.storyboard */,
@@ -256,7 +256,7 @@
 				CC0D24BC2185740E00FA2718 /* AppDelegate.swift in Sources */,
 				CC0D24F12185D9F600FA2718 /* UnAuthorizedSwipeMessage.swift in Sources */,
 				CC0D250F2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift in Sources */,
-				CC19B2FD2188CD7A00BAA109 /* ParkPassTester.swift in Sources */,
+				CC19B2FD2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

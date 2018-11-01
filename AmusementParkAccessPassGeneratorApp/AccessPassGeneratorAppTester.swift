@@ -10,8 +10,8 @@ import Foundation
 
 typealias SwipeResult = (result: String, isPositive: Bool)
 
-/// Simulator to test various passes issued by the Amusement Park Pass App.
-struct ParkPassTester {
+/// Simulator to test various passes issued by the Amusement Park Access Pass Generator App.
+struct AccessPassGeneratorAppTester {
     
     /// Method that runs all the park pass related tests.
     func testAllParkPasses() {
@@ -55,7 +55,7 @@ struct ParkPassTester {
 }
 
 
-extension ParkPassTester {
+extension AccessPassGeneratorAppTester {
     
     /// Method that tests a Classic Guest Pass's conformance to business rules matrix provided by the park authorities.
     func testClassicGuestPass() {
@@ -236,7 +236,8 @@ extension ParkPassTester {
     
     /// Method that tests whether the bonus requirement of displaying personlized messages to an entrant when swiped on a b'day is met or not.
     func testSwipeOnBirthDay() {
-        print("\n*********** Create a Classic Guest Pass with only date of birth and swipe on his/her b'day ***************")
+        print("\n********************* Testing whether personalized b'day greeting messages are displayed when an entrant swipes on his/her b'day ********************\n")
+        print("1. Create a Classic Guest Pass with only date of birth and swipe on his/her b'day")
         let entrantDateOfBirth = Calendar.current.date(byAdding: .year, value: -29, to: Date())!
         do {
             let classicGuestPass = try ClassicGuestPass(firstName: nil, lastName: nil, dateOfBirth: entrantDateOfBirth,
@@ -245,7 +246,7 @@ extension ParkPassTester {
         } catch let error {
             print(error)
         }
-        print("\n*************** Create a Manager Pass and swipe on his/her b'day ********************")
+        print("2. Create a Manager Pass and swipe on his/her b'day")
         let managerDateOfBirth = Calendar.current.date(byAdding: .year, value: -35, to: Date())!
         do {
             let managerPass = try ManagerPass(firstName: "Molly", lastName: "Christiansen", streetAddress: "8695 Wilderman Hills",
@@ -254,7 +255,7 @@ extension ParkPassTester {
         } catch let error {
             print(error)
         }
-        print("\n************* Create a VIP Guest Pass with full name and date of birth and swipe on his/her b'day ************************")
+        print("3. Create a VIP Guest Pass with full name and date of birth and swipe on his/her b'day")
         let vipDateOfBirth = Calendar.current.date(byAdding: .year, value: -40, to: Date())!
         do {
             let vipGuestPass = try VIPGuestPass(firstName: "Felipa", lastName: "Herman", dateOfBirth: vipDateOfBirth, streetAddress: nil, city: nil, state: nil, zipcode: nil)
@@ -262,7 +263,7 @@ extension ParkPassTester {
         } catch let error {
             print(error)
         }
-        print("\n************** Create an Hourly Employee Pass with date of birth but swipe on a day other than his/her b'day ***************")
+        print("4. Create an Hourly Employee Pass with date of birth but swipe on a day other than his/her b'day")
         var dateComponents = DateComponents()
         dateComponents.year = 1980
         dateComponents.month = 7

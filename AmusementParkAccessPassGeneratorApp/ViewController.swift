@@ -13,8 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let parkPassTester = ParkPassTester()
-        parkPassTester.testAllParkPasses()
+        let testBot = AccessPassGeneratorAppTester()
+        testBot.testAllParkPasses()
     }
 
 
