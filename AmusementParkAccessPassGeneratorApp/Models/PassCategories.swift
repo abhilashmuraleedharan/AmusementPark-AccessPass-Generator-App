@@ -46,7 +46,7 @@ extension PassSubCategory {
         case .hourlyEmployeeRideServicePass:
             return [ParkAccessArea.amusementArea, ParkAccessArea.rideControlArea]
         case .hourlyEmployeeMaintenancePass:
-            return [ParkAccessArea.amusementArea, ParkAccessArea.maintenanceArea]
+            return [ParkAccessArea.amusementArea, ParkAccessArea.maintenanceArea, ParkAccessArea.kitchenArea, ParkAccessArea.rideControlArea]
         case .hourlyEmployeeFoodServicePass:
             return [ParkAccessArea.amusementArea, ParkAccessArea.kitchenArea]
         case .managerPass:
