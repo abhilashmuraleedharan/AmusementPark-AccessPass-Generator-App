@@ -67,10 +67,10 @@ extension Swipable {
         }
         
         if discount == parkDiscount {
-            result += "You are eligible to have \(discount.rawValue)."
+            result += "You are eligible to have \(parkDiscount.rawValue)."
             isPositive = true
         } else {
-            result += "Sorry, You are not eligible to have \(discount.rawValue)."
+            result += "Sorry, You are not eligible to have \(parkDiscount.rawValue)."
             isPositive = false
         }
         return (result: result, isPositive: isPositive)

@@ -8,10 +8,10 @@
 
 import Foundation
 
-typealias SwipeResult = (result: String, isPositive: Bool)
-
 /// Simulator to test various passes issued by the Amusement Park Access Pass Generator App.
 struct AccessPassGeneratorAppTester {
+    
+    typealias SwipeResult = (result: String, isPositive: Bool)
     
     /// Method that runs all the park pass related tests.
     func testAllParkPasses() {
