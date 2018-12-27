@@ -11,7 +11,7 @@ import Foundation
 class ParkPass: AccessPass {
     let passOwner: ParkEntrant
     let passType: PassSubCategory
-    let accessibleAreas: [ParkAccessArea]
+    let accessibleAreas: [AccessRequiredParkArea]
     let ridePrivileges: [RidePrivilege]
     var parkDiscount: ParkDiscount?
     

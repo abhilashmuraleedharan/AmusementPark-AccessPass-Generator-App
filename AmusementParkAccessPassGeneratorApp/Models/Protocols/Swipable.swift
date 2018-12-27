@@ -13,7 +13,7 @@ protocol Swipable: class, AccessPass{
     /// Returns a tuple containing the swipe result message and swipe status.
     /// - Parameters:
     ///     - at: Any ParkAccessArea (enum type)
-    func swipe(at checkpoint: ParkAccessArea) -> (result: String, isPositive: Bool)
+    func swipe(at checkpoint: AccessRequiredParkArea) -> (result: String, isPositive: Bool)
     
     /// Method that handles the swipe action of an entrant to receive discounts at eateries and shops.
     /// Returns a tuple containing the swipe result message and swipe status.
@@ -30,7 +30,7 @@ protocol Swipable: class, AccessPass{
 
 extension Swipable {
     
-    func swipe(at checkpoint: ParkAccessArea) -> (result: String, isPositive: Bool) {
+    func swipe(at checkpoint: AccessRequiredParkArea) -> (result: String, isPositive: Bool) {
         var result = ""
         let isPositive: Bool
         let bdayGreeting = getBirthDayGreetingIfBirthDay()

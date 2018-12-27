@@ -16,10 +16,13 @@ enum MissingInformationError : Error {
     case missingCity(errorMessage: String)
     case missingState(errorMessage: String)
     case missingZipcode(errorMessage: String)
+    case missingProjectNumber(errorMessage: String)
+    case missingVendorCompany(errorMessage: String)
+    case missingDateOfVisit(errorMessage: String)
     case incompleteData(errorMessage: String)
 }
 
-/// Defines the error types that are associated with lack of neccesary qualification of an
+/// Defines the error types that are associated with lack of necessary qualifications for an
 /// entrant to posses a specific type of pass.
 enum PassQualificationError: Error {
     case notChild(errorMessage: String)

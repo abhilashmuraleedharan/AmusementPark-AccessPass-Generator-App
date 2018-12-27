@@ -36,7 +36,7 @@ struct AccessPassGeneratorAppTester {
     }
     
     /// Method that simulates an entrant swiping at a park area
-    func swipe(_ pass: Swipable, at area: ParkAccessArea) {
+    func swipe(_ pass: Swipable, at area: AccessRequiredParkArea) {
         let swipeOutput = pass.swipe(at: area)
         display(swipeOutput)
     }
