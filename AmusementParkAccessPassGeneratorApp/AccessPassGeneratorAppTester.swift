@@ -47,7 +47,7 @@ struct AccessPassGeneratorAppTester {
         display(swipeOutput)
     }
     
-    /// Method that simulates an entrant swiping at a shop or eatery for discount
+    /// Method that simulates an entrant swiping at a shop or eatery for availing discount
     func swipe(_ pass: Swipable, for discount: ParkDiscount) {
         let swipeOutput = pass.swipe(for: discount)
         display(swipeOutput)
@@ -135,18 +135,20 @@ extension AccessPassGeneratorAppTester {
     func testHourlyEmployeeFoodServicesPass() {
         print("\n\n********** Testing Hourly Employee Food Service Pass without all required information. ************ \n")
         do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
             let foodServiceEmployeePass = try HourlyEmployeeFoodServicesPass(firstName: "Gary", lastName: nil,
                                                                      streetAddress: "59653 Candice Ports Apt",
-                                                                     city: "Manhattan", state: "New York", zipcode: "10030", dateOfBirth: nil)
+                                                                     city: "Manhattan", state: "New York", zipcode: "10030", dateOfBirth: dob)
         } catch let error {
             print(error)
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
         }
         print("\n\n********** Testing Hourly Employee Food Service Pass with all required information. ************ \n")
         do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
             let foodServiceEmployeePass = try HourlyEmployeeFoodServicesPass(firstName: "Raheem", lastName: "Waters",
                                                                          streetAddress: "461 Rowena Lights", city: "Seattle",
-                                                                         state: "Washington", zipcode: "98101", dateOfBirth: nil)
+                                                                         state: "Washington", zipcode: "98101", dateOfBirth: dob)
             testRideAccess(of: foodServiceEmployeePass)
             testAreaAccess(of: foodServiceEmployeePass)
             testSkipAllRideLinesAccess(of: foodServiceEmployeePass)
@@ -162,7 +164,7 @@ extension AccessPassGeneratorAppTester {
         print("\n\n********** Testing Hourly Employee Ride Service Pass without all required information. ************ \n")
         do {
             let rideServiceEmployeePass = try HourlyEmployeeRideServicesPass(firstName: "Eryn", lastName: "Wolf",
-                                                                             streetAddress: nil, city: "Dublin",
+                                                                             streetAddress: "21097 Rashad Manors", city: "Dublin",
                                                                              state: "Leinster", zipcode: "94568", dateOfBirth: nil)
         } catch let error {
             print(error)
@@ -170,9 +172,10 @@ extension AccessPassGeneratorAppTester {
         }
         print("\n\n********** Testing Hourly Employee Ride Service Pass with all required information. ************ \n")
         do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
             let rideServiceEmployeePass = try HourlyEmployeeRideServicesPass(firstName: "Eryn", lastName: "Wolf",
                                                                              streetAddress: "46 Kildare street", city: "Dublin",
-                                                                             state: "Leinster Province", zipcode: "94568", dateOfBirth: nil)
+                                                                             state: "Leinster Province", zipcode: "94568", dateOfBirth: dob)
             testRideAccess(of: rideServiceEmployeePass)
             testAreaAccess(of: rideServiceEmployeePass)
             testSkipAllRideLinesAccess(of: rideServiceEmployeePass)
@@ -187,9 +190,10 @@ extension AccessPassGeneratorAppTester {
     func testHourlyEmployeeMaintenancePass() {
         print("\n\n********** Testing Hourly Employee Maintenance Pass without all required information. ************ \n")
         do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
             let maintenanceEmployeePass = try HourlyEmployeeMaintenancePass(firstName: "Yazmin", lastName: "West",
                                                                             streetAddress: "24 Baker Street", city: "London",
-                                                                            state: "London", zipcode: nil, dateOfBirth: nil)
+                                                                            state: "London", zipcode: nil, dateOfBirth: dob)
         } catch let error {
             print(error)
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
@@ -213,17 +217,19 @@ extension AccessPassGeneratorAppTester {
     func testManagerPass() {
         print("\n\n********** Manager Pass without all required information. ************ \n")
         do {
+            let dob = Calendar.current.date(byAdding: .year, value: -36, to: Date())!
             let managerPass = try ManagerPass(firstName: "Larry", lastName: "Daley",
-                                          streetAddress: "Upper West Side", city: nil, state: "New York", zipcode: "10031", dateOfBirth: nil)
+                                          streetAddress: "Upper West Side", city: nil, state: "New York", zipcode: "10031", dateOfBirth: dob)
         } catch let error {
             print(error)
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
         }
         print("\n\n********** Manager Pass with all required information. ************ \n")
         do {
+            let dob = Calendar.current.date(byAdding: .year, value: -36, to: Date())!
             let managerPass = try ManagerPass(firstName: "Jonathan", lastName: "Pine",
                                               streetAddress: "Luxor Governate", city: "Luxor", state: "Cairo",
-                                              zipcode: "387130", dateOfBirth: nil)
+                                              zipcode: "387130", dateOfBirth: dob)
             testRideAccess(of: managerPass)
             testAreaAccess(of: managerPass)
             testSkipAllRideLinesAccess(of: managerPass)
