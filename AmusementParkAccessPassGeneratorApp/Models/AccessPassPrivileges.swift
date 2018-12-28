@@ -17,8 +17,8 @@ enum AccessRequiredParkArea: String {
 
 /// Defines the type of privileges a pass owner can have for the rides in the amusement park.
 enum RidePrivilege: String {
-    case allRidesAccess = "Access All Rides"
-    case skipAllRideLinesAccess = "Skip All Ride Lines"
+    case allRidesAccess = "All Rides Access"
+    case skipAllRideLinesAccess = "Skip All Ride Lines Access"
 }
 
 /// Defines the type of discounts offered by the park to different pass owners.

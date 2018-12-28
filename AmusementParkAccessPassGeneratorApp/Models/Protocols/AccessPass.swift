@@ -8,7 +8,7 @@
 
 protocol AccessPass {
     var passOwner: ParkEntrant { get }
-    var passType: PassSubCategory { get }
+    var passType: PassSubType { get }
     var accessibleAreas: [AccessRequiredParkArea] { get }
     var ridePrivileges: [RidePrivilege] { get }
     var parkDiscount: ParkDiscount? { get set }

@@ -16,7 +16,7 @@ class ParkEntrant: Entrant {
     var zipcode: String?
     var dateOfBirth: Date?
     
-    required init(selectedPassType: PassSubCategory, firstName: String?, lastName: String?,
+    required init(selectedPassType: PassSubType, firstName: String?, lastName: String?,
                   streetAddress: String?, city: String?, state: String?, zipcode: String?,
                   dateOfBirth: Date?) throws {
         switch selectedPassType {
@@ -38,39 +38,43 @@ class ParkEntrant: Entrant {
             if let dob = dateOfBirth {
                 self.dateOfBirth = dob
             } else {
-                throw MissingInformationError.missingDateOfBirth(errorMessage: "\(selectedPassType.rawValue)")
+                throw MissingInformationError.noDateOfBirth(errorMessage: "\(selectedPassType.rawValue)")
             }
         default:
-            self.dateOfBirth = dateOfBirth
+            if let dob = dateOfBirth {
+                self.dateOfBirth = dob
+            } else {
+                throw MissingInformationError.noDateOfBirth(errorMessage: "\(selectedPassType.rawValue)")
+            }
             if let firstName = firstName {
                 self.firstName = firstName
             } else {
-                throw MissingInformationError.missingFirstName(errorMessage: "\(selectedPassType.rawValue)")
+                throw MissingInformationError.noFirstName(errorMessage: "\(selectedPassType.rawValue)")
             }
             if let lastName = lastName {
                 self.lastName = lastName
             } else {
-                throw MissingInformationError.missingLastName(errorMessage: "\(selectedPassType.rawValue)")
+                throw MissingInformationError.noLastName(errorMessage: "\(selectedPassType.rawValue)")
             }
             if let streetAddress = streetAddress {
                 self.streetAddress = streetAddress
             } else {
-                throw MissingInformationError.missingStreetAddress(errorMessage: "\(selectedPassType.rawValue)")
+                throw MissingInformationError.noStreetAddress(errorMessage: "\(selectedPassType.rawValue)")
             }
             if let city = city {
                 self.city = city
             } else {
-                throw MissingInformationError.missingCity(errorMessage: "\(selectedPassType.rawValue)")
+                throw MissingInformationError.noCity(errorMessage: "\(selectedPassType.rawValue)")
             }
             if let state = state {
                 self.state = state
             } else {
-                throw MissingInformationError.missingState(errorMessage: "\(selectedPassType.rawValue)")
+                throw MissingInformationError.noState(errorMessage: "\(selectedPassType.rawValue)")
             }
             if let zipcode = zipcode {
                 self.zipcode = zipcode
             } else {
-                throw MissingInformationError.missingZipcode(errorMessage: "\(selectedPassType.rawValue)")
+                throw MissingInformationError.noZipcode(errorMessage: "\(selectedPassType.rawValue)")
             }
         }
     }

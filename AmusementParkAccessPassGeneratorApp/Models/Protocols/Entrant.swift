@@ -16,7 +16,7 @@ protocol Entrant {
     var zipcode: String? { get set }
     var dateOfBirth: Date? { get set }
     
-    init(selectedPassType: PassSubCategory,firstName: String?, lastName: String?, streetAddress: String?,
+    init(selectedPassType: PassSubType,firstName: String?, lastName: String?, streetAddress: String?,
     city: String?, state: String?, zipcode: String?, dateOfBirth: Date?) throws
 }
 

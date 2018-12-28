@@ -47,7 +47,7 @@ extension GuestPass: Swipable {
     func swipe(for ridePrivilege: RidePrivilege) -> (result: String, isPositive: Bool) {
         var result = ""
         let isPositive: Bool
-        let bdayGreeting = getBirthDayGreetingIfBirthDay()
+        let bdayGreeting = getPersonalizedBirthDayGreetingIfBirthDay()
         
         // To add a custom b'day greeting message if swiped on b'day.
         if let greeting = bdayGreeting {
@@ -56,11 +56,11 @@ extension GuestPass: Swipable {
         
         if canSwipe() {
             if ridePrivileges.contains(ridePrivilege) {
-                result += "You have \(ridePrivilege.rawValue) access."
+                result += "You have \(ridePrivilege.rawValue)."
                 isPositive = true
                 updateLastAccessTime()
             } else {
-                result += "Sorry, You don't have \(ridePrivilege.rawValue) access."
+                result += "Sorry, Your pass don't have \(ridePrivilege.rawValue)."
                 isPositive = false
             }
         } else {

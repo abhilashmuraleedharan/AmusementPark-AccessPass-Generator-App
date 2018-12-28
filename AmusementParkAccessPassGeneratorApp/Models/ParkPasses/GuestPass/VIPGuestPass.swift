@@ -18,10 +18,10 @@ class VIPGuestPass: GuestPass {
                            lastName: lastName, streetAddress: streetAddress,
                            city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth)
             displayPassInformation()
-        } catch MissingInformationError.incompleteData(let error) {
-            throw MissingInformationError.incompleteData(errorMessage: error)
+        } catch MissingInformationError.inSufficientData(let error) {
+            throw MissingInformationError.inSufficientData(errorMessage: error)
         } catch let error {
-            throw MissingInformationError.incompleteData(errorMessage: "Unknown Error. \(error.localizedDescription)")
+            throw MissingInformationError.inSufficientData(errorMessage: "Unknown Error. \(error.localizedDescription)")
         }
     }
 }

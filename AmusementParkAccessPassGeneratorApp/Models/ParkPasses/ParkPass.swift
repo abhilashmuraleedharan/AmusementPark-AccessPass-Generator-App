@@ -10,12 +10,12 @@ import Foundation
 
 class ParkPass: AccessPass {
     let passOwner: ParkEntrant
-    let passType: PassSubCategory
+    let passType: PassSubType
     let accessibleAreas: [AccessRequiredParkArea]
     let ridePrivileges: [RidePrivilege]
     var parkDiscount: ParkDiscount?
     
-    init(passType: PassSubCategory, firstName: String?, lastName: String?,
+    init(passType: PassSubType, firstName: String?, lastName: String?,
                      streetAddress: String?, city:String?, state: String?,
                      zipcode: String?, dateOfBirth: Date?) throws {
         let entrant: ParkEntrant
@@ -29,30 +29,30 @@ class ParkPass: AccessPass {
             self.ridePrivileges = passType.ridePrivileges
             self.parkDiscount = passType.parkDiscount
             
-        } catch MissingInformationError.missingCity(let error){
+        } catch MissingInformationError.noCity(let error){
             let errorDescription = error + " requires city information."
-            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
-        } catch MissingInformationError.missingDateOfBirth(let error) {
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
+        } catch MissingInformationError.noDateOfBirth(let error) {
             let errorDescription = error + " requires date of birth information."
-            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
-        } catch MissingInformationError.missingFirstName(let error) {
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
+        } catch MissingInformationError.noFirstName(let error) {
             let errorDescription = error + " requires first name."
-            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
-        } catch MissingInformationError.missingLastName(let error) {
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
+        } catch MissingInformationError.noLastName(let error) {
             let errorDescription = error + " requires last name."
-            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
-        } catch MissingInformationError.missingState(let error) {
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
+        } catch MissingInformationError.noState(let error) {
             let errorDescription = error + " requires state information."
-            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
-        } catch MissingInformationError.missingStreetAddress(let error) {
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
+        } catch MissingInformationError.noStreetAddress(let error) {
             let errorDescription = error + " requires street address."
-            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
-        } catch MissingInformationError.missingZipcode(let error) {
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
+        } catch MissingInformationError.noZipcode(let error) {
             let errorDescription = error + " requires zipcode."
-            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
         } catch let error {
             let errorDescription = "Unknown Error. \(error.localizedDescription)"
-            throw MissingInformationError.incompleteData(errorMessage: errorDescription)
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
         }
     }
 }

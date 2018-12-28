@@ -12,19 +12,19 @@ protocol Swipable: class, AccessPass{
     /// Method that handles the swipe action of an entrant at any access areas within the park.
     /// Returns a tuple containing the swipe result message and swipe status.
     /// - Parameters:
-    ///     - at: Any ParkAccessArea (enum type)
+    ///     - at: Any AccessRequiredParkArea
     func swipe(at checkpoint: AccessRequiredParkArea) -> (result: String, isPositive: Bool)
     
-    /// Method that handles the swipe action of an entrant to receive discounts at eateries and shops.
+    /// Method that handles the swipe action of an entrant to avail any discounts at eateries and shops inside park.
     /// Returns a tuple containing the swipe result message and swipe status.
     /// - Parameters:
-    ///     - for: ParkDiscount (enum type)
+    ///     - for: ParkDiscount
     func swipe(for parkDiscount: ParkDiscount) -> (result: String, isPositive: Bool)
     
-    /// Method that handles the swipe action of an entrant to ride rides or skip ride lines
+    /// Method that handles the swipe action of an entrant to ride any rides or skip ride lines.
     /// Returns a tuple containing the swipe result message and swipe status.
     /// - Parameters:
-    ///     - for: RidePrivilege (enum type)
+    ///     - for: RidePrivilege
     func swipe(for ridePrivilege: RidePrivilege) -> (result: String, isPositive: Bool)
 }
 
@@ -33,7 +33,7 @@ extension Swipable {
     func swipe(at checkpoint: AccessRequiredParkArea) -> (result: String, isPositive: Bool) {
         var result = ""
         let isPositive: Bool
-        let bdayGreeting = getBirthDayGreetingIfBirthDay()
+        let bdayGreeting = getPersonalizedBirthDayGreetingIfBirthDay()
         
         // To add a custom b'day greeting message if swiped on b'day.
         if let greeting = bdayGreeting {
@@ -53,7 +53,7 @@ extension Swipable {
     func swipe(for parkDiscount: ParkDiscount) -> (result: String, isPositive: Bool) {
         var result = ""
         let isPositive: Bool
-        let bdayGreeting = getBirthDayGreetingIfBirthDay()
+        let bdayGreeting = getPersonalizedBirthDayGreetingIfBirthDay()
         
         // To add a custom b'day greeting message if swiped on b'day.
         if let greeting = bdayGreeting {
@@ -61,16 +61,16 @@ extension Swipable {
         }
         
         guard let discount = self.parkDiscount else {
-            result += "Sorry, You are not eligible for park discounts."
+            result += "Sorry, Your pass cannot avail any food and merchandise discounts."
             isPositive = false
             return (result: result, isPositive: isPositive)
         }
         
         if discount == parkDiscount {
-            result += "You are eligible to have \(parkDiscount.rawValue)."
+            result += "Your pass can avail \(parkDiscount.rawValue)."
             isPositive = true
         } else {
-            result += "Sorry, You are not eligible to have \(parkDiscount.rawValue)."
+            result += "Sorry, Your passs cannot avail \(parkDiscount.rawValue)."
             isPositive = false
         }
         return (result: result, isPositive: isPositive)
@@ -79,7 +79,7 @@ extension Swipable {
     func swipe(for ridePrivilege: RidePrivilege) -> (result: String, isPositive: Bool) {
         var result = ""
         let isPositive: Bool
-        let bdayGreeting = getBirthDayGreetingIfBirthDay()
+        let bdayGreeting = getPersonalizedBirthDayGreetingIfBirthDay()
         
         // To add a custom b'day greeting message if swiped on b'day.
         if let greeting = bdayGreeting {
@@ -87,11 +87,11 @@ extension Swipable {
         }
         
         if ridePrivileges.contains(ridePrivilege) {
-            result += "You have \(ridePrivilege.rawValue) access."
+            result += "You have \(ridePrivilege.rawValue)."
             isPositive = true
             
         } else {
-            result += "Sorry, You don't have \(ridePrivilege.rawValue) access."
+            result += "Sorry, Your pass don't have \(ridePrivilege.rawValue)."
             isPositive = false
         }
         return (result: result, isPositive: isPositive)
@@ -110,9 +110,9 @@ extension Swipable {
     }
     
     /// Helper method that composes a customized b'day greeting if today turns out to be
-    /// pass owner's b'day.
+    /// the pass owner's b'day.
     /// Returns the custom b'day greeting string if it is his/her b'day or returns nil.
-    func getBirthDayGreetingIfBirthDay() -> String? {
+    func getPersonalizedBirthDayGreetingIfBirthDay() -> String? {
         var bdayGreeting: String?
         if isTodayBirthday() {
             bdayGreeting = "\nHappy BirthDay"

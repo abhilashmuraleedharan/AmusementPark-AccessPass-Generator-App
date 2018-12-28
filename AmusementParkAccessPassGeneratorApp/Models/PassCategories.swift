@@ -16,7 +16,7 @@ enum PassCategory {
 }
 
 /// Sub Category types of the Amusement Park Pass
-enum PassSubCategory: String {
+enum PassSubType: String {
     case classicGuestPass = "Classic Guest Pass"
     case vipGuestPass = "VIP Guest Pass"
     case freeChildGuestPass = "Free Child Guest Pass"
@@ -37,25 +37,38 @@ enum PassSubCategory: String {
     case nwelectricalCompanyVendorPass = "NW Electrical Company Vendor Pass"
 }
 
+enum NewPassInputFormData: String {
+    case firstName = "First Name"
+    case lastName = "Last Name"
+    case dateOfBirth = "Date of Birth"
+    case streetAddress = "Street Address"
+    case city = "City"
+    case state = "State"
+    case zipcode = "Zipcode"
+    case projectNumber = "Project Number"
+    case vendorCompany = "Vendor Company"
+    case dateOfVisit = "Date of Visit"
+}
+
 extension PassCategory {
     /// Based on the main pass type, this computed property returns its corresponding sub types
-    var passSubCategoryList: [PassSubCategory] {
+    var passSubTypeList: [PassSubType] {
         switch self {
         case .guest:
-            return [PassSubCategory.classicGuestPass, PassSubCategory.vipGuestPass, PassSubCategory.freeChildGuestPass]
+            return [PassSubType.classicGuestPass, PassSubType.vipGuestPass, PassSubType.freeChildGuestPass]
         case .employee:
-            return [PassSubCategory.hourlyEmployeeFoodServicePass, PassSubCategory.hourlyEmployeeMaintenancePass, PassSubCategory.hourlyEmployeeRideServicePass]
+            return [PassSubType.hourlyEmployeeFoodServicePass, PassSubType.hourlyEmployeeMaintenancePass, PassSubType.hourlyEmployeeRideServicePass]
         case .manager: return []
         case .contractor:
-            return [PassSubCategory.project1001ContractorPass, PassSubCategory.project1002ContractorPass, PassSubCategory.project1003ContractorPass, PassSubCategory.project2001ContractorPass, PassSubCategory.project2002ContractorPass]
+            return [PassSubType.project1001ContractorPass, PassSubType.project1002ContractorPass, PassSubType.project1003ContractorPass, PassSubType.project2001ContractorPass, PassSubType.project2002ContractorPass]
         case .vendor:
-            return [PassSubCategory.acmeCompanyVendorPass, PassSubCategory.orikinCompanyVendorPass, PassSubCategory.fedexCompanyVendorPass, PassSubCategory.nwelectricalCompanyVendorPass]
+            return [PassSubType.acmeCompanyVendorPass, PassSubType.orikinCompanyVendorPass, PassSubType.fedexCompanyVendorPass, PassSubType.nwelectricalCompanyVendorPass]
         }
     }
 }
 
-extension PassSubCategory {
-    /// Based on the Sub Category Pass type, this computed property returns the collection of park areas accessible by that pass type.
+extension PassSubType {
+    /// Based on the Pass sub-type, this computed property returns the collection of park areas accessible by that pass type.
     var accessibleParkAreas: [AccessRequiredParkArea] {
         switch self {
         case .classicGuestPass, .vipGuestPass, .freeChildGuestPass, .seasonGuestPass, .seniorGuestPass:
@@ -84,26 +97,52 @@ extension PassSubCategory {
         }
     }
     
-    /// Based on the Sub Category Pass type, this computed property returns the collection of park discounts available for that pass type.
+    /// Based on the Pass sub-type, this computed property returns the collection of park discounts available for that pass type.
     var parkDiscount: ParkDiscount? {
         switch self {
-        case .classicGuestPass, .freeChildGuestPass, .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orikinCompanyVendorPass,
-             .project1001ContractorPass, .project1002ContractorPass, .project1003ContractorPass, .project2001ContractorPass, .project2002ContractorPass: return nil
         case .vipGuestPass: return ParkDiscount.vipGuestDiscount
         case .hourlyEmployeeFoodServicePass,.hourlyEmployeeMaintenancePass, .hourlyEmployeeRideServicePass:
             return ParkDiscount.employeeDiscount
         case .managerPass: return ParkDiscount.managerDiscount
         case .seniorGuestPass: return ParkDiscount.seniorGuestDiscount
         case .seasonGuestPass: return ParkDiscount.seasonPassGuestDiscount
+        default: return nil
         }
     }
     
-    /// Based on the Sub Category Pass type, this computed property returns the collection of ride privileges available for that pass type.
+    /// Based on the Pass sub-type, this computed property returns the collection of ride privileges available for that pass type.
     var ridePrivileges: [RidePrivilege] {
         switch self {
         case .vipGuestPass, .seniorGuestPass, .seasonGuestPass: return [RidePrivilege.allRidesAccess, RidePrivilege.skipAllRideLinesAccess]
         case .classicGuestPass, .freeChildGuestPass, .hourlyEmployeeFoodServicePass, .hourlyEmployeeMaintenancePass, .hourlyEmployeeRideServicePass, .managerPass: return [RidePrivilege.allRidesAccess]
         default: return []
+        }
+    }
+    
+    /// Based on the Pass sub-type, this computed property returns the collection of essential form data fields to be present in the generate pass page.
+    var necessaryFormDataFields: [NewPassInputFormData] {
+        switch self {
+        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orikinCompanyVendorPass:
+            return [NewPassInputFormData.vendorCompany, NewPassInputFormData.dateOfVisit, NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.streetAddress, NewPassInputFormData.city, NewPassInputFormData.state, NewPassInputFormData.zipcode, NewPassInputFormData.dateOfBirth]
+        case .project1001ContractorPass, .project1002ContractorPass, .project1003ContractorPass, .project2001ContractorPass, .project2002ContractorPass:
+            return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.streetAddress, NewPassInputFormData.city, NewPassInputFormData.state, NewPassInputFormData.zipcode, NewPassInputFormData.dateOfBirth, NewPassInputFormData.projectNumber]
+        default:
+            return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.streetAddress, NewPassInputFormData.city, NewPassInputFormData.state, NewPassInputFormData.zipcode, NewPassInputFormData.dateOfBirth]
+        }
+    }
+    
+    /// Based on the Pass sub-type, this computed property returns the collection of form data that must be filled in the generate pass page.
+    var requiredFormDataFields: [NewPassInputFormData] {
+        switch  self {
+        case .classicGuestPass, .vipGuestPass: return []
+        case .freeChildGuestPass: return [NewPassInputFormData.dateOfBirth]
+        case .seniorGuestPass: return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.dateOfBirth]
+        case .project1001ContractorPass, .project1002ContractorPass, .project1003ContractorPass, .project2001ContractorPass, .project2002ContractorPass:
+            return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.streetAddress, NewPassInputFormData.city, NewPassInputFormData.state, NewPassInputFormData.zipcode, NewPassInputFormData.dateOfBirth, NewPassInputFormData.projectNumber]
+        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orikinCompanyVendorPass:
+            return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.vendorCompany, NewPassInputFormData.dateOfBirth, NewPassInputFormData.dateOfVisit]
+        default:
+            return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.streetAddress, NewPassInputFormData.city, NewPassInputFormData.state, NewPassInputFormData.zipcode, NewPassInputFormData.dateOfBirth]
         }
     }
 }
