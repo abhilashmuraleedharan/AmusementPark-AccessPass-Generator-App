@@ -37,7 +37,7 @@ enum PassSubType: String {
     case nwelectricalCompanyVendorPass = "NW Electrical Company Vendor Pass"
 }
 
-enum NewPassInputFormData: String {
+enum PassFormDataField: String {
     case firstName = "First Name"
     case lastName = "Last Name"
     case dateOfBirth = "Date of Birth"
@@ -120,29 +120,29 @@ extension PassSubType {
     }
     
     /// Based on the Pass sub-type, this computed property returns the collection of essential form data fields to be present in the generate pass page.
-    var necessaryFormDataFields: [NewPassInputFormData] {
+    var necessaryFormDataFields: [PassFormDataField] {
         switch self {
         case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orikinCompanyVendorPass:
-            return [NewPassInputFormData.vendorCompany, NewPassInputFormData.dateOfVisit, NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.streetAddress, NewPassInputFormData.city, NewPassInputFormData.state, NewPassInputFormData.zipcode, NewPassInputFormData.dateOfBirth]
+            return [PassFormDataField.vendorCompany, PassFormDataField.dateOfVisit, PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
         case .project1001ContractorPass, .project1002ContractorPass, .project1003ContractorPass, .project2001ContractorPass, .project2002ContractorPass:
-            return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.streetAddress, NewPassInputFormData.city, NewPassInputFormData.state, NewPassInputFormData.zipcode, NewPassInputFormData.dateOfBirth, NewPassInputFormData.projectNumber]
+            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth, PassFormDataField.projectNumber]
         default:
-            return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.streetAddress, NewPassInputFormData.city, NewPassInputFormData.state, NewPassInputFormData.zipcode, NewPassInputFormData.dateOfBirth]
+            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
         }
     }
     
     /// Based on the Pass sub-type, this computed property returns the collection of form data that must be filled in the generate pass page.
-    var requiredFormDataFields: [NewPassInputFormData] {
+    var requiredFormDataFields: [PassFormDataField] {
         switch  self {
         case .classicGuestPass, .vipGuestPass: return []
-        case .freeChildGuestPass: return [NewPassInputFormData.dateOfBirth]
-        case .seniorGuestPass: return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.dateOfBirth]
+        case .freeChildGuestPass: return [PassFormDataField.dateOfBirth]
+        case .seniorGuestPass: return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.dateOfBirth]
         case .project1001ContractorPass, .project1002ContractorPass, .project1003ContractorPass, .project2001ContractorPass, .project2002ContractorPass:
-            return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.streetAddress, NewPassInputFormData.city, NewPassInputFormData.state, NewPassInputFormData.zipcode, NewPassInputFormData.dateOfBirth, NewPassInputFormData.projectNumber]
+            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth, PassFormDataField.projectNumber]
         case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orikinCompanyVendorPass:
-            return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.vendorCompany, NewPassInputFormData.dateOfBirth, NewPassInputFormData.dateOfVisit]
+            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.vendorCompany, PassFormDataField.dateOfBirth, PassFormDataField.dateOfVisit]
         default:
-            return [NewPassInputFormData.firstName, NewPassInputFormData.lastName, NewPassInputFormData.streetAddress, NewPassInputFormData.city, NewPassInputFormData.state, NewPassInputFormData.zipcode, NewPassInputFormData.dateOfBirth]
+            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
         }
     }
 }
