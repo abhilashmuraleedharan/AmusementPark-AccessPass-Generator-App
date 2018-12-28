@@ -70,7 +70,7 @@ extension Swipable {
             result += "Your pass can avail \(parkDiscount.rawValue)."
             isPositive = true
         } else {
-            result += "Sorry, Your passs cannot avail \(parkDiscount.rawValue)."
+            result += "Sorry, Your pass cannot avail \(parkDiscount.rawValue)."
             isPositive = false
         }
         return (result: result, isPositive: isPositive)

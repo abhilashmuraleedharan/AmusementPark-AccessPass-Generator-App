@@ -16,7 +16,7 @@ class FreeChildGuestPass: GuestPass {
         do {
             try super.init(passType: .freeChildGuestPass, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
-                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth)
+                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: nil, dateOfVisit: nil)
             // Issue pass only if the entrant is under 5 years old.
             if !qualifiedAsChild() {
                 throw PassEligibilityError.notChild(errorMessage: "Not a child under 5 years of age. Cannot issue Free Child Guest Pass")

@@ -15,8 +15,14 @@ protocol Entrant {
     var state: String? { get set }
     var zipcode: String? { get set }
     var dateOfBirth: Date? { get set }
-    
-    init(associatedPassType: PassSubType,firstName: String?, lastName: String?, streetAddress: String?,
-    city: String?, state: String?, zipcode: String?, dateOfBirth: Date?) throws
+}
+
+protocol Vendor {
+    var vendorCompany: String? { get set }
+    var dateOfVisit: Date? { get set }
+}
+
+protocol Contractor {
+    var projectNumber: String? { get set }
 }
 

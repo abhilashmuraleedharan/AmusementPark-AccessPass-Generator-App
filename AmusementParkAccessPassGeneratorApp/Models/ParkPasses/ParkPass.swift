@@ -16,13 +16,14 @@ class ParkPass: AccessPass {
     var parkDiscount: ParkDiscount?
     
     init(passType: PassSubType, firstName: String?, lastName: String?,
-                     streetAddress: String?, city:String?, state: String?,
-                     zipcode: String?, dateOfBirth: Date?) throws {
+         streetAddress: String?, city:String?, state: String?,
+         zipcode: String?, dateOfBirth: Date?, projectNumber: String?, vendorCompany: String?, dateOfVisit: Date?) throws {
         let entrant: ParkEntrant
         do {
             entrant = try ParkEntrant(associatedPassType: passType, firstName: firstName,
                                       lastName: lastName, streetAddress: streetAddress,
-                                      city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth)
+                                      city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth,
+                                      projectNumber: projectNumber, vendorCompany: vendorCompany, dateOfVisit: dateOfVisit)
             self.passOwner = entrant
             self.passType = passType
             self.accessibleAreas = passType.accessibleParkAreas
@@ -49,6 +50,15 @@ class ParkPass: AccessPass {
             throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
         } catch MissingInformationError.noZipcode(let error) {
             let errorDescription = error + " requires zipcode."
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
+        } catch MissingInformationError.noProjectNumber(let error) {
+            let errorDescription = error + " requires associated contract project number."
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
+        } catch MissingInformationError.noVendorCompany(let error) {
+            let errorDescription = error + " requires company information."
+            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
+        } catch MissingInformationError.noDateOfVisit(let error) {
+            let errorDescription = error + " requires date of visit."
             throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
         } catch let error {
             let errorDescription = "Unknown Error. \(error.localizedDescription)"
