@@ -27,6 +27,10 @@ class VendorPass: ParkPass, Swipable {
             printPassGenerationStatus()
         } catch MissingInformationError.inSufficientData(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)
+        } catch MissingInformationError.noVendorCompany(let error) {
+            throw MissingInformationError.inSufficientData(errorMessage: error)
+        } catch DataError.invalidVendorCompany(let error) {
+            throw DataError.invalidVendorCompany(errorMessage: error)
         } catch let error {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }

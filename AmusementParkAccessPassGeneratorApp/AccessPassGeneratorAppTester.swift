@@ -36,6 +36,7 @@ struct AccessPassGeneratorAppTester {
         testProject1003ContractEmployeePass()
         testProject2001ContractEmployeePass()
         testProject2002ContractEmployeePass()
+        testSwipeOnBirthDay()
     }
     
     /// Method that runs all the vendor park passes and related tests.
@@ -44,6 +45,7 @@ struct AccessPassGeneratorAppTester {
         testOrkinVendorPass()
         testFedexVendorPass()
         testNWElectricalVendorPass()
+        testSwipeOnBirthDay()
     }
     
     /// Method to display a formatted result of a swipe action along with its status.
@@ -518,22 +520,125 @@ extension AccessPassGeneratorAppTester {
     
     /// Method that tests Acme Vendor Pass's conformance to business rules matrix provided by the park authorities.
     func testAcmeVendorPass() {
-        
+        print("\n\n********** Testing Acme Vendor Pass without all required information. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            let vendorPass = try VendorPass(firstName: "Rhea", lastName: "Schamberger", vendorCompany: "acme", dateOfBirth: dob, dateOfVisit: nil)
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Acme Vendor Pass with all required information. ************ \n")
+        do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            let vendorPass = try VendorPass(firstName: "Rhea", lastName: "Schamberger", vendorCompany: "acme", dateOfBirth: customDate!, dateOfVisit: Date())
+            testRideAccess(of: vendorPass)
+            testAreaAccess(of: vendorPass)
+            testSkipAllRideLinesAccess(of: vendorPass)
+            testDiscountAccess(of: vendorPass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
     }
     
     /// Method that tests Orkin Vendor Pass's conformance to business rules matrix provided by the park authorities.
     func testOrkinVendorPass() {
-        
+        print("\n\n********** Testing Orkin Vendor Pass without all required information. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            let vendorPass = try VendorPass(firstName: "Rhea", lastName: "Schamberger", vendorCompany: nil, dateOfBirth: dob, dateOfVisit: Date())
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Orkin Vendor Pass with invalid company name. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            let vendorPass = try VendorPass(firstName: "Rhea", lastName: "Schamberger", vendorCompany: "ups", dateOfBirth: dob, dateOfVisit: Date())
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Orkin Vendor Pass with all required information. ************ \n")
+        do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            let vendorPass = try VendorPass(firstName: "Maddison", lastName: "Casper", vendorCompany: "orkin", dateOfBirth: customDate!, dateOfVisit: Date())
+            testRideAccess(of: vendorPass)
+            testAreaAccess(of: vendorPass)
+            testSkipAllRideLinesAccess(of: vendorPass)
+            testDiscountAccess(of: vendorPass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
     }
     
     /// Method that tests Fedex Vendor Pass's conformance to business rules matrix provided by the park authorities.
     func testFedexVendorPass() {
-        
+        print("\n\n********** Testing Fedex Vendor Pass without all required information. ************ \n")
+        do {
+            let vendorPass = try VendorPass(firstName: "Rhea", lastName: "Schamberger", vendorCompany: "fedex", dateOfBirth: nil, dateOfVisit: Date())
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Fedex Vendor Pass with all required information. ************ \n")
+        do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            let vendorPass = try VendorPass(firstName: "Bernice", lastName: "Kirlin", vendorCompany: "fedex", dateOfBirth: customDate!, dateOfVisit: Date())
+            testRideAccess(of: vendorPass)
+            testAreaAccess(of: vendorPass)
+            testSkipAllRideLinesAccess(of: vendorPass)
+            testDiscountAccess(of: vendorPass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
     }
     
     /// Method that tests NW Electrical Vendor Pass's conformance to business rules matrix provided by the park authorities.
     func testNWElectricalVendorPass() {
-        
+        print("\n\n********** Testing NW Electrical Vendor Pass without all required information. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            let vendorPass = try VendorPass(firstName: "Rhea", lastName: nil, vendorCompany: "nw electrical", dateOfBirth: dob, dateOfVisit: Date())
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing NW Electrical Vendor Pass with all required information. ************ \n")
+        do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            let vendorPass = try VendorPass(firstName: "Elise", lastName: "Paucek", vendorCompany: "nw electrical", dateOfBirth: customDate!, dateOfVisit: Date())
+            testRideAccess(of: vendorPass)
+            testAreaAccess(of: vendorPass)
+            testSkipAllRideLinesAccess(of: vendorPass)
+            testDiscountAccess(of: vendorPass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
     }
     
     /// Method that tests whether the bonus requirement of displaying personlized greeting messages to an entrant when swiped on a b'day is met or not.
@@ -593,6 +698,22 @@ extension AccessPassGeneratorAppTester {
         do {
             let seasonGuestPass = try SeasonGuestPass(firstName: "Kieran", lastName: "Bashirian", dateOfBirth: seasonPassGuestDob, streetAddress: "8522 Bayer Bypass", city: "Toronto", state: "Ontario", zipcode: "123456")
             swipe(seasonGuestPass, toAvail: .seasonPassGuestDiscount)
+        } catch let error {
+            print(error)
+        }
+        print("7. Create a Contract Employee Pass and swipe on his/her b'day")
+        let contractEmployeeDob = Calendar.current.date(byAdding: .year, value: -30, to: Date())!
+        do {
+            let contractEmployeePass = try ContractEmployeePass(projectNumber: "1003", firstName: "Kaylin", lastName: "Abbott", streetAddress: "XYZ street", city: "Gotham", state: "DC", zipcode: "007", dateOfBirth: contractEmployeeDob)
+            swipe(contractEmployeePass, at: .maintenanceArea)
+        } catch let error {
+            print(error)
+        }
+        print("8. Create a Vendor Pass and swipe on his/her b'day")
+        let vendorDob = Calendar.current.date(byAdding: .year, value: -30, to: Date())!
+        do {
+            let vendorPass = try VendorPass(firstName: "Heather", lastName: "Gorczany", vendorCompany: "nw electrical", dateOfBirth: vendorDob, dateOfVisit: Date())
+            swipe(vendorPass, at: .officeArea)
         } catch let error {
             print(error)
         }
