@@ -103,11 +103,11 @@
 			isa = PBXGroup;
 			children = (
 				CC0D24CD2185743800FA2718 /* Models */,
-				CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */,
 				CC0D24BB2185740E00FA2718 /* AppDelegate.swift */,
 				CC0D24BD2185740E00FA2718 /* ViewController.swift */,
 				CC0D24BF2185740E00FA2718 /* Main.storyboard */,
 				CC0D24C22185741100FA2718 /* Assets.xcassets */,
+				CCD7A75921D7C9E200E00B71 /* Tests */,
 				CCD7A75421D7545D00E00B71 /* Sounds */,
 				CC0D24C42185741100FA2718 /* LaunchScreen.storyboard */,
 				CC0D24C72185741100FA2718 /* Info.plist */,
@@ -146,8 +146,8 @@
 				CC0D24F82185E0E000FA2718 /* ManagerPass */,
 				CC0D24F72185E0D300FA2718 /* EmployeePass */,
 				CC0D24F62185E0C400FA2718 /* GuestPass */,
-				CC0D24E4218591BF00FA2718 /* ParkPass.swift */,
 				CC0D24FD2185EC4C00FA2718 /* GuestPass.swift */,
+				CC0D24E4218591BF00FA2718 /* ParkPass.swift */,
 			);
 			path = ParkPasses;
 			sourceTree = "<group>";
@@ -198,6 +198,14 @@
 				CCD7A75621D754B000E00B71 /* AccessGranted.wav */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		CCD7A75921D7C9E200E00B71 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

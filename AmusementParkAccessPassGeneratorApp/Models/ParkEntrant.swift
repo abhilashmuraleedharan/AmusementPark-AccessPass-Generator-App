@@ -7,7 +7,7 @@
 //
 import Foundation
 
-class ParkEntrant: Entrant, Vendor, Contractor {
+class ParkEntrant: Entrant, Vendor, ContractEmployee {
     var firstName: String?
     var lastName: String?
     var streetAddress: String?

@@ -12,11 +12,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let testBot = AccessPassGeneratorAppTester()
-        testBot.testAllMainParkPasses()
-        testBot.testAllContractEmployeePasses()
-        testBot.testAllVendorPasses()
     }
 
 

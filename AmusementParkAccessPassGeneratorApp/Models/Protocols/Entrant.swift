@@ -22,7 +22,7 @@ protocol Vendor {
     var dateOfVisit: Date? { get set }
 }
 
-protocol Contractor {
+protocol ContractEmployee {
     var projectNumber: String? { get set }
 }
 

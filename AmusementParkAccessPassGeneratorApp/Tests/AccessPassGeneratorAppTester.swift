@@ -12,7 +12,6 @@ import Foundation
 struct AccessPassGeneratorAppTester {
     
     typealias SwipeResult = (result: String, isPositive: Bool)
-    let audioPlayer = AudioPlayer()
     
     /// Method that runs all the main park passes and related tests.
     /// Exceptions are vendor and contract employee passes
