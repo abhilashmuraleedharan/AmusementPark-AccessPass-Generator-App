@@ -32,7 +32,7 @@ enum PassSubType: String {
     case project2001ContractEmployeePass = "Project 2001 Contract Employee Pass"
     case project2002ContractEmployeePass = "Project 2002 Contract Employee Pass"
     case acmeCompanyVendorPass = "Acme Company Vendor Pass"
-    case orikinCompanyVendorPass = "Orikin Company Vendor Pass"
+    case orkinCompanyVendorPass = "Orkin Company Vendor Pass"
     case fedexCompanyVendorPass = "Fedex Company Vendor Pass"
     case nwelectricalCompanyVendorPass = "NW Electrical Company Vendor Pass"
 }
@@ -62,7 +62,7 @@ extension PassCategory {
         case .contractor:
             return [PassSubType.project1001ContractEmployeePass, PassSubType.project1002ContractEmployeePass, PassSubType.project1003ContractEmployeePass, PassSubType.project2001ContractEmployeePass, PassSubType.project2002ContractEmployeePass]
         case .vendor:
-            return [PassSubType.acmeCompanyVendorPass, PassSubType.orikinCompanyVendorPass, PassSubType.fedexCompanyVendorPass, PassSubType.nwelectricalCompanyVendorPass]
+            return [PassSubType.acmeCompanyVendorPass, PassSubType.orkinCompanyVendorPass, PassSubType.fedexCompanyVendorPass, PassSubType.nwelectricalCompanyVendorPass]
         }
     }
 }
@@ -90,7 +90,7 @@ extension PassSubType {
             return [AccessRequiredParkArea.kitchenArea, AccessRequiredParkArea.maintenanceArea]
         case .acmeCompanyVendorPass:
             return [AccessRequiredParkArea.kitchenArea]
-        case .orikinCompanyVendorPass:
+        case .orkinCompanyVendorPass:
             return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.kitchenArea, AccessRequiredParkArea.rideControlArea]
         case .fedexCompanyVendorPass:
             return [AccessRequiredParkArea.maintenanceArea, AccessRequiredParkArea.officeArea]
@@ -122,7 +122,7 @@ extension PassSubType {
     /// Based on the Pass sub-type, this computed property returns the collection of essential form data fields to be present in the generate pass page.
     var necessaryFormDataFields: [PassFormDataField] {
         switch self {
-        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orikinCompanyVendorPass:
+        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orkinCompanyVendorPass:
             return [PassFormDataField.vendorCompany, PassFormDataField.dateOfVisit, PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
         case .project1001ContractEmployeePass, .project1002ContractEmployeePass, .project1003ContractEmployeePass, .project2001ContractEmployeePass, .project2002ContractEmployeePass:
             return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth, PassFormDataField.projectNumber]
@@ -139,7 +139,7 @@ extension PassSubType {
         case .seniorGuestPass: return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.dateOfBirth]
         case .project1001ContractEmployeePass, .project1002ContractEmployeePass, .project1003ContractEmployeePass, .project2001ContractEmployeePass, .project2002ContractEmployeePass:
             return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth, PassFormDataField.projectNumber]
-        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orikinCompanyVendorPass:
+        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orkinCompanyVendorPass:
             return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.vendorCompany, PassFormDataField.dateOfBirth, PassFormDataField.dateOfVisit]
         default:
             return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]

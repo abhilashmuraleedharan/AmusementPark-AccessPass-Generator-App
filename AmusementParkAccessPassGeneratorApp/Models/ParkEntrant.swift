@@ -64,7 +64,7 @@ class ParkEntrant: Entrant, Vendor, Contractor {
             self.city = city
             self.state = state
             self.zipcode = zipcode
-        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .orikinCompanyVendorPass, .nwelectricalCompanyVendorPass:
+        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .orkinCompanyVendorPass, .nwelectricalCompanyVendorPass:
             if let dob = dateOfBirth {
                 self.dateOfBirth = dob
             } else {

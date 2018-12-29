@@ -32,6 +32,7 @@
 		CCD7A74321D7259900E00B71 /* SeasonGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74221D7259900E00B71 /* SeasonGuestPass.swift */; };
 		CCD7A74521D725FE00E00B71 /* SeniorGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74421D725FE00E00B71 /* SeniorGuestPass.swift */; };
 		CCD7A74921D72EC800E00B71 /* ContractEmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74821D72EC800E00B71 /* ContractEmployeePass.swift */; };
+		CCD7A74B21D73FFF00E00B71 /* VendorPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74A21D73FFF00E00B71 /* VendorPass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		CCD7A74221D7259900E00B71 /* SeasonGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonGuestPass.swift; sourceTree = "<group>"; };
 		CCD7A74421D725FE00E00B71 /* SeniorGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorGuestPass.swift; sourceTree = "<group>"; };
 		CCD7A74821D72EC800E00B71 /* ContractEmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEmployeePass.swift; sourceTree = "<group>"; };
+		CCD7A74A21D73FFF00E00B71 /* VendorPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorPass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 		CCD7A74721D72C3D00E00B71 /* VendorPass */ = {
 			isa = PBXGroup;
 			children = (
+				CCD7A74A21D73FFF00E00B71 /* VendorPass.swift */,
 			);
 			path = VendorPass;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				CC0D24D121857B5700FA2718 /* Entrant.swift in Sources */,
 				CC0D250D2186271C00FA2718 /* HourlyEmployeeRideServicesPass.swift in Sources */,
 				CC0D24BC2185740E00FA2718 /* AppDelegate.swift in Sources */,
+				CCD7A74B21D73FFF00E00B71 /* VendorPass.swift in Sources */,
 				CC0D250F2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift in Sources */,
 				CC19B2FD2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift in Sources */,
 			);

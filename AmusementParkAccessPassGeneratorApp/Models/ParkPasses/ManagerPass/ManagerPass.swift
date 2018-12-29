@@ -22,7 +22,7 @@ class ManagerPass: ParkPass, Swipable {
         } catch MissingInformationError.inSufficientData(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)
         } catch let error {
-            throw MissingInformationError.inSufficientData(errorMessage: "Unknown Error. \(error.localizedDescription)")
+            throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
 }

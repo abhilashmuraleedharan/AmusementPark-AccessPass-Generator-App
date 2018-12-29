@@ -8,23 +8,23 @@
 
 import Foundation
 
-class ContractEmployeeMaintenancePass: ParkPass, Swipable {
+class ContractEmployeePass: ParkPass, Swipable {
     
-    let contractProjectParkPassDictionary: [String: PassSubType] = ["1001": .project1001ContractEmployeePass,
-                                                                    "1002": .project1002ContractEmployeePass,
-                                                                    "1003": .project1003ContractEmployeePass,
-                                                                    "2001": .project2001ContractEmployeePass,
-                                                                    "2002": .project2002ContractEmployeePass]
+    let projectNumberPassTypeDictionary: [String: PassSubType] = ["1001": .project1001ContractEmployeePass,
+                                                                  "1002": .project1002ContractEmployeePass,
+                                                                  "1003": .project1003ContractEmployeePass,
+                                                                  "2001": .project2001ContractEmployeePass,
+                                                                  "2002": .project2002ContractEmployeePass]
     
     init(projectNumber: String?, firstName: String?, lastName: String?,
          streetAddress: String?, city: String?,
          state: String?, zipcode: String?,
          dateOfBirth: Date?) throws {
         do {
-            guard let contractProjectCode = projectNumber else {
+            guard let contractProjectNumber = projectNumber else {
                 throw MissingInformationError.noProjectNumber(errorMessage: "Contract Employee Pass requires associated contract project number.")
             }
-            guard let passType = contractProjectParkPassDictionary[contractProjectCode] else {
+            guard let passType = projectNumberPassTypeDictionary[contractProjectNumber] else {
                 throw DataError.invalidProjectNumber(errorMessage: "Project Number not recognized! Contract Employee Pass requires a valid project number.")
             }
             try super.init(passType: passType, firstName: firstName,
