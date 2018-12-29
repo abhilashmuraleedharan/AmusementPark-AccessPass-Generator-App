@@ -58,18 +58,17 @@ class ParkPass: AccessPass {
             let errorDescription = error + " requires company information."
             throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
         } catch MissingInformationError.noDateOfVisit(let error) {
-            let errorDescription = error + " requires date of visit."
+            let errorDescription = error + " requires date of visit information."
             throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
         } catch let error {
-            let errorDescription = "Unknown Error. \(error.localizedDescription)"
-            throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
+            throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
 }
 
 extension ParkPass {
     
-    func displayPassInformation() {
+    func printPassGenerationStatus() {
         var entrantName = ""
         
         if let firstName = passOwner.firstName, let lastName = passOwner.lastName {
@@ -85,7 +84,7 @@ extension ParkPass {
                 }
             }
         }
-        print("\nSuccessfully created a new \(passType.rawValue) for \(entrantName).\n")
+        print("\nSuccessfully generated a new \(passType.rawValue) for \(entrantName).\n")
     }
 }
 

@@ -1,46 +1,46 @@
 //
-//  FreeChildGuestPass.swift
+//  SeniorGuestPass.swift
 //  AmusementParkAccessPassGeneratorApp
 //
-//  Created by Abhilash Muraleedharan on 28/10/18.
+//  Created by Abhilash Muraleedharan on 29/12/18.
 //  Copyright © 2018 AbhilashApps. All rights reserved.
 //
 
 import Foundation
 
-class FreeChildGuestPass: GuestPass {
+class SeniorGuestPass: GuestPass {
     
-    let childAgeLimit = 5
+    let minimumAgeForSeniorGuest = 60
     
     init(dateOfBirth: Date?, firstName: String? = nil, lastName: String? = nil,
          streetAddress: String? = nil, city: String? = nil,
          state: String? = nil, zipcode: String? = nil) throws {
         do {
-            try super.init(passType: .freeChildGuestPass, firstName: firstName,
+            try super.init(passType: .seniorGuestPass, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
                            city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: nil, dateOfVisit: nil)
             // Issue pass only if the entrant is under child age limit.
-            if !isQualifiedAsChild() {
-                throw PassEligibilityError.notChild(errorMessage: "Not a child under \(childAgeLimit) years of age. Cannot issue Free Child Guest Pass")
+            if !isQualifiedAsSeniorGuest() {
+                throw PassEligibilityError.notSenior(errorMessage: "Not a guest above \(minimumAgeForSeniorGuest) years of age. Cannot issue Senior Guest Pass")
             }
             printPassGenerationStatus()
         } catch MissingInformationError.inSufficientData(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)
-        } catch PassEligibilityError.notChild(let error) {
-            throw PassEligibilityError.notChild(errorMessage: error)
+        } catch PassEligibilityError.notSenior(let error) {
+            throw PassEligibilityError.notSenior(errorMessage: error)
         } catch let error {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
 }
 
-extension FreeChildGuestPass {
-    /// This method checks whether the entrant's age is under child age limit to issue a Free Child Guest Pass
-    /// Returns false if the entrant is older than the child age limit.
-    func isQualifiedAsChild() -> Bool {
-        let dobLimitForChild = Calendar.current.date(byAdding: .year, value: -childAgeLimit, to: Date())!
+extension SeniorGuestPass {
+    /// This method checks whether the guest qualifies as a senior to issue a Senior Guest Pass
+    /// Returns false if the guest is not older than the minimum age set for senior guest.
+    func isQualifiedAsSeniorGuest() -> Bool {
+        let startingDobForSenior = Calendar.current.date(byAdding: .year, value: -minimumAgeForSeniorGuest, to: Date())!
         if let dob = passOwner.dateOfBirth {
-            return dob < dobLimitForChild ? false : true
+            return dob <= startingDobForSenior
         } else { return false }
     }
 }

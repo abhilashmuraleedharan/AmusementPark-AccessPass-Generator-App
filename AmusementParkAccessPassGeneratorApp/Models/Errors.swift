@@ -26,5 +26,6 @@ enum MissingInformationError : Error {
 /// entrant to posses a specific type of pass.
 enum PassEligibilityError: Error {
     case notChild(errorMessage: String)
+    case notSenior(errorMessage: String)
 }
 
