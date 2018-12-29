@@ -29,7 +29,7 @@ class ContractEmployeePass: ParkPass, Swipable {
             }
             try super.init(passType: passType, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
-                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: projectNumber, vendorCompany: nil, dateOfVisit: nil)
+                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: projectNumber, vendorCompany: nil, dateOfVisit: nil, type: nil)
             printPassGenerationStatus()
         } catch MissingInformationError.inSufficientData(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)

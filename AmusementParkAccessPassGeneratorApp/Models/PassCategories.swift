@@ -50,6 +50,12 @@ enum PassFormDataField: String {
     case dateOfVisit = "Date of Visit"
 }
 
+enum ManagerSubType: String {
+    case senior = "Senior"
+    case general = "General"
+    case shift = "Shift"
+}
+
 extension PassCategory {
     /// Based on the main pass type, this computed property returns its corresponding sub types
     var passSubTypeList: [PassSubType] {

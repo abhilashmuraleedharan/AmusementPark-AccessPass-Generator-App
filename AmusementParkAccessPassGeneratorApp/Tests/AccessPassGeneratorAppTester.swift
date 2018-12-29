@@ -267,7 +267,7 @@ extension AccessPassGeneratorAppTester {
             let calendar = Calendar.current
             let customDate = calendar.date(from: dateComponents)
             let managerPass = try ManagerPass(firstName: "Larry", lastName: "Daley",
-                                          streetAddress: "Upper West Side", city: nil, state: "New York", zipcode: "10031", dateOfBirth: customDate!)
+                                              streetAddress: "Upper West Side", city: nil, state: "New York", zipcode: "10031", dateOfBirth: customDate!, type: .shift)
         } catch let error {
             print(error)
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
@@ -282,7 +282,7 @@ extension AccessPassGeneratorAppTester {
             let customDate = calendar.date(from: dateComponents)
             let managerPass = try ManagerPass(firstName: "Jonathan", lastName: "Pine",
                                               streetAddress: "Luxor Governate", city: "Luxor", state: "Cairo",
-                                              zipcode: "387130", dateOfBirth: customDate!)
+                                              zipcode: "387130", dateOfBirth: customDate!, type: .general)
             testRideAccess(of: managerPass)
             testAreaAccess(of: managerPass)
             testSkipAllRideLinesAccess(of: managerPass)

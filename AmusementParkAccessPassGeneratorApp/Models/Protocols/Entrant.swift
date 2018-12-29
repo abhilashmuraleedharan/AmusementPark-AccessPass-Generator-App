@@ -17,6 +17,10 @@ protocol Entrant {
     var dateOfBirth: Date? { get set }
 }
 
+protocol Manager {
+    var type: ManagerSubType? { get set }
+}
+
 protocol Vendor {
     var vendorCompany: String? { get set }
     var dateOfVisit: Date? { get set }

@@ -17,13 +17,13 @@ class ParkPass: AccessPass {
     
     init(passType: PassSubType, firstName: String?, lastName: String?,
          streetAddress: String?, city:String?, state: String?,
-         zipcode: String?, dateOfBirth: Date?, projectNumber: String?, vendorCompany: String?, dateOfVisit: Date?) throws {
+         zipcode: String?, dateOfBirth: Date?, projectNumber: String?, vendorCompany: String?, dateOfVisit: Date?, type: ManagerSubType?) throws {
         let entrant: ParkEntrant
         do {
             entrant = try ParkEntrant(associatedPassType: passType, firstName: firstName,
                                       lastName: lastName, streetAddress: streetAddress,
                                       city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth,
-                                      projectNumber: projectNumber, vendorCompany: vendorCompany, dateOfVisit: dateOfVisit)
+                                      projectNumber: projectNumber, vendorCompany: vendorCompany, dateOfVisit: dateOfVisit, type: type)
             self.passOwner = entrant
             self.passType = passType
             self.accessibleAreas = passType.accessibleParkAreas

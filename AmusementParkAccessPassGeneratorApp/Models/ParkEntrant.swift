@@ -7,7 +7,7 @@
 //
 import Foundation
 
-class ParkEntrant: Entrant, Vendor, ContractEmployee {
+class ParkEntrant: Entrant, Vendor, ContractEmployee, Manager {
     var firstName: String?
     var lastName: String?
     var streetAddress: String?
@@ -18,11 +18,12 @@ class ParkEntrant: Entrant, Vendor, ContractEmployee {
     var projectNumber: String?
     var vendorCompany: String?
     var dateOfVisit: Date?
+    var type: ManagerSubType?
     let vendorEntrantErrorMsg = "Vendor Pass"
     
     init(associatedPassType: PassSubType, firstName: String?, lastName: String?,
                   streetAddress: String?, city: String?, state: String?, zipcode: String?,
-                  dateOfBirth: Date?, projectNumber: String?, vendorCompany: String?, dateOfVisit: Date?) throws {
+                  dateOfBirth: Date?, projectNumber: String?, vendorCompany: String?, dateOfVisit: Date?, type: ManagerSubType?) throws {
         switch associatedPassType {
         case .classicGuestPass, .vipGuestPass:
             self.firstName = firstName
@@ -127,6 +128,7 @@ class ParkEntrant: Entrant, Vendor, ContractEmployee {
                 throw MissingInformationError.noZipcode(errorMessage: "\(associatedPassType.rawValue)")
             }
             self.projectNumber = projectNumber
+            self.type = type
         }
     }
 }

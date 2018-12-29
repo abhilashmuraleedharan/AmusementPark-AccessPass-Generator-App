@@ -23,7 +23,7 @@ class VendorPass: ParkPass, Swipable {
             }
             try super.init(passType: passType, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
-                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: vendorCompany, dateOfVisit: dateOfVisit)
+                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: vendorCompany, dateOfVisit: dateOfVisit, type: nil)
             printPassGenerationStatus()
         } catch MissingInformationError.inSufficientData(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)
