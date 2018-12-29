@@ -33,6 +33,9 @@
 		CCD7A74521D725FE00E00B71 /* SeniorGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74421D725FE00E00B71 /* SeniorGuestPass.swift */; };
 		CCD7A74921D72EC800E00B71 /* ContractEmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74821D72EC800E00B71 /* ContractEmployeePass.swift */; };
 		CCD7A74B21D73FFF00E00B71 /* VendorPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74A21D73FFF00E00B71 /* VendorPass.swift */; };
+		CCD7A74F21D753D400E00B71 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74E21D753D400E00B71 /* AudioPlayer.swift */; };
+		CCD7A75721D754B100E00B71 /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = CCD7A75521D754B000E00B71 /* AccessDenied.wav */; };
+		CCD7A75821D754B100E00B71 /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = CCD7A75621D754B000E00B71 /* AccessGranted.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +67,9 @@
 		CCD7A74421D725FE00E00B71 /* SeniorGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorGuestPass.swift; sourceTree = "<group>"; };
 		CCD7A74821D72EC800E00B71 /* ContractEmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEmployeePass.swift; sourceTree = "<group>"; };
 		CCD7A74A21D73FFF00E00B71 /* VendorPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorPass.swift; sourceTree = "<group>"; };
+		CCD7A74E21D753D400E00B71 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		CCD7A75521D754B000E00B71 /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessDenied.wav; sourceTree = "<group>"; };
+		CCD7A75621D754B000E00B71 /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessGranted.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0D24CD2185743800FA2718 /* Models */,
+				CCD7A75421D7545D00E00B71 /* Sounds */,
 				CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */,
 				CC0D24BB2185740E00FA2718 /* AppDelegate.swift */,
 				CC0D24BD2185740E00FA2718 /* ViewController.swift */,
@@ -114,6 +121,7 @@
 				CC0D24F42185DF1D00FA2718 /* Protocols */,
 				CC0D24D221857FE100FA2718 /* ParkEntrant.swift */,
 				CC0D24F52185E07200FA2718 /* ParkPasses */,
+				CCD7A74E21D753D400E00B71 /* AudioPlayer.swift */,
 				CC0D24DA218583CC00FA2718 /* PassCategories.swift */,
 				CC0D24DC2185855200FA2718 /* AccessPassPrivileges.swift */,
 				CC0D25002185FE0500FA2718 /* Errors.swift */,
@@ -183,6 +191,15 @@
 			path = VendorPass;
 			sourceTree = "<group>";
 		};
+		CCD7A75421D7545D00E00B71 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				CCD7A75521D754B000E00B71 /* AccessDenied.wav */,
+				CCD7A75621D754B000E00B71 /* AccessGranted.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -242,8 +259,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC0D24C62185741100FA2718 /* LaunchScreen.storyboard in Resources */,
+				CCD7A75821D754B100E00B71 /* AccessGranted.wav in Resources */,
 				CC0D24C32185741100FA2718 /* Assets.xcassets in Resources */,
 				CC0D24C12185740E00FA2718 /* Main.storyboard in Resources */,
+				CCD7A75721D754B100E00B71 /* AccessDenied.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +284,7 @@
 				CC0D24BE2185740E00FA2718 /* ViewController.swift in Sources */,
 				CCD7A74321D7259900E00B71 /* SeasonGuestPass.swift in Sources */,
 				CCD7A74521D725FE00E00B71 /* SeniorGuestPass.swift in Sources */,
+				CCD7A74F21D753D400E00B71 /* AudioPlayer.swift in Sources */,
 				CC0D24E5218591BF00FA2718 /* ParkPass.swift in Sources */,
 				CC0D24CF21857B0900FA2718 /* AccessPass.swift in Sources */,
 				CC0D25012185FE0500FA2718 /* Errors.swift in Sources */,
