@@ -50,6 +50,5 @@ To get an "exceeds" rating in this project, you can expand on the project in the
   it in the relevant comment in the code. You will only be graded on the implementation. An alert needs to be generated to 
   notify the user that there is an invalid input. Please do make sure you put in clear related comments to 
   communicate to the reviewer.
-* Add a feature to the swipe method(s), so that a “ding” sound is played when an entrant is granted access and a “buzz”   
-  sound is played when an entrant is denied access.
+* Add a feature to the swipe method(s), so that a “ding” sound is played when an entrant is granted access and a “buzz" sound is played when an entrant is denied access.
 
