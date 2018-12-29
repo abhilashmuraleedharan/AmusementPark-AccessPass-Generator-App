@@ -14,7 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let testBot = AccessPassGeneratorAppTester()
-        testBot.testAllParkPasses()
+        testBot.testAllMainParkPasses()
+        testBot.testAllContractEmployeePasses()
+        testBot.testAllVendorPasses()
     }
 
 

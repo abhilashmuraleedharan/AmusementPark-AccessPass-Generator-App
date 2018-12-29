@@ -103,12 +103,12 @@
 			isa = PBXGroup;
 			children = (
 				CC0D24CD2185743800FA2718 /* Models */,
-				CCD7A75421D7545D00E00B71 /* Sounds */,
 				CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */,
 				CC0D24BB2185740E00FA2718 /* AppDelegate.swift */,
 				CC0D24BD2185740E00FA2718 /* ViewController.swift */,
 				CC0D24BF2185740E00FA2718 /* Main.storyboard */,
 				CC0D24C22185741100FA2718 /* Assets.xcassets */,
+				CCD7A75421D7545D00E00B71 /* Sounds */,
 				CC0D24C42185741100FA2718 /* LaunchScreen.storyboard */,
 				CC0D24C72185741100FA2718 /* Info.plist */,
 			);

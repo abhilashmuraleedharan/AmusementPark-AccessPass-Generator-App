@@ -12,9 +12,11 @@ import Foundation
 struct AccessPassGeneratorAppTester {
     
     typealias SwipeResult = (result: String, isPositive: Bool)
+    let audioPlayer = AudioPlayer()
     
-    /// Method that runs all the park pass related tests.
-    func testAllParkPasses() {
+    /// Method that runs all the main park passes and related tests.
+    /// Exceptions are vendor and contract employee passes
+    func testAllMainParkPasses() {
         testClassicGuestPass()
         testVIPGuestPass()
         testFreeChildGuestPass()
@@ -22,11 +24,30 @@ struct AccessPassGeneratorAppTester {
         testHourlyEmployeeRideServicesPass()
         testHourlyEmployeeMaintenancePass()
         testManagerPass()
+        testSeasonGuestPass()
+        testSeniorGuestPass()
         testSwipeOnBirthDay()
     }
     
+    /// Method that runs all the contract employee park passes and related tests.
+    func testAllContractEmployeePasses() {
+        testProject1001ContractEmployeePass()
+        testProject1002ContractEmployeePass()
+        testProject1003ContractEmployeePass()
+        testProject2001ContractEmployeePass()
+        testProject2002ContractEmployeePass()
+    }
+    
+    /// Method that runs all the vendor park passes and related tests.
+    func testAllVendorPasses() {
+        testAcmeVendorPass()
+        testOrkinVendorPass()
+        testFedexVendorPass()
+        testNWElectricalVendorPass()
+    }
+    
     /// Method to display a formatted result of a swipe action along with its status.
-    func display(_ swipeOutput: SwipeResult) {
+    func printToConsole(_ swipeOutput: SwipeResult) {
         let swipeStatus = swipeOutput.isPositive ? "Success" : "Failure"
         let result = """
         Swipe status: \(swipeStatus)
@@ -38,19 +59,19 @@ struct AccessPassGeneratorAppTester {
     /// Method that simulates an entrant swiping at a park area
     func swipe(_ pass: Swipable, at area: AccessRequiredParkArea) {
         let swipeOutput = pass.swipe(at: area)
-        display(swipeOutput)
+        printToConsole(swipeOutput)
     }
     
     /// Method that simulates an entrant swiping at a ride area
     func swipe(_ pass: Swipable, for rideAccess: RidePrivilege) {
         let swipeOutput = pass.swipe(for: rideAccess)
-        display(swipeOutput)
+        printToConsole(swipeOutput)
     }
     
     /// Method that simulates an entrant swiping at a shop or eatery for availing discount
-    func swipe(_ pass: Swipable, for discount: ParkDiscount) {
+    func swipe(_ pass: Swipable, toAvail discount: ParkDiscount) {
         let swipeOutput = pass.swipe(for: discount)
-        display(swipeOutput)
+        printToConsole(swipeOutput)
     }
 }
 
@@ -240,6 +261,61 @@ extension AccessPassGeneratorAppTester {
         }
     }
     
+    /// Method that tests a Season Guest Pass's conformance to business rules matrix provided by the park authorities.
+    func testSeasonGuestPass() {
+        
+    }
+    
+    /// Method that tests a Senior Guest Pass's conformance to business rules matrix provided by the park authorities.
+    func testSeniorGuestPass() {
+        
+    }
+    
+    /// Method that tests a Project 1001 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
+    func testProject1001ContractEmployeePass() {
+        
+    }
+    
+    /// Method that tests a Project 1002 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
+    func testProject1002ContractEmployeePass() {
+        
+    }
+    
+    /// Method that tests a Project 1003 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
+    func testProject1003ContractEmployeePass() {
+        
+    }
+    
+    /// Method that tests a Project 2001 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
+    func testProject2001ContractEmployeePass() {
+        
+    }
+    
+    /// Method that tests a Project 2002 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
+    func testProject2002ContractEmployeePass() {
+        
+    }
+    
+    /// Method that tests Acme Vendor Pass's conformance to business rules matrix provided by the park authorities.
+    func testAcmeVendorPass() {
+        
+    }
+    
+    /// Method that tests Orkin Vendor Pass's conformance to business rules matrix provided by the park authorities.
+    func testOrkinVendorPass() {
+        
+    }
+    
+    /// Method that tests Fedex Vendor Pass's conformance to business rules matrix provided by the park authorities.
+    func testFedexVendorPass() {
+        
+    }
+    
+    /// Method that tests NW Electrical Vendor Pass's conformance to business rules matrix provided by the park authorities.
+    func testNWElectricalVendorPass() {
+        
+    }
+    
     /// Method that tests whether the bonus requirement of displaying personlized greeting messages to an entrant when swiped on a b'day is met or not.
     func testSwipeOnBirthDay() {
         print("\n********************* Testing whether personalized b'day greeting messages are displayed when an entrant swipes on his/her b'day ********************\n")
@@ -256,7 +332,7 @@ extension AccessPassGeneratorAppTester {
         do {
             let managerPass = try ManagerPass(firstName: "Molly", lastName: "Christiansen", streetAddress: "8695 Wilderman Hills",
                                               city: "Sauuerberg", state: "Sauuerberg State", zipcode: "89713", dateOfBirth: managerDateOfBirth)
-            swipe(managerPass, for: .managerDiscount)
+            swipe(managerPass, toAvail: .managerDiscount)
         } catch let error {
             print(error)
         }
@@ -333,11 +409,11 @@ extension AccessPassGeneratorAppTester {
         print("\nTesting discount access of \(pass.passType.rawValue)")
         print("==================================================================================\n")
         print("1. Checking \"Employee - Food and Merchandise\" discount access")
-        swipe(pass, for: .employeeDiscount)
+        swipe(pass, toAvail: .employeeDiscount)
         print("2. Checking \"Manager -  Food and Merchandise\" discount access")
-        swipe(pass, for: .managerDiscount)
+        swipe(pass, toAvail: .managerDiscount)
         print("3. Checking \"VIP - Food and Merchandise\" discount access")
-        swipe(pass, for: .vipGuestDiscount)
+        swipe(pass, toAvail: .vipGuestDiscount)
     }
     
     /// Method that simulates unauthorized swiping of a pass at a ride area to sneak in a second person.
