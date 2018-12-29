@@ -36,6 +36,7 @@
 		CCD7A74F21D753D400E00B71 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74E21D753D400E00B71 /* AudioPlayer.swift */; };
 		CCD7A75721D754B100E00B71 /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = CCD7A75521D754B000E00B71 /* AccessDenied.wav */; };
 		CCD7A75821D754B100E00B71 /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = CCD7A75621D754B000E00B71 /* AccessGranted.wav */; };
+		CCD7A75B21D7E62A00E00B71 /* FormDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A75A21D7E62A00E00B71 /* FormDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		CCD7A74E21D753D400E00B71 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		CCD7A75521D754B000E00B71 /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessDenied.wav; sourceTree = "<group>"; };
 		CCD7A75621D754B000E00B71 /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessGranted.wav; sourceTree = "<group>"; };
+		CCD7A75A21D7E62A00E00B71 /* FormDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,9 +123,10 @@
 				CC0D24F42185DF1D00FA2718 /* Protocols */,
 				CC0D24D221857FE100FA2718 /* ParkEntrant.swift */,
 				CC0D24F52185E07200FA2718 /* ParkPasses */,
-				CCD7A74E21D753D400E00B71 /* AudioPlayer.swift */,
 				CC0D24DA218583CC00FA2718 /* PassCategories.swift */,
 				CC0D24DC2185855200FA2718 /* AccessPassPrivileges.swift */,
+				CCD7A74E21D753D400E00B71 /* AudioPlayer.swift */,
+				CCD7A75A21D7E62A00E00B71 /* FormDataProvider.swift */,
 				CC0D25002185FE0500FA2718 /* Errors.swift */,
 			);
 			path = Models;
@@ -284,6 +287,7 @@
 				CC0D24FC2185E90000FA2718 /* FreeChildGuestPass.swift in Sources */,
 				CC0D24DB218583CC00FA2718 /* PassCategories.swift in Sources */,
 				CC0D24D321857FE100FA2718 /* ParkEntrant.swift in Sources */,
+				CCD7A75B21D7E62A00E00B71 /* FormDataProvider.swift in Sources */,
 				CC0D24FE2185EC4C00FA2718 /* GuestPass.swift in Sources */,
 				CCD7A74921D72EC800E00B71 /* ContractEmployeePass.swift in Sources */,
 				CC0D24DF2185866000FA2718 /* Swipable.swift in Sources */,
