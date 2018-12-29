@@ -26,11 +26,11 @@ enum PassSubType: String {
     case managerPass = "Manager Pass"
     case seasonGuestPass = "Season Pass Guest"
     case seniorGuestPass = "Senior Guest Pass"
-    case project1001ContractorPass = "Project 1001 Contractor Pass"
-    case project1002ContractorPass = "Project 1002 Contractor Pass"
-    case project1003ContractorPass = "Project 1003 Contractor Pass"
-    case project2001ContractorPass = "Project 2001 Contractor Pass"
-    case project2002ContractorPass = "Project 2002 Contractor Pass"
+    case project1001ContractEmployeePass = "Project 1001 Contract Employee Pass"
+    case project1002ContractEmployeePass = "Project 1002 Contract Employee Pass"
+    case project1003ContractEmployeePass = "Project 1003 Contract Employee Pass"
+    case project2001ContractEmployeePass = "Project 2001 Contract Employee Pass"
+    case project2002ContractEmployeePass = "Project 2002 Contract Employee Pass"
     case acmeCompanyVendorPass = "Acme Company Vendor Pass"
     case orikinCompanyVendorPass = "Orikin Company Vendor Pass"
     case fedexCompanyVendorPass = "Fedex Company Vendor Pass"
@@ -60,7 +60,7 @@ extension PassCategory {
             return [PassSubType.hourlyEmployeeFoodServicePass, PassSubType.hourlyEmployeeMaintenancePass, PassSubType.hourlyEmployeeRideServicePass]
         case .manager: return []
         case .contractor:
-            return [PassSubType.project1001ContractorPass, PassSubType.project1002ContractorPass, PassSubType.project1003ContractorPass, PassSubType.project2001ContractorPass, PassSubType.project2002ContractorPass]
+            return [PassSubType.project1001ContractEmployeePass, PassSubType.project1002ContractEmployeePass, PassSubType.project1003ContractEmployeePass, PassSubType.project2001ContractEmployeePass, PassSubType.project2002ContractEmployeePass]
         case .vendor:
             return [PassSubType.acmeCompanyVendorPass, PassSubType.orikinCompanyVendorPass, PassSubType.fedexCompanyVendorPass, PassSubType.nwelectricalCompanyVendorPass]
         }
@@ -73,20 +73,20 @@ extension PassSubType {
         switch self {
         case .classicGuestPass, .vipGuestPass, .freeChildGuestPass, .seasonGuestPass, .seniorGuestPass:
             return [AccessRequiredParkArea.amusementArea]
-        case .hourlyEmployeeRideServicePass, .project1001ContractorPass:
+        case .hourlyEmployeeRideServicePass, .project1001ContractEmployeePass:
             return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.rideControlArea]
         case .hourlyEmployeeMaintenancePass:
             return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.maintenanceArea, AccessRequiredParkArea.kitchenArea, AccessRequiredParkArea.rideControlArea]
         case .hourlyEmployeeFoodServicePass:
             return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.kitchenArea]
-        case .managerPass, .project1003ContractorPass, .nwelectricalCompanyVendorPass:
+        case .managerPass, .project1003ContractEmployeePass, .nwelectricalCompanyVendorPass:
             return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.kitchenArea, AccessRequiredParkArea.maintenanceArea,
                     AccessRequiredParkArea.officeArea, AccessRequiredParkArea.rideControlArea]
-        case .project1002ContractorPass:
+        case .project1002ContractEmployeePass:
             return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.rideControlArea, AccessRequiredParkArea.maintenanceArea]
-        case .project2001ContractorPass:
+        case .project2001ContractEmployeePass:
             return [AccessRequiredParkArea.officeArea]
-        case .project2002ContractorPass:
+        case .project2002ContractEmployeePass:
             return [AccessRequiredParkArea.kitchenArea, AccessRequiredParkArea.maintenanceArea]
         case .acmeCompanyVendorPass:
             return [AccessRequiredParkArea.kitchenArea]
@@ -124,7 +124,7 @@ extension PassSubType {
         switch self {
         case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orikinCompanyVendorPass:
             return [PassFormDataField.vendorCompany, PassFormDataField.dateOfVisit, PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
-        case .project1001ContractorPass, .project1002ContractorPass, .project1003ContractorPass, .project2001ContractorPass, .project2002ContractorPass:
+        case .project1001ContractEmployeePass, .project1002ContractEmployeePass, .project1003ContractEmployeePass, .project2001ContractEmployeePass, .project2002ContractEmployeePass:
             return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth, PassFormDataField.projectNumber]
         default:
             return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
@@ -137,7 +137,7 @@ extension PassSubType {
         case .classicGuestPass, .vipGuestPass: return []
         case .freeChildGuestPass: return [PassFormDataField.dateOfBirth]
         case .seniorGuestPass: return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.dateOfBirth]
-        case .project1001ContractorPass, .project1002ContractorPass, .project1003ContractorPass, .project2001ContractorPass, .project2002ContractorPass:
+        case .project1001ContractEmployeePass, .project1002ContractEmployeePass, .project1003ContractEmployeePass, .project2001ContractEmployeePass, .project2002ContractEmployeePass:
             return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth, PassFormDataField.projectNumber]
         case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orikinCompanyVendorPass:
             return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.vendorCompany, PassFormDataField.dateOfBirth, PassFormDataField.dateOfVisit]

@@ -19,7 +19,6 @@ class ParkEntrant: Entrant, Vendor, Contractor {
     var vendorCompany: String?
     var dateOfVisit: Date?
     let vendorEntrantErrorMsg = "Vendor Pass"
-    let contractorEntrantErrorMsg = "Contractor Pass"
     
     init(associatedPassType: PassSubType, firstName: String?, lastName: String?,
                   streetAddress: String?, city: String?, state: String?, zipcode: String?,
@@ -65,47 +64,6 @@ class ParkEntrant: Entrant, Vendor, Contractor {
             self.city = city
             self.state = state
             self.zipcode = zipcode
-        case .project1001ContractorPass, .project1002ContractorPass, .project1003ContractorPass, .project2001ContractorPass, .project2002ContractorPass:
-            if let dob = dateOfBirth {
-                self.dateOfBirth = dob
-            } else {
-                throw MissingInformationError.noDateOfBirth(errorMessage: contractorEntrantErrorMsg)
-            }
-            if let firstName = firstName {
-                self.firstName = firstName
-            } else {
-                throw MissingInformationError.noFirstName(errorMessage: contractorEntrantErrorMsg)
-            }
-            if let lastName = lastName {
-                self.lastName = lastName
-            } else {
-                throw MissingInformationError.noLastName(errorMessage: contractorEntrantErrorMsg)
-            }
-            if let streetAddress = streetAddress {
-                self.streetAddress = streetAddress
-            } else {
-                throw MissingInformationError.noStreetAddress(errorMessage: contractorEntrantErrorMsg)
-            }
-            if let city = city {
-                self.city = city
-            } else {
-                throw MissingInformationError.noCity(errorMessage: contractorEntrantErrorMsg)
-            }
-            if let state = state {
-                self.state = state
-            } else {
-                throw MissingInformationError.noState(errorMessage: contractorEntrantErrorMsg)
-            }
-            if let zipcode = zipcode {
-                self.zipcode = zipcode
-            } else {
-                throw MissingInformationError.noZipcode(errorMessage: contractorEntrantErrorMsg)
-            }
-            if let projectNo = projectNumber {
-                self.projectNumber = projectNo
-            } else {
-                throw MissingInformationError.noProjectNumber(errorMessage: contractorEntrantErrorMsg)
-            }
         case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .orikinCompanyVendorPass, .nwelectricalCompanyVendorPass:
             if let dob = dateOfBirth {
                 self.dateOfBirth = dob
@@ -122,16 +80,12 @@ class ParkEntrant: Entrant, Vendor, Contractor {
             } else {
                 throw MissingInformationError.noLastName(errorMessage: vendorEntrantErrorMsg)
             }
-            if let company = vendorCompany {
-                self.vendorCompany = company
-            } else {
-                throw MissingInformationError.noVendorCompany(errorMessage: vendorEntrantErrorMsg)
-            }
             if let dov = dateOfVisit {
                 self.dateOfVisit = dov
             } else {
                 throw MissingInformationError.noDateOfVisit(errorMessage: vendorEntrantErrorMsg)
             }
+            self.vendorCompany = vendorCompany
             self.streetAddress = streetAddress
             self.city = city
             self.state = state
@@ -172,6 +126,7 @@ class ParkEntrant: Entrant, Vendor, Contractor {
             } else {
                 throw MissingInformationError.noZipcode(errorMessage: "\(associatedPassType.rawValue)")
             }
+            self.projectNumber = projectNumber
         }
     }
 }
