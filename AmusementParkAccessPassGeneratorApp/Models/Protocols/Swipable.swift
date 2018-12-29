@@ -41,10 +41,10 @@ extension Swipable {
         }
         
         if accessibleAreas.contains(checkpoint) {
-            result += "You have access to \(checkpoint.rawValue)."
+            result += "This pass can grant access to \(checkpoint.rawValue)."
             isPositive = true
         } else {
-            result += "Sorry, You don't have access to \(checkpoint.rawValue)."
+            result += "This pass cannot grant access to \(checkpoint.rawValue)."
             isPositive = false
         }
         return (result: result, isPositive: isPositive)
@@ -61,16 +61,16 @@ extension Swipable {
         }
         
         guard let discount = self.parkDiscount else {
-            result += "Sorry, Your pass cannot avail any food and merchandise discounts."
+            result += "This pass cannot be used to avail any food and merchandise discounts."
             isPositive = false
             return (result: result, isPositive: isPositive)
         }
         
         if discount == parkDiscount {
-            result += "Your pass can avail \(parkDiscount.rawValue)."
+            result += "This pass can be used to avail \(parkDiscount.rawValue)."
             isPositive = true
         } else {
-            result += "Sorry, Your pass cannot avail \(parkDiscount.rawValue)."
+            result += "This pass cannot be used to avail \(parkDiscount.rawValue)."
             isPositive = false
         }
         return (result: result, isPositive: isPositive)
@@ -87,11 +87,11 @@ extension Swipable {
         }
         
         if ridePrivileges.contains(ridePrivilege) {
-            result += "You have \(ridePrivilege.rawValue)."
+            result += "This pass can grant \(ridePrivilege.rawValue)."
             isPositive = true
             
         } else {
-            result += "Sorry, Your pass don't have \(ridePrivilege.rawValue)."
+            result += "This pass cannot grant \(ridePrivilege.rawValue)."
             isPositive = false
         }
         return (result: result, isPositive: isPositive)

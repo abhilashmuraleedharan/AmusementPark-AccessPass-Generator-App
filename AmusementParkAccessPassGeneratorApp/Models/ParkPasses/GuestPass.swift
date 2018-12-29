@@ -56,11 +56,11 @@ extension GuestPass: Swipable {
         
         if canSwipe() {
             if ridePrivileges.contains(ridePrivilege) {
-                result += "You have \(ridePrivilege.rawValue)."
+                result += "This pass can grant \(ridePrivilege.rawValue)."
                 isPositive = true
                 updateLastAccessTime()
             } else {
-                result += "Sorry, Your pass don't have \(ridePrivilege.rawValue)."
+                result += "This pass cannot grant \(ridePrivilege.rawValue)."
                 isPositive = false
             }
         } else {

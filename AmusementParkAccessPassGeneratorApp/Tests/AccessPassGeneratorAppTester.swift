@@ -25,7 +25,6 @@ struct AccessPassGeneratorAppTester {
         testManagerPass()
         testSeasonGuestPass()
         testSeniorGuestPass()
-        testSwipeOnBirthDay()
     }
     
     /// Method that runs all the contract employee park passes and related tests.
@@ -35,7 +34,6 @@ struct AccessPassGeneratorAppTester {
         testProject1003ContractEmployeePass()
         testProject2001ContractEmployeePass()
         testProject2002ContractEmployeePass()
-        testSwipeOnBirthDay()
     }
     
     /// Method that runs all the vendor park passes and related tests.
@@ -44,7 +42,6 @@ struct AccessPassGeneratorAppTester {
         testOrkinVendorPass()
         testFedexVendorPass()
         testNWElectricalVendorPass()
-        testSwipeOnBirthDay()
     }
     
     /// Method to display a formatted result of a swipe action along with its status.
