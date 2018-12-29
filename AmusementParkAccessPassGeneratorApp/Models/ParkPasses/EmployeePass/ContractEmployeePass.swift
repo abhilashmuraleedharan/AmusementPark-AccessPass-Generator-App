@@ -33,6 +33,10 @@ class ContractEmployeePass: ParkPass, Swipable {
             printPassGenerationStatus()
         } catch MissingInformationError.inSufficientData(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)
+        } catch MissingInformationError.noProjectNumber(let error) {
+            throw MissingInformationError.inSufficientData(errorMessage: error)
+        } catch DataError.invalidProjectNumber(let error) {
+            throw DataError.invalidProjectNumber(errorMessage: error)
         } catch let error {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }

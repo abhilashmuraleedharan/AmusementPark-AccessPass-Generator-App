@@ -366,27 +366,154 @@ extension AccessPassGeneratorAppTester {
     
     /// Method that tests a Project 1001 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
     func testProject1001ContractEmployeePass() {
-        
+        print("\n\n********** Testing Project 1001 Contract Employee Pass without all required information. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            let p1001EmployeePass = try ContractEmployeePass(projectNumber: "1001", firstName: "Nelda", lastName: "Brakus", streetAddress: nil, city: "Kentucky", state: "Ohio", zipcode: "654321", dateOfBirth: dob)
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Contract Employee Pass with invalid project number. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            let p1001EmployeePass = try ContractEmployeePass(projectNumber: "1005", firstName: "Nelda", lastName: "Brakus", streetAddress: "72260 Moen Mount", city: "Islamabad", state: "Punjab", zipcode: "558311", dateOfBirth: dob)
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Project 1001 Contract Employee Pass with all required information. ************ \n")
+        do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            let p1001EmployeePass = try ContractEmployeePass(projectNumber: "1001", firstName: "Nelda", lastName: "Brakus", streetAddress: "72260 Moen Mount", city: "Islamabad", state: "Punjab", zipcode: "558311", dateOfBirth: customDate!)
+            testRideAccess(of: p1001EmployeePass)
+            testAreaAccess(of: p1001EmployeePass)
+            testSkipAllRideLinesAccess(of: p1001EmployeePass)
+            testDiscountAccess(of: p1001EmployeePass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
     }
     
     /// Method that tests a Project 1002 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
     func testProject1002ContractEmployeePass() {
-        
+        print("\n\n********** Testing Project 1002 Contract Employee Pass without all required information. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            let p1002EmployeePass = try ContractEmployeePass(projectNumber: "1002", firstName: "Torrance", lastName: "Quitzon", streetAddress: "81877 Arlo Underpass", city: "Montreal", state: nil, zipcode: "65591", dateOfBirth: dob)
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Project 1002 Contract Employee Pass with all required information. ************ \n")
+        do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            let p1002EmployeePass = try ContractEmployeePass(projectNumber: "1002", firstName: "Torrance", lastName: "Quitzon", streetAddress: "81877 Arlo Underpass", city: "Montreal", state: "Quebec", zipcode: "65591", dateOfBirth: customDate!)
+            testRideAccess(of: p1002EmployeePass)
+            testAreaAccess(of: p1002EmployeePass)
+            testSkipAllRideLinesAccess(of: p1002EmployeePass)
+            testDiscountAccess(of: p1002EmployeePass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
     }
     
     /// Method that tests a Project 1003 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
     func testProject1003ContractEmployeePass() {
-        
+        print("\n\n********** Testing Project 1003 Contract Employee Pass without all required information. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            let p1003EmployeePass = try ContractEmployeePass(projectNumber: nil, firstName: "Emilio", lastName: "Nitzsche", streetAddress: "81877 Arlo Underpass", city: "Montreal", state: "Quebec", zipcode: "65591", dateOfBirth: dob)
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Project 1003 Contract Employee Pass with all required information. ************ \n")
+        do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            let p1003EmployeePass = try ContractEmployeePass(projectNumber: "1003", firstName: "Emilio", lastName: "Nitzsche", streetAddress: "81877 Arlo Underpass", city: "Montreal", state: "Quebec", zipcode: "65591", dateOfBirth: customDate!)
+            testRideAccess(of: p1003EmployeePass)
+            testAreaAccess(of: p1003EmployeePass)
+            testSkipAllRideLinesAccess(of: p1003EmployeePass)
+            testDiscountAccess(of: p1003EmployeePass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
     }
     
     /// Method that tests a Project 2001 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
     func testProject2001ContractEmployeePass() {
-        
+        print("\n\n********** Testing Project 2001 Contract Employee Pass without all required information. ************ \n")
+        do {
+            let p2001EmployeePass = try ContractEmployeePass(projectNumber: "2001", firstName: "Torrance", lastName: "Quitzon", streetAddress: "81877 Arlo Underpass", city: "Montreal", state: "Quebec", zipcode: "65591", dateOfBirth: nil)
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Project 2001 Contract Employee Pass with all required information. ************ \n")
+        do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            let p2001EmployeePass = try ContractEmployeePass(projectNumber: "2001", firstName: "Akeem", lastName: "Bergstrom", streetAddress: "81877 Arlo Underpass", city: "Montreal", state: "Quebec", zipcode: "65591", dateOfBirth: customDate!)
+            testRideAccess(of: p2001EmployeePass)
+            testAreaAccess(of: p2001EmployeePass)
+            testSkipAllRideLinesAccess(of: p2001EmployeePass)
+            testDiscountAccess(of: p2001EmployeePass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
     }
     
     /// Method that tests a Project 2002 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
     func testProject2002ContractEmployeePass() {
-        
+        print("\n\n********** Testing Project 2002 Contract Employee Pass without all required information. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            let p2002EmployeePass = try ContractEmployeePass(projectNumber: "2002", firstName: "Torrance", lastName: "Quitzon", streetAddress: "81877 Arlo Underpass", city: "Montreal", state: nil, zipcode: "65591", dateOfBirth: dob)
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Project 2002 Contract Employee Pass with all required information. ************ \n")
+        do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            let p2002EmployeePass = try ContractEmployeePass(projectNumber: "2002", firstName: "Yadira", lastName: "Cruickshank", streetAddress: "81877 Arlo Underpass", city: "Montreal", state: "Quebec", zipcode: "65591", dateOfBirth: customDate!)
+            testRideAccess(of: p2002EmployeePass)
+            testAreaAccess(of: p2002EmployeePass)
+            testSkipAllRideLinesAccess(of: p2002EmployeePass)
+            testDiscountAccess(of: p2002EmployeePass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
     }
     
     /// Method that tests Acme Vendor Pass's conformance to business rules matrix provided by the park authorities.
