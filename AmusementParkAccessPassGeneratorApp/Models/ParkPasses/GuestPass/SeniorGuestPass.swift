@@ -12,7 +12,7 @@ class SeniorGuestPass: GuestPass {
     
     let minimumAgeForSeniorGuest = 60
     
-    init(dateOfBirth: Date?, firstName: String? = nil, lastName: String? = nil,
+    init(dateOfBirth: Date?, firstName: String?, lastName: String?,
          streetAddress: String? = nil, city: String? = nil,
          state: String? = nil, zipcode: String? = nil) throws {
         do {

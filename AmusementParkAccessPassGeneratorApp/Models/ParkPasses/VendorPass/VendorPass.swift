@@ -13,7 +13,7 @@ class VendorPass: ParkPass, Swipable {
     let companyPassTypeDictionary: [String: PassSubType] = ["acme": .acmeCompanyVendorPass, "orkin": .orkinCompanyVendorPass, "fedex": .fedexCompanyVendorPass, "nw electrical": .nwelectricalCompanyVendorPass]
     
     init(firstName: String?, lastName: String?, vendorCompany: String?, dateOfBirth: Date?, dateOfVisit: Date?,
-         streetAddress: String?, city: String?, state: String?, zipcode: String?) throws {
+         streetAddress: String? = nil, city: String? = nil, state: String? = nil, zipcode: String? = nil) throws {
         do {
             guard let company = vendorCompany else {
                 throw MissingInformationError.noVendorCompany(errorMessage: "Vendor Pass requires company information.")

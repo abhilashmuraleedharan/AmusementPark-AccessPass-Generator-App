@@ -166,10 +166,15 @@ extension AccessPassGeneratorAppTester {
         }
         print("\n\n********** Testing Hourly Employee Food Service Pass with all required information. ************ \n")
         do {
-            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
             let foodServiceEmployeePass = try HourlyEmployeeFoodServicesPass(firstName: "Raheem", lastName: "Waters",
                                                                          streetAddress: "461 Rowena Lights", city: "Seattle",
-                                                                         state: "Washington", zipcode: "98101", dateOfBirth: dob)
+                                                                         state: "Washington", zipcode: "98101", dateOfBirth: customDate!)
             testRideAccess(of: foodServiceEmployeePass)
             testAreaAccess(of: foodServiceEmployeePass)
             testSkipAllRideLinesAccess(of: foodServiceEmployeePass)
@@ -193,10 +198,15 @@ extension AccessPassGeneratorAppTester {
         }
         print("\n\n********** Testing Hourly Employee Ride Service Pass with all required information. ************ \n")
         do {
-            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
             let rideServiceEmployeePass = try HourlyEmployeeRideServicesPass(firstName: "Eryn", lastName: "Wolf",
                                                                              streetAddress: "46 Kildare street", city: "Dublin",
-                                                                             state: "Leinster Province", zipcode: "94568", dateOfBirth: dob)
+                                                                             state: "Leinster Province", zipcode: "94568", dateOfBirth: customDate!)
             testRideAccess(of: rideServiceEmployeePass)
             testAreaAccess(of: rideServiceEmployeePass)
             testSkipAllRideLinesAccess(of: rideServiceEmployeePass)
@@ -211,19 +221,30 @@ extension AccessPassGeneratorAppTester {
     func testHourlyEmployeeMaintenancePass() {
         print("\n\n********** Testing Hourly Employee Maintenance Pass without all required information. ************ \n")
         do {
-            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
             let maintenanceEmployeePass = try HourlyEmployeeMaintenancePass(firstName: "Yazmin", lastName: "West",
                                                                             streetAddress: "24 Baker Street", city: "London",
-                                                                            state: "London", zipcode: nil, dateOfBirth: dob)
+                                                                            state: "London", zipcode: nil, dateOfBirth: customDate!)
         } catch let error {
             print(error)
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
         }
         print("\n\n********** Testing Hourly Employee Maintenance Pass with all required information. ************ \n")
         do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
             let maintenanceEmployeePass = try HourlyEmployeeMaintenancePass(firstName: "Janick", lastName: "Walter",
                                                                             streetAddress: "117A Manners Street", city: "Wellington",
-                                                                            state: "Wellington Region", zipcode: "33411", dateOfBirth: nil)
+                                                                            state: "Wellington Region", zipcode: "33411", dateOfBirth: customDate!)
             testRideAccess(of: maintenanceEmployeePass)
             testAreaAccess(of: maintenanceEmployeePass)
             testSkipAllRideLinesAccess(of: maintenanceEmployeePass)
@@ -238,19 +259,29 @@ extension AccessPassGeneratorAppTester {
     func testManagerPass() {
         print("\n\n********** Manager Pass without all required information. ************ \n")
         do {
-            let dob = Calendar.current.date(byAdding: .year, value: -36, to: Date())!
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
             let managerPass = try ManagerPass(firstName: "Larry", lastName: "Daley",
-                                          streetAddress: "Upper West Side", city: nil, state: "New York", zipcode: "10031", dateOfBirth: dob)
+                                          streetAddress: "Upper West Side", city: nil, state: "New York", zipcode: "10031", dateOfBirth: customDate!)
         } catch let error {
             print(error)
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
         }
         print("\n\n********** Manager Pass with all required information. ************ \n")
         do {
-            let dob = Calendar.current.date(byAdding: .year, value: -36, to: Date())!
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
             let managerPass = try ManagerPass(firstName: "Jonathan", lastName: "Pine",
                                               streetAddress: "Luxor Governate", city: "Luxor", state: "Cairo",
-                                              zipcode: "387130", dateOfBirth: dob)
+                                              zipcode: "387130", dateOfBirth: customDate!)
             testRideAccess(of: managerPass)
             testAreaAccess(of: managerPass)
             testSkipAllRideLinesAccess(of: managerPass)
@@ -263,12 +294,74 @@ extension AccessPassGeneratorAppTester {
     
     /// Method that tests a Season Guest Pass's conformance to business rules matrix provided by the park authorities.
     func testSeasonGuestPass() {
-        
+        print("\n\n********** Testing Season Guest Pass without all required information. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
+            let seasonGuestPass = try SeasonGuestPass(firstName: nil, lastName: "VonRueden", dateOfBirth: dob, streetAddress: "82943 Justus Center", city: "Seattle", state: "Washington", zipcode: "98101")
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Season Guest Pass with all required information. ************ \n")
+        do {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            let seasonGuestPass = try SeasonGuestPass(firstName: "Hettie", lastName: "VonRueden", dateOfBirth: customDate!, streetAddress: "82943 Justus Center", city: "Seattle", state: "Washington", zipcode: "98101")
+            testRideAccess(of: seasonGuestPass)
+            testAreaAccess(of: seasonGuestPass)
+            testSkipAllRideLinesAccess(of: seasonGuestPass)
+            testDiscountAccess(of: seasonGuestPass)
+            testSecondSwipeAtSameRide(of: seasonGuestPass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
     }
     
     /// Method that tests a Senior Guest Pass's conformance to business rules matrix provided by the park authorities.
     func testSeniorGuestPass() {
-        
+        print("\n\n********** Testing Senior Guest Pass without all required information. ************ \n")
+        do {
+            let seniorGuestPass = try SeniorGuestPass(dateOfBirth: nil, firstName: "Brandi", lastName: "Leuschke")
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
+        print("\n\n********** Testing Senior Guest Pass for a guest older than 60 years. ************ \n")
+        do {
+            // Set a custom date of birth to guest
+            var dateComponents = DateComponents()
+            dateComponents.year = 2018
+            dateComponents.month = 7
+            dateComponents.day = 13
+            let calendar = Calendar.current
+            let customDate = calendar.date(from: dateComponents)
+            // Below step is done to ensure a date of birth that makes the guest older than 60 years of age with a b'day other than
+            // today, thereby preventing the triggering of "Swiping on a b'day" bonus feature. This feature is tested
+            // separately in testSwipeOnBirthDay()
+            let dob = Calendar.current.date(byAdding: .year, value: -64, to: customDate!)!
+            let seniorGuestPass = try SeniorGuestPass(dateOfBirth: dob, firstName: "Brandi", lastName: "Leuschke")
+            testRideAccess(of: seniorGuestPass)
+            testAreaAccess(of: seniorGuestPass)
+            testSkipAllRideLinesAccess(of: seniorGuestPass)
+            testDiscountAccess(of: seniorGuestPass)
+            testSecondSwipeAtSameRide(of: seniorGuestPass)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        } catch let error {
+            print(error)
+        }
+        print("\n\n********** Testing Senior Guest Pass for a guest younger than 60 years. ************ \n")
+        do {
+            let dob = Calendar.current.date(byAdding: .year, value: -56, to: Date())!
+            let seniorGuestPass = try SeniorGuestPass(dateOfBirth: dob, firstName: "Brandi", lastName: "Leuschke")
+        } catch let error {
+            print(error)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        }
     }
     
     /// Method that tests a Project 1001 Contract Employee Pass's conformance to business rules matrix provided by the park authorities.
@@ -344,7 +437,7 @@ extension AccessPassGeneratorAppTester {
         } catch let error {
             print(error)
         }
-        print("4. Create an Hourly Employee Pass with date of birth but swipe on a day other than his/her b'day")
+        print("4. Create an Hourly Employee Maintenance Pass with date of birth but swipe on a day other than his/her b'day")
         var dateComponents = DateComponents()
         dateComponents.year = 1980
         dateComponents.month = 7
@@ -357,6 +450,22 @@ extension AccessPassGeneratorAppTester {
         do {
             let hourlyEmployeeMaintenancePass = try HourlyEmployeeMaintenancePass(firstName: "George", lastName: "Bins", streetAddress: "Rollin Layout", city: "XYZ City", state: "ABC State", zipcode: "670702", dateOfBirth: employeeDateOfBirth)
             swipe(hourlyEmployeeMaintenancePass, at: .maintenanceArea)
+        } catch let error {
+            print(error)
+        }
+        print("5. Create a Senior Guest Pass and swipe on his/her b'day")
+        let seniorDob = Calendar.current.date(byAdding: .year, value: -60, to: Date())!
+        do {
+            let seniorGuestPass = try SeniorGuestPass(dateOfBirth: seniorDob, firstName: "Eddie", lastName: "West")
+            swipe(seniorGuestPass, for: .skipAllRideLinesAccess)
+        } catch let error {
+            print(error)
+        }
+        print("6. Create a Season Guest Pass and swipe on his/her b'day")
+        let seasonPassGuestDob = Calendar.current.date(byAdding: .year, value: -30, to: Date())!
+        do {
+            let seasonGuestPass = try SeasonGuestPass(firstName: "Kieran", lastName: "Bashirian", dateOfBirth: seasonPassGuestDob, streetAddress: "8522 Bayer Bypass", city: "Toronto", state: "Ontario", zipcode: "123456")
+            swipe(seasonGuestPass, toAvail: .seasonPassGuestDiscount)
         } catch let error {
             print(error)
         }
@@ -414,6 +523,10 @@ extension AccessPassGeneratorAppTester {
         swipe(pass, toAvail: .managerDiscount)
         print("3. Checking \"VIP - Food and Merchandise\" discount access")
         swipe(pass, toAvail: .vipGuestDiscount)
+        print("4. Checking \"Senior - Food and Merchandise\" discount access")
+        swipe(pass, toAvail: .seniorGuestDiscount)
+        print("5. Checking \"Season Pass - Food and Merchandise\" discount access")
+        swipe(pass, toAvail: .seasonPassGuestDiscount)
     }
     
     /// Method that simulates unauthorized swiping of a pass at a ride area to sneak in a second person.

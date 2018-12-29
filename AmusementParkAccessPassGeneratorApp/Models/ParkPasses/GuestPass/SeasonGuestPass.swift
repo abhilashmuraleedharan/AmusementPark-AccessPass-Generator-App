@@ -10,9 +10,9 @@ import Foundation
 
 class SeasonGuestPass: GuestPass {
     
-    init(firstName: String? = nil, lastName: String? = nil,
-         dateOfBirth: Date? = nil, streetAddress: String? = nil, city: String? = nil,
-         state: String? = nil, zipcode: String? = nil) throws {
+    init(firstName: String?, lastName: String?,
+         dateOfBirth: Date?, streetAddress: String?, city: String?,
+         state: String?, zipcode: String?) throws {
         do {
             try super.init(passType: .seasonGuestPass, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
