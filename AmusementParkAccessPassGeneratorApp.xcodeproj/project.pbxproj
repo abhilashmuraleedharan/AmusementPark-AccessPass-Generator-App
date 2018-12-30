@@ -38,6 +38,7 @@
 		CCD7A75721D754B100E00B71 /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = CCD7A75521D754B000E00B71 /* AccessDenied.wav */; };
 		CCD7A75821D754B100E00B71 /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = CCD7A75621D754B000E00B71 /* AccessGranted.wav */; };
 		CCD7A75B21D7E62A00E00B71 /* FormDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A75A21D7E62A00E00B71 /* FormDataProvider.swift */; };
+		CCDEBB7121D9332300B2D05E /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDEBB7021D9332300B2D05E /* StackViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		CCD7A75521D754B000E00B71 /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessDenied.wav; sourceTree = "<group>"; };
 		CCD7A75621D754B000E00B71 /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessGranted.wav; sourceTree = "<group>"; };
 		CCD7A75A21D7E62A00E00B71 /* FormDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataProvider.swift; sourceTree = "<group>"; };
+		CCDEBB7021D9332300B2D05E /* StackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				CC0D24C22185741100FA2718 /* Assets.xcassets */,
 				CC0D24C42185741100FA2718 /* LaunchScreen.storyboard */,
 				CC0D24C72185741100FA2718 /* Info.plist */,
+				CCDEBB7021D9332300B2D05E /* StackViewExtension.swift */,
 			);
 			path = AmusementParkAccessPassGeneratorApp;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				CC0D24FA2185E16500FA2718 /* VIPGuestPass.swift in Sources */,
 				CC0D24ED2185BA4200FA2718 /* ClassicGuestPass.swift in Sources */,
 				CC0D24D121857B5700FA2718 /* Entrant.swift in Sources */,
+				CCDEBB7121D9332300B2D05E /* StackViewExtension.swift in Sources */,
 				CC0D250D2186271C00FA2718 /* HourlyEmployeeRideServicesPass.swift in Sources */,
 				CC0D24BC2185740E00FA2718 /* AppDelegate.swift in Sources */,
 				CCD7A74B21D73FFF00E00B71 /* VendorPass.swift in Sources */,

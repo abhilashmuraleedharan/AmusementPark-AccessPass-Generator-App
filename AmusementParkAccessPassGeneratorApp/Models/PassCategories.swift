@@ -61,14 +61,10 @@ extension PassCategory {
     var passSubTypeList: [PassSubType] {
         switch self {
         case .guest:
-            return [PassSubType.classicGuestPass, PassSubType.vipGuestPass, PassSubType.freeChildGuestPass]
+            return [PassSubType.classicGuestPass, PassSubType.vipGuestPass, PassSubType.freeChildGuestPass, PassSubType.seasonGuestPass, PassSubType.seniorGuestPass]
         case .employee:
             return [PassSubType.hourlyEmployeeFoodServicePass, PassSubType.hourlyEmployeeMaintenancePass, PassSubType.hourlyEmployeeRideServicePass]
-        case .manager: return []
-        case .contractor:
-            return [PassSubType.project1001ContractEmployeePass, PassSubType.project1002ContractEmployeePass, PassSubType.project1003ContractEmployeePass, PassSubType.project2001ContractEmployeePass, PassSubType.project2002ContractEmployeePass]
-        case .vendor:
-            return [PassSubType.acmeCompanyVendorPass, PassSubType.orkinCompanyVendorPass, PassSubType.fedexCompanyVendorPass, PassSubType.nwelectricalCompanyVendorPass]
+        case .manager, .contractor, .vendor: return []
         }
     }
 }
@@ -149,6 +145,21 @@ extension PassSubType {
             return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.vendorCompany, PassFormDataField.dateOfBirth, PassFormDataField.dateOfVisit]
         default:
             return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
+        }
+    }
+    
+    /// Based on the Pass sub-type, this computed property returns the menu button titles to be displayed in form
+    var subMenuButtonTitle: String? {
+        switch self {
+        case .classicGuestPass: return "Classic"
+        case .vipGuestPass: return "VIP"
+        case .freeChildGuestPass: return "Free Child"
+        case .seasonGuestPass: return "Season Pass"
+        case .seniorGuestPass: return "Senior"
+        case .hourlyEmployeeFoodServicePass: return "Food Service"
+        case .hourlyEmployeeRideServicePass: return "Ride Service"
+        case .hourlyEmployeeMaintenancePass: return "Maintenance"
+        default: return nil
         }
     }
 }
