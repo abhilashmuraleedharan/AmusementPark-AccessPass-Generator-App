@@ -36,6 +36,9 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <color key="tintColor" red="0.81960784313725488" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Guest"/>
+                                                                <connections>
+                                                                    <action selector="guestMenuOptionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xHK-o2-mCY"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ya4-fz-biG">
                                                                 <rect key="frame" x="153.5" y="0.0" width="153.5" height="100"/>
@@ -43,6 +46,9 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <color key="tintColor" red="0.81960784313725488" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Employee"/>
+                                                                <connections>
+                                                                    <action selector="employeeMenuOptionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KHc-fR-ynO"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhk-xl-fl3">
                                                                 <rect key="frame" x="307" y="0.0" width="154" height="100"/>
@@ -50,6 +56,9 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <color key="tintColor" red="0.81960784313725488" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Manager"/>
+                                                                <connections>
+                                                                    <action selector="managerMenuOptionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MW8-95-A9j"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1D-a0-BNw">
                                                                 <rect key="frame" x="461" y="0.0" width="153.5" height="100"/>
@@ -57,6 +66,9 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <color key="tintColor" red="0.81960784313725488" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Contractor"/>
+                                                                <connections>
+                                                                    <action selector="contractorMenuOptionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NRw-00-h9i"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDg-tg-ukR">
                                                                 <rect key="frame" x="614.5" y="0.0" width="153.5" height="100"/>
@@ -64,6 +76,9 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <color key="tintColor" red="0.81960784313725488" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Vendor"/>
+                                                                <connections>
+                                                                    <action selector="vendorMenuOptionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AAV-BW-FUb"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -99,10 +114,10 @@
                                                                             <constraint firstAttribute="width" constant="150" id="Cby-Pu-Bna"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DbC-TK-ny1">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DbC-TK-ny1">
                                                                         <rect key="frame" x="0.0" y="49" width="150" height="60"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -119,10 +134,10 @@
                                                                             <constraint firstAttribute="width" constant="150" id="c8c-Cn-ZnN"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aeI-yh-tXf">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aeI-yh-tXf">
                                                                         <rect key="frame" x="0.0" y="50.5" width="150" height="58.5"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -139,10 +154,10 @@
                                                                             <constraint firstAttribute="width" constant="150" id="n8s-Cn-utG"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4uq-fM-mUf">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4uq-fM-mUf">
                                                                         <rect key="frame" x="0.0" y="49" width="150" height="60"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -164,10 +179,10 @@
                                                                             <constraint firstAttribute="width" constant="300" id="9ib-V0-Zfg"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aTy-8f-186">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aTy-8f-186">
                                                                         <rect key="frame" x="0.0" y="49" width="300" height="60"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -184,10 +199,10 @@
                                                                             <constraint firstAttribute="width" constant="300" id="ulJ-3w-cte"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o3q-V6-Dxb">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o3q-V6-Dxb">
                                                                         <rect key="frame" x="0.0" y="49" width="300" height="60"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -203,10 +218,10 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RO-o7-bvJ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="700" height="37"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yMf-nt-EKy">
+                                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yMf-nt-EKy">
                                                                 <rect key="frame" x="0.0" y="49" width="700" height="60"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -220,10 +235,10 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoM-wZ-6US">
                                                                 <rect key="frame" x="0.0" y="0.0" width="700" height="37"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jd1-SQ-9H6">
+                                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jd1-SQ-9H6">
                                                                 <rect key="frame" x="0.0" y="49" width="700" height="60"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -243,10 +258,10 @@
                                                                             <constraint firstAttribute="width" constant="150" id="wlY-Uf-pPd"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZN6-eJ-kmz">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZN6-eJ-kmz">
                                                                         <rect key="frame" x="0.0" y="49" width="150" height="60"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -263,10 +278,10 @@
                                                                             <constraint firstAttribute="width" constant="150" id="iuO-e1-Ern"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="spv-s2-DgA">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="spv-s2-DgA">
                                                                         <rect key="frame" x="0.0" y="50.5" width="150" height="58.5"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -283,10 +298,10 @@
                                                                             <constraint firstAttribute="width" constant="150" id="Po1-q0-t7i"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Cw-MI-u7d">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Cw-MI-u7d">
                                                                         <rect key="frame" x="0.0" y="49" width="150" height="60"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -299,19 +314,26 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="URD-56-iF3">
                                                         <rect key="frame" x="34" y="695" width="700" height="109"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl7-0R-CIW">
+                                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl7-0R-CIW">
                                                                 <rect key="frame" x="0.0" y="36.5" width="325" height="36"/>
                                                                 <color key="backgroundColor" red="0.30588235294117649" green="0.54117647058823526" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Generate Pass"/>
+                                                                <connections>
+                                                                    <action selector="generatePassButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1rK-UZ-NED"/>
+                                                                    <segue destination="21A-UO-Ksh" kind="show" id="YPa-Tl-IYs"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9w-U1-aNs">
+                                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9w-U1-aNs">
                                                                 <rect key="frame" x="375" y="35.5" width="325" height="38"/>
                                                                 <color key="backgroundColor" red="0.92941176470588238" green="0.9137254901960784" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="tintColor" red="0.25882352941176467" green="0.52941176470588236" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Populate Data"/>
+                                                                <connections>
+                                                                    <action selector="populateDataButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vzy-dJ-muY"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -347,10 +369,51 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="cityLabel" destination="5Tk-3H-IwW" id="GP0-oC-1as"/>
+                        <outlet property="cityTextField" destination="ZN6-eJ-kmz" id="HKd-U4-eeZ"/>
+                        <outlet property="companyLabel" destination="LoM-wZ-6US" id="Yfe-2P-ThZ"/>
+                        <outlet property="companyTextField" destination="Jd1-SQ-9H6" id="Wgf-vB-dRb"/>
+                        <outlet property="containerView" destination="f1d-HG-dmH" id="p4h-hf-66I"/>
+                        <outlet property="dateOfBirthLabel" destination="ZWI-w1-xj1" id="XB2-VR-94A"/>
+                        <outlet property="dateOfBirthTextField" destination="DbC-TK-ny1" id="eRA-0b-kSR"/>
+                        <outlet property="dateOfVisitLabel" destination="n50-mc-pNN" id="Cmd-Be-ppu"/>
+                        <outlet property="dateOfVisitTextField" destination="aeI-yh-tXf" id="RA0-pr-FDE"/>
+                        <outlet property="firstNameLabel" destination="ScT-E7-cyX" id="0JC-GJ-qvX"/>
+                        <outlet property="firstNameTextField" destination="aTy-8f-186" id="j99-mC-ngK"/>
+                        <outlet property="generatePassButton" destination="dl7-0R-CIW" id="IgB-sq-H2l"/>
+                        <outlet property="lastNameLabel" destination="LWO-dR-oqC" id="a0p-oq-nBW"/>
+                        <outlet property="lastNameTextField" destination="o3q-V6-Dxb" id="BBo-zT-kxI"/>
+                        <outlet property="populateDataButton" destination="U9w-U1-aNs" id="nfi-ka-VAm"/>
+                        <outlet property="projectNumberLabel" destination="ntS-yY-QaJ" id="1Qj-2J-5aj"/>
+                        <outlet property="projectNumberTextField" destination="4uq-fM-mUf" id="VOK-5g-Az4"/>
+                        <outlet property="stateLabel" destination="yfb-vV-dUv" id="igf-A8-dMZ"/>
+                        <outlet property="stateTextField" destination="spv-s2-DgA" id="x6j-1a-pli"/>
+                        <outlet property="streetAddressLabel" destination="7RO-o7-bvJ" id="o57-nr-gzm"/>
+                        <outlet property="streetAddressTextField" destination="yMf-nt-EKy" id="EoR-yb-CQm"/>
+                        <outlet property="subMenuView" destination="xbc-e2-kIY" id="ih2-H1-o0l"/>
+                        <outlet property="zipcodeLabel" destination="zpC-jw-Q6H" id="P3O-7X-TFA"/>
+                        <outlet property="zipcodeTextField" destination="3Cw-MI-u7d" id="yQi-0y-sCg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="19.53125" y="16.9921875"/>
+        </scene>
+        <!--Access Pass CheckVC-->
+        <scene sceneID="GVf-yC-VCf">
+            <objects>
+                <viewController id="21A-UO-Ksh" customClass="AccessPassCheckVC" customModule="AmusementParkAccessPassGeneratorApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DIv-lG-4KA">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sOF-M0-9li"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JYg-Ex-mlo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="658" y="18"/>
         </scene>
     </scenes>
 </document>
