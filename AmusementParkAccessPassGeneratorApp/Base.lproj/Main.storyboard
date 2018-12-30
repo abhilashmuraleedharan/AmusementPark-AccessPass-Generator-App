@@ -439,6 +439,8 @@
                         <outlet property="generatePassButton" destination="dl7-0R-CIW" id="IgB-sq-H2l"/>
                         <outlet property="lastNameLabel" destination="LWO-dR-oqC" id="a0p-oq-nBW"/>
                         <outlet property="lastNameTextField" destination="o3q-V6-Dxb" id="BBo-zT-kxI"/>
+                        <outlet property="managerTypeLabel" destination="JQc-39-Qyu" id="pn6-v0-AVh"/>
+                        <outlet property="managerTypeTextField" destination="djZ-20-HpC" id="XpS-Li-fQy"/>
                         <outlet property="populateDataButton" destination="U9w-U1-aNs" id="nfi-ka-VAm"/>
                         <outlet property="projectNumberLabel" destination="ntS-yY-QaJ" id="1Qj-2J-5aj"/>
                         <outlet property="projectNumberTextField" destination="4uq-fM-mUf" id="VOK-5g-Az4"/>

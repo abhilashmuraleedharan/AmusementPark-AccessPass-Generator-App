@@ -36,6 +36,10 @@ struct FormDataProvider {
         (city: "Baltimore", state: "Maryland", zipcode: "21207"),
         (city: "Austin", state: "Texas", zipcode: "73301")
     ]
+    let projectPickerData = ["1001", "1002", "1003", "2001", "2002"]
+    let companyPickerData = ["Acme", "Fedex", "Orkin", "NW Electrical"]
+    let typePickerData = ["Shift", "General", "Senior"]
+    
     var firstNameData: String {
         return firstNamesCollection.randomElement()!
     }
@@ -48,4 +52,10 @@ struct FormDataProvider {
     var cityStateZipcodeData: CityStateZipcodeData {
         return cityStateZipcodeCollection.randomElement()!
     }
+}
+
+enum ViewPickerTag: Int {
+    case projectTag = 0
+    case companyTag
+    case typeTag
 }

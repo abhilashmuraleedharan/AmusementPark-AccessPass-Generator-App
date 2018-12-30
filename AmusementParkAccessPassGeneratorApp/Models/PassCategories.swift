@@ -67,6 +67,18 @@ extension PassCategory {
         case .manager, .contractor, .vendor: return []
         }
     }
+    
+    /// Based on the Pass Category, this computed property returns the collection of essential form data fields to be present in the generate pass page.
+    var necessaryFormDataFields: [PassFormDataField] {
+        switch self {
+        case .vendor:
+            return [PassFormDataField.vendorCompany, PassFormDataField.dateOfVisit, PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
+        case .contractor:
+            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth, PassFormDataField.projectNumber]
+        default:
+            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
+        }
+    }
 }
 
 extension PassSubType {
@@ -118,33 +130,6 @@ extension PassSubType {
         case .vipGuestPass, .seniorGuestPass, .seasonGuestPass: return [RidePrivilege.allRidesAccess, RidePrivilege.skipAllRideLinesAccess]
         case .classicGuestPass, .freeChildGuestPass, .hourlyEmployeeFoodServicePass, .hourlyEmployeeMaintenancePass, .hourlyEmployeeRideServicePass, .managerPass: return [RidePrivilege.allRidesAccess]
         default: return []
-        }
-    }
-    
-    /// Based on the Pass sub-type, this computed property returns the collection of essential form data fields to be present in the generate pass page.
-    var necessaryFormDataFields: [PassFormDataField] {
-        switch self {
-        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orkinCompanyVendorPass:
-            return [PassFormDataField.vendorCompany, PassFormDataField.dateOfVisit, PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
-        case .project1001ContractEmployeePass, .project1002ContractEmployeePass, .project1003ContractEmployeePass, .project2001ContractEmployeePass, .project2002ContractEmployeePass:
-            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth, PassFormDataField.projectNumber]
-        default:
-            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
-        }
-    }
-    
-    /// Based on the Pass sub-type, this computed property returns the collection of form data that must be filled in the generate pass page.
-    var requiredFormDataFields: [PassFormDataField] {
-        switch  self {
-        case .classicGuestPass, .vipGuestPass: return []
-        case .freeChildGuestPass: return [PassFormDataField.dateOfBirth]
-        case .seniorGuestPass: return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.dateOfBirth]
-        case .project1001ContractEmployeePass, .project1002ContractEmployeePass, .project1003ContractEmployeePass, .project2001ContractEmployeePass, .project2002ContractEmployeePass:
-            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth, PassFormDataField.projectNumber]
-        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .nwelectricalCompanyVendorPass, .orkinCompanyVendorPass:
-            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.vendorCompany, PassFormDataField.dateOfBirth, PassFormDataField.dateOfVisit]
-        default:
-            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
         }
     }
     

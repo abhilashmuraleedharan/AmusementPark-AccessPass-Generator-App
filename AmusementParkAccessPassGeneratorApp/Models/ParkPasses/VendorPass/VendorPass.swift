@@ -11,10 +11,10 @@ import Foundation
 class VendorPass: ParkPass, Swipable {
     
     private let companyPassTypeDictionary: [String: PassSubType] = [
-        "acme": .acmeCompanyVendorPass,
-        "orkin": .orkinCompanyVendorPass,
-        "fedex": .fedexCompanyVendorPass,
-        "nw electrical": .nwelectricalCompanyVendorPass
+        "Acme": .acmeCompanyVendorPass,
+        "Orkin": .orkinCompanyVendorPass,
+        "Fedex": .fedexCompanyVendorPass,
+        "NW Electrical": .nwelectricalCompanyVendorPass
     ]
     
     init(firstName: String?, lastName: String?, vendorCompany: String?, dateOfBirth: Date?, dateOfVisit: Date?,
