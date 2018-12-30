@@ -23,7 +23,7 @@ enum AudioError: Error {
 }
 
 struct AudioPlayer {
-    var swipeStatusAlertSound: SystemSoundID = 0
+    private var swipeStatusAlertSound: SystemSoundID = 0
     
     mutating func playAlert(for status: SwipeStatus) {
         do {
@@ -42,7 +42,7 @@ struct AudioPlayer {
     }
     
     /// Helper method to load an audio
-    mutating func load(audio: String, ofType type: AudioType = .wav) throws {
+    private mutating func load(audio: String, ofType type: AudioType = .wav) throws {
         guard let path = Bundle.main.path(forResource: audio, ofType: type.rawValue) else {
             throw AudioError.invalidResource
         }
@@ -51,7 +51,7 @@ struct AudioPlayer {
     }
     
     /// Helper method to play an audio
-    func play(_ alertSound: SystemSoundID) {
+    private func play(_ alertSound: SystemSoundID) {
         AudioServicesPlaySystemSound(alertSound)
     }
 }

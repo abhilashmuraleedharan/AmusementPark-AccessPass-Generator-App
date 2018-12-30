@@ -99,7 +99,7 @@ extension Swipable {
     
     /// Helper method to identify whether today is the pass owner's b'day.
     /// Returns true if it is his / her b'day.
-    func isTodayBirthday() -> Bool {
+    private func isTodayBirthday() -> Bool {
         if let dateOfBirth = passOwner.dateOfBirth {
             let todayMonthAndDay = Calendar.current.dateComponents([.month, .day], from: Date())
             let passOwnerBirthDay = Calendar.current.dateComponents([.month, .day], from: dateOfBirth)

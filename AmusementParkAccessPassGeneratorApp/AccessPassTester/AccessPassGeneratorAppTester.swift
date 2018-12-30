@@ -45,7 +45,7 @@ struct AccessPassGeneratorAppTester {
     }
     
     /// Method to display a formatted result of a swipe action along with its status.
-    func printToConsole(_ swipeOutput: SwipeResult) {
+    private func printToConsole(_ swipeOutput: SwipeResult) {
         let swipeStatus = swipeOutput.isPositive ? "Success" : "Failure"
         let result = """
         Swipe status: \(swipeStatus)
@@ -55,19 +55,19 @@ struct AccessPassGeneratorAppTester {
     }
     
     /// Method that simulates an entrant swiping at a park area
-    func swipe(_ pass: Swipable, at area: AccessRequiredParkArea) {
+    private func swipe(_ pass: Swipable, at area: AccessRequiredParkArea) {
         let swipeOutput = pass.swipe(at: area)
         printToConsole(swipeOutput)
     }
     
     /// Method that simulates an entrant swiping at a ride area
-    func swipe(_ pass: Swipable, for rideAccess: RidePrivilege) {
+    private func swipe(_ pass: Swipable, for rideAccess: RidePrivilege) {
         let swipeOutput = pass.swipe(for: rideAccess)
         printToConsole(swipeOutput)
     }
     
     /// Method that simulates an entrant swiping at a shop or eatery for availing discount
-    func swipe(_ pass: Swipable, toAvail discount: ParkDiscount) {
+    private func swipe(_ pass: Swipable, toAvail discount: ParkDiscount) {
         let swipeOutput = pass.swipe(for: discount)
         printToConsole(swipeOutput)
     }
@@ -718,7 +718,7 @@ extension AccessPassGeneratorAppTester {
     /// Method that simulates swiping of a pass at all "pass accessible only" areas within the park.
     /// - Parameters:
     /// - pass: Any pass object that conforms to Swipable protocol.
-    func testAreaAccess(of pass: Swipable) {
+    private func testAreaAccess(of pass: Swipable) {
         print("\nTesting area access of \(pass.passType.rawValue)")
         print("==================================================================================\n")
         print("1. Checking amusement area access")
@@ -736,7 +736,7 @@ extension AccessPassGeneratorAppTester {
     /// Method that simulates swiping of a pass at all rides to skip their ride lines.
     /// - Parameters:
     /// - pass: Any pass object that conforms to Swipable protocol.
-    func testSkipAllRideLinesAccess(of pass: Swipable) {
+    private func testSkipAllRideLinesAccess(of pass: Swipable) {
         print("\nChecking skip all ride lines access of \(pass.passType.rawValue)")
         print("==================================================================================\n")
         swipe(pass, for: .skipAllRideLinesAccess)
@@ -747,7 +747,7 @@ extension AccessPassGeneratorAppTester {
     /// Method that simulates swiping of a pass at all ride areas within the park.
     /// - Parameters:
     /// - pass: Any pass object that conforms to Swipable protocol.
-    func testRideAccess(of pass: Swipable) {
+    private func testRideAccess(of pass: Swipable) {
         print("\nTesting ride access of \(pass.passType.rawValue)")
         print("==================================================================================\n")
         swipe(pass, for: .allRidesAccess)
@@ -758,7 +758,7 @@ extension AccessPassGeneratorAppTester {
     /// Method that simulates swiping of a pass at eateries/shops with all available discount types.
     /// - Parameters:
     /// - pass: Any pass object that conforms to Swipable protocol.
-    func testDiscountAccess(of pass: Swipable) {
+    private func testDiscountAccess(of pass: Swipable) {
         print("\nTesting discount access of \(pass.passType.rawValue)")
         print("==================================================================================\n")
         print("1. Checking \"Employee - Food and Merchandise\" discount access")
@@ -776,7 +776,7 @@ extension AccessPassGeneratorAppTester {
     /// Method that simulates unauthorized swiping of a pass at a ride area to sneak in a second person.
     /// - Parameters:
     /// - pass: Any GuestPass.
-    func testSecondSwipeAtSameRide(of pass: GuestPass) {
+    private func testSecondSwipeAtSameRide(of pass: GuestPass) {
         print("\nTest whether \(pass.passType.rawValue) user is prevented from swiping into the same ride twice in row within 5 seconds at the same checkpoint.")
         print("==========================================================================================================================\n")
         print("Checking first swipe at a ride checkpoint")

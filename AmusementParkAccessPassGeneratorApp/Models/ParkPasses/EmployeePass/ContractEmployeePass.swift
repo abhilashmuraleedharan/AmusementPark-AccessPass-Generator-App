@@ -10,11 +10,13 @@ import Foundation
 
 class ContractEmployeePass: ParkPass, Swipable {
     
-    let projectNumberPassTypeDictionary: [String: PassSubType] = ["1001": .project1001ContractEmployeePass,
-                                                                  "1002": .project1002ContractEmployeePass,
-                                                                  "1003": .project1003ContractEmployeePass,
-                                                                  "2001": .project2001ContractEmployeePass,
-                                                                  "2002": .project2002ContractEmployeePass]
+    private let projectNumberPassTypeDictionary: [String: PassSubType] = [
+        "1001": .project1001ContractEmployeePass,
+        "1002": .project1002ContractEmployeePass,
+        "1003": .project1003ContractEmployeePass,
+        "2001": .project2001ContractEmployeePass,
+        "2002": .project2002ContractEmployeePass
+    ]
     
     init(projectNumber: String?, firstName: String?, lastName: String?,
          streetAddress: String?, city: String?,

@@ -37,7 +37,7 @@ class SeniorGuestPass: GuestPass {
 extension SeniorGuestPass {
     /// This method checks whether the guest qualifies as a senior to issue a Senior Guest Pass
     /// Returns false if the guest is not older than the minimum age set for senior guest.
-    func isQualifiedAsSeniorGuest() -> Bool {
+    private func isQualifiedAsSeniorGuest() -> Bool {
         let startingDobForSenior = Calendar.current.date(byAdding: .year, value: -minimumAgeForSeniorGuest, to: Date())!
         if let dob = passOwner.dateOfBirth {
             return dob <= startingDobForSenior

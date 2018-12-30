@@ -24,7 +24,7 @@ enum PassSubType: String {
     case hourlyEmployeeRideServicePass = "Hourly Employee Ride Service Pass"
     case hourlyEmployeeMaintenancePass = "Hourly Employee Maintenance Pass"
     case managerPass = "Manager Pass"
-    case seasonGuestPass = "Season Pass Guest"
+    case seasonGuestPass = "Season Guest Pass"
     case seniorGuestPass = "Senior Guest Pass"
     case project1001ContractEmployeePass = "Project 1001 Contract Employee Pass"
     case project1002ContractEmployeePass = "Project 1002 Contract Employee Pass"

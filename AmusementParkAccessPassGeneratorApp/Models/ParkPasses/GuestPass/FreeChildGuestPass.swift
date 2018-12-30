@@ -37,7 +37,7 @@ class FreeChildGuestPass: GuestPass {
 extension FreeChildGuestPass {
     /// This method checks whether the entrant's age is under child age limit to issue a Free Child Guest Pass
     /// Returns false if the entrant is older than the child age limit.
-    func isQualifiedAsChild() -> Bool {
+    private func isQualifiedAsChild() -> Bool {
         let dobLimitForChild = Calendar.current.date(byAdding: .year, value: -childAgeLimit, to: Date())!
         if let dob = passOwner.dateOfBirth {
             return dob < dobLimitForChild ? false : true

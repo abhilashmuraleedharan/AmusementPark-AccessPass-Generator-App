@@ -11,14 +11,14 @@ import Foundation
 class GuestPass: ParkPass {
     
     /// To store the last time the pass was swiped successfully.
-    var lastAccessTime: Date?
+    private var lastAccessTime: Date?
     
     /// Contains the custom message that needs to be present in the alert message displayed to the entrant while swiping
     /// twice at the same ride within a span of 5 seconds.
-    let unAuthorizedSecondSwipeAlertMsg = "Unauthorized swipe detected. This pass allows ONLY 1 person to a ride area at a time!"
+    private let unAuthorizedSecondSwipeAlertMsg = "Unauthorized swipe detected. This pass allows ONLY 1 person to a ride area at a time!"
     
     /// Method to update the last successful access time of this pass.
-    func updateLastAccessTime() {
+    private func updateLastAccessTime() {
         lastAccessTime = Date()
     }
     
@@ -26,7 +26,7 @@ class GuestPass: ParkPass {
     /// This method returns false if this is the second swipe made by the entrant
     /// within 5 seconds. This is to prevent someone from sneaking in a second person
     /// to a ride at a time.
-    func canSwipe() -> Bool {
+    private func canSwipe() -> Bool {
         let currentTime = Date()
         let currentTimeInSeconds = currentTime.timeIntervalSince1970
         if let lastAccessTime = lastAccessTime {

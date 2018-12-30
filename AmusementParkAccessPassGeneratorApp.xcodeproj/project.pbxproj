@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC0D24BC2185740E00FA2718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24BB2185740E00FA2718 /* AppDelegate.swift */; };
-		CC0D24BE2185740E00FA2718 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24BD2185740E00FA2718 /* ViewController.swift */; };
+		CC0D24BE2185740E00FA2718 /* AccessPassFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D24BD2185740E00FA2718 /* AccessPassFormVC.swift */; };
 		CC0D24C12185740E00FA2718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC0D24BF2185740E00FA2718 /* Main.storyboard */; };
 		CC0D24C32185741100FA2718 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0D24C22185741100FA2718 /* Assets.xcassets */; };
 		CC0D24C62185741100FA2718 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC0D24C42185741100FA2718 /* LaunchScreen.storyboard */; };
@@ -29,6 +29,7 @@
 		CC0D250F2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D250E2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift */; };
 		CC0D251121862A2B00FA2718 /* ManagerPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D251021862A2B00FA2718 /* ManagerPass.swift */; };
 		CC19B2FD2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */; };
+		CC1EBB6121D86DB600E37B3E /* AccessPassCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1EBB6021D86DB600E37B3E /* AccessPassCheckVC.swift */; };
 		CCD7A74321D7259900E00B71 /* SeasonGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74221D7259900E00B71 /* SeasonGuestPass.swift */; };
 		CCD7A74521D725FE00E00B71 /* SeniorGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74421D725FE00E00B71 /* SeniorGuestPass.swift */; };
 		CCD7A74921D72EC800E00B71 /* ContractEmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74821D72EC800E00B71 /* ContractEmployeePass.swift */; };
@@ -42,7 +43,7 @@
 /* Begin PBXFileReference section */
 		CC0D24B82185740E00FA2718 /* AmusementParkAccessPassGeneratorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmusementParkAccessPassGeneratorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0D24BB2185740E00FA2718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CC0D24BD2185740E00FA2718 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CC0D24BD2185740E00FA2718 /* AccessPassFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPassFormVC.swift; sourceTree = "<group>"; };
 		CC0D24C02185740E00FA2718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC0D24C22185741100FA2718 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC0D24C52185741100FA2718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -64,6 +65,7 @@
 		CC0D250E2186273000FA2718 /* HourlyEmployeeMaintenancePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyEmployeeMaintenancePass.swift; sourceTree = "<group>"; };
 		CC0D251021862A2B00FA2718 /* ManagerPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPass.swift; sourceTree = "<group>"; };
 		CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPassGeneratorAppTester.swift; sourceTree = "<group>"; };
+		CC1EBB6021D86DB600E37B3E /* AccessPassCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPassCheckVC.swift; sourceTree = "<group>"; };
 		CCD7A74221D7259900E00B71 /* SeasonGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonGuestPass.swift; sourceTree = "<group>"; };
 		CCD7A74421D725FE00E00B71 /* SeniorGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorGuestPass.swift; sourceTree = "<group>"; };
 		CCD7A74821D72EC800E00B71 /* ContractEmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEmployeePass.swift; sourceTree = "<group>"; };
@@ -105,12 +107,12 @@
 			isa = PBXGroup;
 			children = (
 				CC0D24CD2185743800FA2718 /* Models */,
+				CC1EBB5F21D86C8500E37B3E /* ViewControllers */,
+				CCD7A75921D7C9E200E00B71 /* AccessPassTester */,
 				CC0D24BB2185740E00FA2718 /* AppDelegate.swift */,
-				CC0D24BD2185740E00FA2718 /* ViewController.swift */,
 				CC0D24BF2185740E00FA2718 /* Main.storyboard */,
-				CC0D24C22185741100FA2718 /* Assets.xcassets */,
-				CCD7A75921D7C9E200E00B71 /* Tests */,
 				CCD7A75421D7545D00E00B71 /* Sounds */,
+				CC0D24C22185741100FA2718 /* Assets.xcassets */,
 				CC0D24C42185741100FA2718 /* LaunchScreen.storyboard */,
 				CC0D24C72185741100FA2718 /* Info.plist */,
 			);
@@ -186,6 +188,15 @@
 			path = ManagerPass;
 			sourceTree = "<group>";
 		};
+		CC1EBB5F21D86C8500E37B3E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CC0D24BD2185740E00FA2718 /* AccessPassFormVC.swift */,
+				CC1EBB6021D86DB600E37B3E /* AccessPassCheckVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		CCD7A74721D72C3D00E00B71 /* VendorPass */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,12 +214,12 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		CCD7A75921D7C9E200E00B71 /* Tests */ = {
+		CCD7A75921D7C9E200E00B71 /* AccessPassTester */ = {
 			isa = PBXGroup;
 			children = (
 				CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */,
 			);
-			path = Tests;
+			path = AccessPassTester;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,12 +299,13 @@
 				CC0D24DB218583CC00FA2718 /* PassCategories.swift in Sources */,
 				CC0D24D321857FE100FA2718 /* ParkEntrant.swift in Sources */,
 				CCD7A75B21D7E62A00E00B71 /* FormDataProvider.swift in Sources */,
+				CC1EBB6121D86DB600E37B3E /* AccessPassCheckVC.swift in Sources */,
 				CC0D24FE2185EC4C00FA2718 /* GuestPass.swift in Sources */,
 				CCD7A74921D72EC800E00B71 /* ContractEmployeePass.swift in Sources */,
 				CC0D24DF2185866000FA2718 /* Swipable.swift in Sources */,
 				CC0D250B218626FE00FA2718 /* HourlyEmployeeFoodServicesPass.swift in Sources */,
 				CC0D24DD2185855200FA2718 /* AccessPassPrivileges.swift in Sources */,
-				CC0D24BE2185740E00FA2718 /* ViewController.swift in Sources */,
+				CC0D24BE2185740E00FA2718 /* AccessPassFormVC.swift in Sources */,
 				CCD7A74321D7259900E00B71 /* SeasonGuestPass.swift in Sources */,
 				CCD7A74521D725FE00E00B71 /* SeniorGuestPass.swift in Sources */,
 				CCD7A74F21D753D400E00B71 /* AudioPlayer.swift in Sources */,
@@ -457,6 +469,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VVFLQ8BLF2;
 				INFOPLIST_FILE = AmusementParkAccessPassGeneratorApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -475,6 +488,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VVFLQ8BLF2;
 				INFOPLIST_FILE = AmusementParkAccessPassGeneratorApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
