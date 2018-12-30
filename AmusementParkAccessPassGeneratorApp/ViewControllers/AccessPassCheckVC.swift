@@ -9,22 +9,53 @@
 import UIKit
 
 class AccessPassCheckVC: UIViewController {
-
+    
+    // MARK: - IB Outlets
+    @IBOutlet weak var passSlotView: UIView!
+    @IBOutlet weak var passOwnerNameLabel: UILabel!
+    @IBOutlet weak var passTypeLabel: UILabel!
+    @IBOutlet weak var accessPassPrivilegesLabel: UILabel!
+    @IBOutlet weak var testResultsLabel: UILabel!
+    
+    // MARK: - Stored properties
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - IB Actions
+    @IBAction func amusementAccessCheckButtonTapped(_ sender: Any) {
     }
-    */
+    
+    @IBAction func kitchenAccessCheckButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func rideControlsAccessCheckButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func maintenanceAccessCheckButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func officeAccessCheckButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func ridesAccessCheckButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func discountsAccessCheckButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func skipLinesAccessCheckButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func createPassButtonTapped(_ sender: Any) {
+    }
+    
+    
+    // MARK: - Methods
+    
+    // MARK: - Helper Methods
 
 }

@@ -548,6 +548,9 @@
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                                 <color key="tintColor" red="0.30588235289999999" green="0.54117647059999996" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <state key="normal" title="Amusements"/>
+                                                                                <connections>
+                                                                                    <action selector="amusementAccessCheckButtonTapped:" destination="21A-UO-Ksh" eventType="touchUpInside" id="RNv-AY-TaQ"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsf-tP-VR1">
                                                                                 <rect key="frame" x="180" y="0.0" width="110" height="34"/>
@@ -558,6 +561,9 @@
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                                 <color key="tintColor" red="0.30588235289999999" green="0.54117647059999996" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <state key="normal" title="Kitchen"/>
+                                                                                <connections>
+                                                                                    <action selector="kitchenAccessCheckButtonTapped:" destination="21A-UO-Ksh" eventType="touchUpInside" id="NcQ-HI-fRW"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FnE-6n-UQW">
                                                                                 <rect key="frame" x="340" y="0.0" width="130" height="34"/>
@@ -568,6 +574,9 @@
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                                 <color key="tintColor" red="0.30588235289999999" green="0.54117647059999996" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <state key="normal" title="Ride Controls"/>
+                                                                                <connections>
+                                                                                    <action selector="rideControlsAccessCheckButtonTapped:" destination="21A-UO-Ksh" eventType="touchUpInside" id="MoO-GE-rg0"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EtX-VQ-Pds">
                                                                                 <rect key="frame" x="520" y="0.0" width="160" height="34"/>
@@ -578,6 +587,9 @@
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                                 <color key="tintColor" red="0.30588235289999999" green="0.54117647059999996" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <state key="normal" title="Maintenance Areas"/>
+                                                                                <connections>
+                                                                                    <action selector="maintenanceAccessCheckButtonTapped:" destination="21A-UO-Ksh" eventType="touchUpInside" id="Ccp-kT-CI2"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -590,6 +602,9 @@
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                                 <color key="tintColor" red="0.30588235289999999" green="0.54117647059999996" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <state key="normal" title="Office"/>
+                                                                                <connections>
+                                                                                    <action selector="officeAccessCheckButtonTapped:" destination="21A-UO-Ksh" eventType="touchUpInside" id="jQo-BA-uqn"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRq-et-1XS">
                                                                                 <rect key="frame" x="180" y="0.0" width="110" height="34"/>
@@ -597,6 +612,9 @@
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                                 <color key="tintColor" red="0.30588235289999999" green="0.54117647059999996" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <state key="normal" title="Rides"/>
+                                                                                <connections>
+                                                                                    <action selector="ridesAccessCheckButtonTapped:" destination="21A-UO-Ksh" eventType="touchUpInside" id="3AG-Zb-C43"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xs8-VM-Ipj">
                                                                                 <rect key="frame" x="340" y="0.0" width="130" height="34"/>
@@ -604,6 +622,9 @@
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                                 <color key="tintColor" red="0.30588235289999999" green="0.54117647059999996" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <state key="normal" title="Discounts"/>
+                                                                                <connections>
+                                                                                    <action selector="discountsAccessCheckButtonTapped:" destination="21A-UO-Ksh" eventType="touchUpInside" id="n7T-v2-h5q"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snc-cs-u1a">
                                                                                 <rect key="frame" x="520" y="0.0" width="160" height="34"/>
@@ -611,6 +632,9 @@
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                                 <color key="tintColor" red="0.30588235289999999" green="0.54117647059999996" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <state key="normal" title="Skip ride lines"/>
+                                                                                <connections>
+                                                                                    <action selector="skipLinesAccessCheckButtonTapped:" destination="21A-UO-Ksh" eventType="touchUpInside" id="Bdl-js-5Bu"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -639,6 +663,7 @@
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Create New Pass"/>
                                                                 <connections>
+                                                                    <action selector="createPassButtonTapped:" destination="21A-UO-Ksh" eventType="touchUpInside" id="Kgq-Wy-7iN"/>
                                                                     <segue destination="BYZ-38-t0r" kind="show" id="Ag0-pQ-6xd"/>
                                                                 </connections>
                                                             </button>
@@ -681,6 +706,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sOF-M0-9li"/>
                     </view>
+                    <connections>
+                        <outlet property="accessPassPrivilegesLabel" destination="bM0-z7-071" id="z8W-gG-0im"/>
+                        <outlet property="passOwnerNameLabel" destination="AWd-uy-WTj" id="jwD-Ed-GGz"/>
+                        <outlet property="passSlotView" destination="nEw-YZ-IOW" id="kqx-Li-Bty"/>
+                        <outlet property="passTypeLabel" destination="BWw-ig-cpJ" id="t9c-Kj-tpk"/>
+                        <outlet property="testResultsLabel" destination="Yau-Fg-O8z" id="Apu-Yf-nj8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JYg-Ex-mlo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
