@@ -49,21 +49,46 @@ class AccessPassFormVC: UIViewController {
         view.backgroundColor = subMenuButtonBackgroundColor
         return view
     }()
+    lazy var projectPicker: UIPickerView = {
+        let picker = UIPickerView()
+        picker.tag = ViewPickerTag.projectTag.rawValue
+        picker.delegate = self
+        return picker
+    }()
+    lazy var companyPicker: UIPickerView = {
+        let picker = UIPickerView()
+        picker.tag = ViewPickerTag.companyTag.rawValue
+        picker.delegate = self
+        return picker
+    }()
+    lazy var managerTypePicker: UIPickerView = {
+        let picker = UIPickerView()
+        picker.tag = ViewPickerTag.typeTag.rawValue
+        picker.delegate = self
+        return picker
+    }()
+    lazy var dateOfBirthPicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(AccessPassFormVC.dateOfBirthChanged(datePicker:)), for: .valueChanged)
+        return datePicker
+    }()
+    lazy var dateOfVisitPicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(AccessPassFormVC.dateOfVisitChanged(datePicker:)), for: .valueChanged)
+        return datePicker
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let projectPicker = UIPickerView()
-        projectPicker.tag = ViewPickerTag.projectTag.rawValue
-        projectPicker.delegate = self
-        let companyPicker = UIPickerView()
-        companyPicker.tag = ViewPickerTag.companyTag.rawValue
-        companyPicker.delegate = self
-        let managerTypePicker = UIPickerView()
-        managerTypePicker.tag = ViewPickerTag.typeTag.rawValue
-        managerTypePicker.delegate = self
         projectNumberTextField.inputView = projectPicker
         companyTextField.inputView = companyPicker
         managerTypeTextField.inputView = managerTypePicker
+        dateOfBirthTextField.inputView = dateOfBirthPicker
+        dateOfVisitTextField.inputView = dateOfVisitPicker
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AccessPassFormVC.viewTapped(gestureRecognizer:)))
+        view.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - IB Actions
@@ -167,6 +192,25 @@ class AccessPassFormVC: UIViewController {
     @objc func setUpVendorForm() {
         activateForm(for: .vendor)
     }
+    
+    @objc func dateOfBirthChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/DD/YYYY"
+        dateOfBirthTextField.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
+    
+    @objc func dateOfVisitChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/DD/YYYY"
+        dateOfVisitTextField.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
+    
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     
     func activateForm(for passType: PassCategory) {
         deactivateForm()
@@ -278,6 +322,7 @@ extension AccessPassFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
         case ViewPickerTag.projectTag: projectNumberTextField.text = dataProvider.projectPickerData[row]
         case ViewPickerTag.typeTag: managerTypeTextField.text = dataProvider.typePickerData[row]
         }
+        view.endEditing(true)
     }
 }
 
