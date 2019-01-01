@@ -57,6 +57,21 @@ enum ManagementTier: String {
     case shift = "Shift"
 }
 
+enum VendorCompanyPass: String {
+    case acme = "Acme"
+    case fedex = "Fedex"
+    case orkin = "Orkin"
+    case nwelectrical = "NW Electrical"
+}
+
+enum ContractorPass: String {
+    case project1001 = "1001"
+    case project1002 = "1002"
+    case project1003 = "1003"
+    case project2001 = "2001"
+    case project2002 = "2002"
+}
+
 extension PassCategory {
     /// Based on the main pass type, this computed property returns its corresponding sub types
     var passSubTypeList: [PassSubType] {

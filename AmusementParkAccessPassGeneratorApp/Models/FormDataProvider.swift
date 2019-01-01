@@ -37,9 +37,11 @@ struct FormDataProvider {
         (city: "Austin", state: "Texas", zipcode: "73301")
     ]
     
-    let projectPickerViewData = ["1001", "1002", "1003", "2001", "2002"]
-    let companyPickerViewData = ["Acme", "Fedex", "Orkin", "NW Electrical"]
-    let managementTierPickerViewData = ["Shift", "General", "Senior"]
+    let projectPickerViewData = ["\(ContractorPass.project1001.rawValue)", "\(ContractorPass.project1002.rawValue)",
+                                 "\(ContractorPass.project1003.rawValue)", "\(ContractorPass.project2001.rawValue)", "\(ContractorPass.project2002.rawValue)"]
+    let companyPickerViewData = ["\(VendorCompanyPass.acme.rawValue)", "\(VendorCompanyPass.fedex.rawValue)", "\(VendorCompanyPass.orkin.rawValue)",
+                                 "\(VendorCompanyPass.nwelectrical.rawValue)"]
+    let managementTierPickerViewData = ["\(ManagementTier.shift.rawValue)", "\(ManagementTier.general.rawValue)", "\(ManagementTier.senior.rawValue)"]
     
     var firstNameData: String {
         return firstNamesCollection.randomElement()!

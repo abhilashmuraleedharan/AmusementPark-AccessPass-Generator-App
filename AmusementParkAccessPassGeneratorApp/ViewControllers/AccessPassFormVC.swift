@@ -196,6 +196,68 @@ class AccessPassFormVC: UIViewController {
     }
     
     func validateFormData() {
+        var firstName = firstNameTextField.text
+        var lastName = lastNameTextField.text
+        var streetAddress = streetAddressTextField.text
+        var city = cityTextField.text
+        var state = stateTextField.text
+        var zipcode = zipcodeTextField.text
+        var tier = managementTierTextField.text
+        var projectNo = projectNumberTextField.text
+        var dateOfVisit = dateOfVisitTextField.text
+        var dateOfBirth = dateOfBirthTextField.text
+        var company = companyTextField.text
+        do {
+            try dataValidator.validateDate(with: &dateOfBirth)
+            try dataValidator.validateDate(with: &dateOfVisit)
+            try dataValidator.validateProject(with: &projectNo)
+            try dataValidator.validateManagementTier(with: &tier)
+            try dataValidator.validateNameField(with: &firstName)
+            try dataValidator.validateNameField(with: &lastName)
+            try dataValidator.validateStreetAddressField(with: &streetAddress)
+            try dataValidator.validateCompany(with: &company)
+            try dataValidator.validateLocationField(with: &city)
+            try dataValidator.validateLocationField(with: &state)
+            try dataValidator.validateZipcodeField(with: &zipcode)
+            generatePassUsing(dateOfBirth: dateOfBirth, dateOfVisit: dateOfVisit, projectNumber: projectNo, managementTier: tier, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, forPass: chosenAccessPass, passSubType: chosenAccessPassSubType)
+        } catch ValidationError.invalidData(let errorMessage) {
+            let alertController = UIAlertController(title: "Invalid Data", message: errorMessage, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
+        } catch ValidationError.invalidDataLength(let errorMessage) {
+            let alertController = UIAlertController(title: "Invalid Data Length", message: errorMessage, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
+        } catch ValidationError.invalidDate(let errorMessage) {
+            let alertController = UIAlertController(title: "Invalid Date", message: errorMessage, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
+        } catch ValidationError.invalidManagementTier(let errorMessage) {
+            let alertController = UIAlertController(title: "Invalid Data", message: errorMessage, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
+        } catch ValidationError.invalidProjectNumber(let errorMessage) {
+            let alertController = UIAlertController(title: "Invalid Data", message: errorMessage, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
+        } catch ValidationError.invalidVendorCompany(let errorMessage) {
+            let alertController = UIAlertController(title: "Invalid Data", message: errorMessage, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func generatePassUsing(dateOfBirth: String?, dateOfVisit: String?, projectNumber: String?, managementTier: String?, firstName: String?, lastName: String?,
+                           streetAddress: String?, city: String?, state: String?, zipcode: String?, forPass: PassCategory?, passSubType: PassSubType?) {
+        
     }
     
     func configureRelevantTextFieldsWithUIPickerViews() {
