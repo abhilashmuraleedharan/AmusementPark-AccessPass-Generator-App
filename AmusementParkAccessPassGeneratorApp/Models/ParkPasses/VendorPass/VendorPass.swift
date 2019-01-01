@@ -24,18 +24,18 @@ class VendorPass: ParkPass, Swipable {
                 throw MissingInformationError.noVendorCompany(errorMessage: "Vendor Pass requires company information.")
             }
             guard let passType = companyPassTypeDictionary[company] else {
-                throw DataError.invalidVendorCompany(errorMessage: "Company not recognized. Vendor pass requires a valid company name.")
+                throw ValidationError.invalidVendorCompany(errorMessage: "Company not recognized. Vendor pass requires a valid company name.")
             }
             try super.init(passType: passType, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
-                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: vendorCompany, dateOfVisit: dateOfVisit, type: nil)
+                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: vendorCompany, dateOfVisit: dateOfVisit, tier: nil)
             printPassGenerationStatus()
         } catch MissingInformationError.inSufficientData(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)
         } catch MissingInformationError.noVendorCompany(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)
-        } catch DataError.invalidVendorCompany(let error) {
-            throw DataError.invalidVendorCompany(errorMessage: error)
+        } catch ValidationError.invalidVendorCompany(let error) {
+            throw ValidationError.invalidVendorCompany(errorMessage: error)
         } catch let error {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }

@@ -29,8 +29,3 @@ enum PassEligibilityError: Error {
     case notSenior(errorMessage: String)
 }
 
-enum DataError: Error {
-    case invalidProjectNumber(errorMessage: String)
-    case invalidVendorCompany(errorMessage: String)
-}
-

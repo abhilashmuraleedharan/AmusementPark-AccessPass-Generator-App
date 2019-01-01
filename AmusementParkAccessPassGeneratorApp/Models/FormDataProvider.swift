@@ -39,7 +39,7 @@ struct FormDataProvider {
     
     let projectPickerViewData = ["1001", "1002", "1003", "2001", "2002"]
     let companyPickerViewData = ["Acme", "Fedex", "Orkin", "NW Electrical"]
-    let managerTypePickerViewData = ["Shift", "General", "Senior"]
+    let managementTierPickerViewData = ["Shift", "General", "Senior"]
     
     var firstNameData: String {
         return firstNamesCollection.randomElement()!
@@ -58,7 +58,7 @@ struct FormDataProvider {
 enum AccessPassFormPickerView: Int {
     case project = 0
     case company
-    case managerType
+    case managementTier
 }
 
 enum AccessPassFormDatePicker {

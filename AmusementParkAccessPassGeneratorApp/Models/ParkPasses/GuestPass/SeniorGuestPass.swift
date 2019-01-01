@@ -18,7 +18,7 @@ class SeniorGuestPass: GuestPass {
         do {
             try super.init(passType: .seniorGuestPass, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
-                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: nil, dateOfVisit: nil, type: nil)
+                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: nil, dateOfVisit: nil, tier: nil)
             // Issue pass only if the entrant is under child age limit.
             if !isQualifiedAsSeniorGuest() {
                 throw PassEligibilityError.notSenior(errorMessage: "Not a guest above \(minimumAgeForSeniorGuest) years of age. Cannot issue Senior Guest Pass")

@@ -18,7 +18,7 @@ protocol Entrant {
 }
 
 protocol Manager {
-    var type: ManagerSubType? { get set }
+    var tier: ManagementTier? { get set }
 }
 
 protocol Vendor {

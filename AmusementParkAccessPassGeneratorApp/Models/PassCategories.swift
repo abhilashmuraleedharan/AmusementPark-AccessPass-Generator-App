@@ -48,9 +48,10 @@ enum PassFormDataField: String {
     case projectNumber = "Project Number"
     case vendorCompany = "Vendor Company"
     case dateOfVisit = "Date of Visit"
+    case managementTier = "Management Tier"
 }
 
-enum ManagerSubType: String {
+enum ManagementTier: String {
     case senior = "Senior"
     case general = "General"
     case shift = "Shift"

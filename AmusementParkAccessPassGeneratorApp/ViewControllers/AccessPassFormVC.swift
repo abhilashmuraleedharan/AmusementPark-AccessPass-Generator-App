@@ -20,8 +20,8 @@ class AccessPassFormVC: UIViewController {
     @IBOutlet weak var dateOfVisitTextField: UITextField!
     @IBOutlet weak var projectNumberLabel: UILabel!
     @IBOutlet weak var projectNumberTextField: UITextField!
-    @IBOutlet weak var managerTypeLabel: UILabel!
-    @IBOutlet weak var managerTypeTextField: UITextField!
+    @IBOutlet weak var managementTierLabel: UILabel!
+    @IBOutlet weak var managementTierTextField: UITextField!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameLabel: UILabel!
@@ -44,6 +44,10 @@ class AccessPassFormVC: UIViewController {
     let disabledLabelTextColor = UIColor.lightGray
     let enabledLabelTextColor = UIColor.black
     let dataProvider = FormDataProvider()
+    let dataValidator = FormDataValidator()
+    var chosenAccessPass: PassCategory?
+    var chosenAccessPassSubType: PassSubType?
+    var generatedAccessPass: Swipable?
     
     lazy var subMenuBlankView: UIView = {
         let view = UIView()
@@ -66,9 +70,9 @@ class AccessPassFormVC: UIViewController {
         return picker
     }()
     
-    lazy var managerTypePicker: UIPickerView = {
+    lazy var managementTierPicker: UIPickerView = {
         let picker = UIPickerView()
-        picker.tag = AccessPassFormPickerView.managerType.tag
+        picker.tag = AccessPassFormPickerView.managementTier.tag
         picker.delegate = self
         return picker
     }()
@@ -103,11 +107,13 @@ class AccessPassFormVC: UIViewController {
     @IBAction func guestMenuOptionSelected(_ sender: Any) {
         deactivateForm()
         displaySubMenu(for: .guest)
+        chosenAccessPass = PassCategory.guest
     }
     
     @IBAction func employeeMenuOptionSelected(_ sender: Any) {
         deactivateForm()
         displaySubMenu(for: .employee)
+        chosenAccessPass = PassCategory.employee
     }
     
     @IBAction func managerMenuOptionSelected(_ sender: Any) {
@@ -115,6 +121,8 @@ class AccessPassFormVC: UIViewController {
         subMenuView.addArrangedSubview(subMenuBlankView)
         deactivateForm()
         activateForm(for: .manager)
+        chosenAccessPass = PassCategory.manager
+        chosenAccessPassSubType = PassSubType.managerPass
     }
     
     @IBAction func contractorMenuOptionSelected(_ sender: Any) {
@@ -122,6 +130,7 @@ class AccessPassFormVC: UIViewController {
         subMenuView.addArrangedSubview(subMenuBlankView)
         deactivateForm()
         activateForm(for: .contractor)
+        chosenAccessPass = PassCategory.contractor
     }
     
     @IBAction func vendorMenuOptionSelected(_ sender: Any) {
@@ -129,6 +138,7 @@ class AccessPassFormVC: UIViewController {
         subMenuView.addArrangedSubview(subMenuBlankView)
         deactivateForm()
         activateForm(for: .vendor)
+        chosenAccessPass = PassCategory.vendor
     }
     
     @IBAction func generatePassButtonTapped(_ sender: Any) {
@@ -172,19 +182,26 @@ class AccessPassFormVC: UIViewController {
     func getButtonActionSelector(for passType: PassSubType) -> Selector? {
         var selector: Selector?
         switch passType {
-        case .classicGuestPass, .vipGuestPass, .freeChildGuestPass, .seniorGuestPass, .seasonGuestPass:
-            selector = #selector(AccessPassFormVC.setUpGuestForm)
-        case .hourlyEmployeeMaintenancePass, .hourlyEmployeeFoodServicePass, .hourlyEmployeeRideServicePass:
-            selector = #selector(AccessPassFormVC.setUpEmployeeForm)
+        case .classicGuestPass: selector = #selector(AccessPassFormVC.classicGuestFormSelected)
+        case .vipGuestPass: selector = #selector(AccessPassFormVC.vipGuestFormSelected)
+        case .freeChildGuestPass: selector = #selector(AccessPassFormVC.freeChildGuestFormSelected)
+        case .seniorGuestPass: selector = #selector(AccessPassFormVC.seniorGuestFormSelected)
+        case .seasonGuestPass: selector = #selector(AccessPassFormVC.seasonPassGuestFormSelected)
+        case .hourlyEmployeeMaintenancePass: selector = #selector(AccessPassFormVC.maintenanceEmployeeFormSelected)
+        case .hourlyEmployeeFoodServicePass: selector = #selector(AccessPassFormVC.foodServiceEmployeeFormSelected)
+        case .hourlyEmployeeRideServicePass: selector = #selector(AccessPassFormVC.rideServiceEmployeeFormSelected)
         default: selector = nil
         }
         return selector
     }
     
+    func validateFormData() {
+    }
+    
     func configureRelevantTextFieldsWithUIPickerViews() {
         projectNumberTextField.inputView = projectPicker
         companyTextField.inputView = companyPicker
-        managerTypeTextField.inputView = managerTypePicker
+        managementTierTextField.inputView = managementTierPicker
     }
     
     func configureRelevantTextFieldsWithDatePickerViews() {
@@ -194,24 +211,44 @@ class AccessPassFormVC: UIViewController {
         dateOfVisitTextField.inputAccessoryView = getToolBar(for: .dateOfVisit)
     }
     
-    @objc func setUpGuestForm() {
+    @objc func classicGuestFormSelected() {
         activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.classicGuestPass
     }
     
-    @objc func setUpEmployeeForm() {
+    @objc func vipGuestFormSelected() {
+        activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.vipGuestPass
+    }
+    
+    @objc func freeChildGuestFormSelected() {
+        activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.freeChildGuestPass
+    }
+    
+    @objc func seniorGuestFormSelected() {
+        activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.seniorGuestPass
+    }
+    
+    @objc func seasonPassGuestFormSelected() {
+        activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.seasonGuestPass
+    }
+    
+    @objc func foodServiceEmployeeFormSelected() {
+        activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.hourlyEmployeeFoodServicePass
+    }
+    
+    @objc func rideServiceEmployeeFormSelected() {
         activateForm(for: .employee)
+        chosenAccessPassSubType = PassSubType.hourlyEmployeeRideServicePass
     }
     
-    @objc func setUpManagerForm() {
-        activateForm(for: .manager)
-    }
-    
-    @objc func setUpContractorForm() {
-        activateForm(for: .contractor)
-    }
-    
-    @objc func setUpVendorForm() {
-        activateForm(for: .vendor)
+    @objc func maintenanceEmployeeFormSelected() {
+        activateForm(for: .employee)
+        chosenAccessPassSubType = PassSubType.hourlyEmployeeMaintenancePass
     }
     
     @objc func doneSelectingDateOfBirth() {
@@ -237,7 +274,7 @@ class AccessPassFormVC: UIViewController {
             
             let frame = keyboardFrame.cgRectValue
             containerViewTopConstraint.constant = frame.size.height * -1
-            containerViewBottomConstraint.constant = frame.size.height + 10
+            containerViewBottomConstraint.constant = frame.size.height
 
             UIView.animate(withDuration: 0.8) {
                 self.view.layoutIfNeeded()
@@ -266,8 +303,8 @@ class AccessPassFormVC: UIViewController {
             projectNumberLabel.textColor = enabledLabelTextColor
             projectNumberTextField.isEnabled = true
         case .manager:
-            managerTypeLabel.textColor = enabledLabelTextColor
-            managerTypeTextField.isEnabled = true
+            managementTierLabel.textColor = enabledLabelTextColor
+            managementTierTextField.isEnabled = true
         default: break
         }
         activateGeneralFormFields()
@@ -295,6 +332,30 @@ class AccessPassFormVC: UIViewController {
         disableTextFields()
         emptyOutFormTextFields()
         disableButtons()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "checkGeneratedPass" {
+//            do {
+//                if let name = nameTextField.text {
+//                    if name.isEmpty {
+//                        throw AdventureError.nameNotProvided
+//                    } else {
+//                        guard let pageController = segue.destination as? PageController else {
+//                            return
+//                        }
+//                        pageController.page = Adventure.story(withName: name)
+//                    }
+//                }
+//            } catch AdventureError.nameNotProvided {
+//                let alertController = UIAlertController(title: "Name not provided", message: "Provide a name to start the story", preferredStyle: .alert)
+//                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                alertController.addAction(alertAction)
+//                present(alertController, animated: true, completion: nil)
+//            } catch let error {
+//                fatalError("\(error.localizedDescription)")
+//            }
+        }
     }
     
     func activateGeneralFormFields() {
@@ -325,14 +386,14 @@ class AccessPassFormVC: UIViewController {
         dateOfVisitLabel.textColor = disabledLabelTextColor
         companyLabel.textColor = disabledLabelTextColor
         projectNumberLabel.textColor = disabledLabelTextColor
-        managerTypeLabel.textColor = disabledLabelTextColor
+        managementTierLabel.textColor = disabledLabelTextColor
     }
     
     func disableTextFields() {
         dateOfBirthTextField.isEnabled = false
         dateOfVisitTextField.isEnabled = false
         projectNumberTextField.isEnabled = false
-        managerTypeTextField.isEnabled = false
+        managementTierTextField.isEnabled = false
         firstNameTextField.isEnabled = false
         lastNameTextField.isEnabled = false
         companyTextField.isEnabled = false
@@ -356,7 +417,7 @@ class AccessPassFormVC: UIViewController {
         dateOfBirthTextField.text = ""
         dateOfVisitTextField.text = ""
         projectNumberTextField.text = ""
-        managerTypeTextField.text = ""
+        managementTierTextField.text = ""
         firstNameTextField.text = ""
         lastNameTextField.text = ""
         streetAddressTextField.text = ""
@@ -366,6 +427,9 @@ class AccessPassFormVC: UIViewController {
         companyTextField.text = ""
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 extension AccessPassFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -378,7 +442,7 @@ extension AccessPassFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch AccessPassFormPickerView(rawValue: pickerView.tag)! {
         case AccessPassFormPickerView.company: return dataProvider.companyPickerViewData.count
         case AccessPassFormPickerView.project: return dataProvider.projectPickerViewData.count
-        case AccessPassFormPickerView.managerType: return dataProvider.managerTypePickerViewData.count
+        case AccessPassFormPickerView.managementTier: return dataProvider.managementTierPickerViewData.count
         }
     }
     
@@ -386,7 +450,7 @@ extension AccessPassFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch AccessPassFormPickerView(rawValue: pickerView.tag)! {
         case AccessPassFormPickerView.company: return dataProvider.companyPickerViewData[row]
         case AccessPassFormPickerView.project: return dataProvider.projectPickerViewData[row]
-        case AccessPassFormPickerView.managerType: return dataProvider.managerTypePickerViewData[row]
+        case AccessPassFormPickerView.managementTier: return dataProvider.managementTierPickerViewData[row]
         }
     }
     
@@ -394,7 +458,7 @@ extension AccessPassFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch AccessPassFormPickerView(rawValue: pickerView.tag)! {
         case AccessPassFormPickerView.company: companyTextField.text = dataProvider.companyPickerViewData[row]
         case AccessPassFormPickerView.project: projectNumberTextField.text = dataProvider.projectPickerViewData[row]
-        case AccessPassFormPickerView.managerType: managerTypeTextField.text = dataProvider.managerTypePickerViewData[row]
+        case AccessPassFormPickerView.managementTier: managementTierTextField.text = dataProvider.managementTierPickerViewData[row]
         }
         view.endEditing(true)
     }

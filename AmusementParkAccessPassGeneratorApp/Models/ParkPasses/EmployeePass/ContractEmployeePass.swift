@@ -27,18 +27,18 @@ class ContractEmployeePass: ParkPass, Swipable {
                 throw MissingInformationError.noProjectNumber(errorMessage: "Contract Employee Pass requires associated contract project number.")
             }
             guard let passType = projectNumberPassTypeDictionary[contractProjectNumber] else {
-                throw DataError.invalidProjectNumber(errorMessage: "Project Number not recognized! Contract Employee Pass requires a valid project number.")
+                throw ValidationError.invalidProjectNumber(errorMessage: "Project Number not recognized! Contract Employee Pass requires a valid project number.")
             }
             try super.init(passType: passType, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
-                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: projectNumber, vendorCompany: nil, dateOfVisit: nil, type: nil)
+                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: projectNumber, vendorCompany: nil, dateOfVisit: nil, tier: nil)
             printPassGenerationStatus()
         } catch MissingInformationError.inSufficientData(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)
         } catch MissingInformationError.noProjectNumber(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)
-        } catch DataError.invalidProjectNumber(let error) {
-            throw DataError.invalidProjectNumber(errorMessage: error)
+        } catch ValidationError.invalidProjectNumber(let error) {
+            throw ValidationError.invalidProjectNumber(errorMessage: error)
         } catch let error {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }

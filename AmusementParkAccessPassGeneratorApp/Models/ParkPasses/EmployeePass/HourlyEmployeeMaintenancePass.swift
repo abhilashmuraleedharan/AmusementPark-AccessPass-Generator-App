@@ -17,7 +17,7 @@ class HourlyEmployeeMaintenancePass: ParkPass, Swipable {
         do {
             try super.init(passType: .hourlyEmployeeMaintenancePass, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
-                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: nil, dateOfVisit: nil, type: nil)
+                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: nil, dateOfVisit: nil, tier: nil)
             printPassGenerationStatus()
         } catch MissingInformationError.inSufficientData(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)

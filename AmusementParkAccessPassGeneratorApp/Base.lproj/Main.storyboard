@@ -174,7 +174,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="abE-69-LDx">
                                                                 <rect key="frame" x="580" y="0.0" width="120" height="72"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQc-39-Qyu">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tier" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQc-39-Qyu">
                                                                         <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="120" id="J1F-if-Tux"/>
@@ -440,8 +440,8 @@
                         <outlet property="generatePassButton" destination="dl7-0R-CIW" id="IgB-sq-H2l"/>
                         <outlet property="lastNameLabel" destination="LWO-dR-oqC" id="a0p-oq-nBW"/>
                         <outlet property="lastNameTextField" destination="o3q-V6-Dxb" id="BBo-zT-kxI"/>
-                        <outlet property="managerTypeLabel" destination="JQc-39-Qyu" id="pn6-v0-AVh"/>
-                        <outlet property="managerTypeTextField" destination="djZ-20-HpC" id="XpS-Li-fQy"/>
+                        <outlet property="managementTierLabel" destination="JQc-39-Qyu" id="pn6-v0-AVh"/>
+                        <outlet property="managementTierTextField" destination="djZ-20-HpC" id="XpS-Li-fQy"/>
                         <outlet property="populateDataButton" destination="U9w-U1-aNs" id="nfi-ka-VAm"/>
                         <outlet property="projectNumberLabel" destination="ntS-yY-QaJ" id="1Qj-2J-5aj"/>
                         <outlet property="projectNumberTextField" destination="4uq-fM-mUf" id="VOK-5g-Az4"/>
@@ -452,6 +452,7 @@
                         <outlet property="subMenuView" destination="xbc-e2-kIY" id="ih2-H1-o0l"/>
                         <outlet property="zipcodeLabel" destination="zpC-jw-Q6H" id="P3O-7X-TFA"/>
                         <outlet property="zipcodeTextField" destination="3Cw-MI-u7d" id="yQi-0y-sCg"/>
+                        <segue destination="21A-UO-Ksh" kind="show" identifier="checkGeneratedPass" id="tGD-PZ-bdc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -693,7 +694,7 @@
                                                                 <state key="normal" title="Create New Pass"/>
                                                                 <connections>
                                                                     <action selector="createPassButtonTapped:" destination="21A-UO-Ksh" eventType="touchUpInside" id="Kgq-Wy-7iN"/>
-                                                                    <segue destination="BYZ-38-t0r" kind="show" id="Ag0-pQ-6xd"/>
+                                                                    <segue destination="BYZ-38-t0r" kind="show" identifier="createNewPass" id="Ag0-pQ-6xd"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
