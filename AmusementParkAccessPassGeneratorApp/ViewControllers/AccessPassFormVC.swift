@@ -43,53 +43,54 @@ class AccessPassFormVC: UIViewController {
     let disabledLabelTextColor = UIColor.lightGray
     let enabledLabelTextColor = UIColor.black
     let dataProvider = FormDataProvider()
+    
     lazy var subMenuBlankView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = subMenuButtonBackgroundColor
         return view
     }()
+    
     lazy var projectPicker: UIPickerView = {
         let picker = UIPickerView()
-        picker.tag = ViewPickerTag.projectTag.rawValue
+        picker.tag = AccessPassFormPickerView.project.tag
         picker.delegate = self
         return picker
     }()
+    
     lazy var companyPicker: UIPickerView = {
         let picker = UIPickerView()
-        picker.tag = ViewPickerTag.companyTag.rawValue
+        picker.tag = AccessPassFormPickerView.company.tag
         picker.delegate = self
         return picker
     }()
+    
     lazy var managerTypePicker: UIPickerView = {
         let picker = UIPickerView()
-        picker.tag = ViewPickerTag.typeTag.rawValue
+        picker.tag = AccessPassFormPickerView.managerType.tag
         picker.delegate = self
         return picker
     }()
+    
     lazy var dateOfBirthPicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(AccessPassFormVC.dateOfBirthChanged(datePicker:)), for: .valueChanged)
-        return datePicker
-    }()
-    lazy var dateOfVisitPicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(AccessPassFormVC.dateOfVisitChanged(datePicker:)), for: .valueChanged)
         return datePicker
     }()
     
+    lazy var dateOfVisitPicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        return datePicker
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        projectNumberTextField.inputView = projectPicker
-        companyTextField.inputView = companyPicker
-        managerTypeTextField.inputView = managerTypePicker
-        dateOfBirthTextField.inputView = dateOfBirthPicker
-        dateOfVisitTextField.inputView = dateOfVisitPicker
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AccessPassFormVC.viewTapped(gestureRecognizer:)))
-        view.addGestureRecognizer(tapGesture)
+        configureRelevantTextFieldsWithUIPickerViews()
+        configureRelevantTextFieldsWithDatePickerViews()
     }
+    
     
     // MARK: - IB Actions
     @IBAction func guestMenuOptionSelected(_ sender: Any) {
@@ -129,6 +130,7 @@ class AccessPassFormVC: UIViewController {
     @IBAction func populateDataButtonTapped(_ sender: Any) {
     }
     
+    
     // MARK: - Methods
     func displaySubMenu(for passType: PassCategory) {
         let associatedPassSubTypes = passType.passSubTypeList
@@ -160,7 +162,6 @@ class AccessPassFormVC: UIViewController {
         return subMenuButtonViews
     }
     
-    // MARK: - Helper Methods
     func getButtonActionSelector(for passType: PassSubType) -> Selector? {
         var selector: Selector?
         switch passType {
@@ -171,6 +172,19 @@ class AccessPassFormVC: UIViewController {
         default: selector = nil
         }
         return selector
+    }
+    
+    func configureRelevantTextFieldsWithUIPickerViews() {
+        projectNumberTextField.inputView = projectPicker
+        companyTextField.inputView = companyPicker
+        managerTypeTextField.inputView = managerTypePicker
+    }
+    
+    func configureRelevantTextFieldsWithDatePickerViews() {
+        dateOfBirthTextField.inputView = dateOfBirthPicker
+        dateOfBirthTextField.inputAccessoryView = getToolBar(for: .dateOfBirth)
+        dateOfVisitTextField.inputView = dateOfVisitPicker
+        dateOfVisitTextField.inputAccessoryView = getToolBar(for: .dateOfVisit)
     }
     
     @objc func setUpGuestForm() {
@@ -193,24 +207,23 @@ class AccessPassFormVC: UIViewController {
         activateForm(for: .vendor)
     }
     
-    @objc func dateOfBirthChanged(datePicker: UIDatePicker) {
+    @objc func doneSelectingDateOfBirth() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/DD/YYYY"
-        dateOfBirthTextField.text = dateFormatter.string(from: datePicker.date)
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateOfBirthTextField.text = dateFormatter.string(from: dateOfBirthPicker.date)
         view.endEditing(true)
     }
     
-    @objc func dateOfVisitChanged(datePicker: UIDatePicker) {
+    @objc func doneSelectingDateOfVisit() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/DD/YYYY"
-        dateOfVisitTextField.text = dateFormatter.string(from: datePicker.date)
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateOfVisitTextField.text = dateFormatter.string(from: dateOfVisitPicker.date)
         view.endEditing(true)
     }
     
-    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+    @objc func dismissDatePicker() {
         view.endEditing(true)
     }
-    
     
     func activateForm(for passType: PassCategory) {
         deactivateForm()
@@ -232,9 +245,26 @@ class AccessPassFormVC: UIViewController {
         activateButtons()
     }
     
+    func getToolBar(for datePicker: AccessPassFormDatePicker) -> UIToolbar {
+        let toolBar = UIToolbar();
+        toolBar.sizeToFit()
+        let doneButton: UIBarButtonItem
+        switch datePicker {
+        case .dateOfBirth:
+            doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(AccessPassFormVC.doneSelectingDateOfBirth))
+        case .dateOfVisit:
+            doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(AccessPassFormVC.doneSelectingDateOfVisit))
+        }
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(AccessPassFormVC.dismissDatePicker))
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        return toolBar
+    }
+    
     func deactivateForm() {
         disableLabels()
         disableTextFields()
+        emptyOutFormTextFields()
         disableButtons()
     }
     
@@ -292,35 +322,50 @@ class AccessPassFormVC: UIViewController {
         generatePassButton.isEnabled = true
         populateDataButton.isEnabled = true
     }
+    
+    func emptyOutFormTextFields() {
+        dateOfBirthTextField.text = ""
+        dateOfVisitTextField.text = ""
+        projectNumberTextField.text = ""
+        managerTypeTextField.text = ""
+        firstNameTextField.text = ""
+        lastNameTextField.text = ""
+        streetAddressTextField.text = ""
+        cityTextField.text = ""
+        stateTextField.text = ""
+        zipcodeTextField.text = ""
+        companyTextField.text = ""
+    }
 
 }
 
 extension AccessPassFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch ViewPickerTag(rawValue: pickerView.tag)! {
-        case ViewPickerTag.companyTag: return dataProvider.companyPickerData.count
-        case ViewPickerTag.projectTag: return dataProvider.projectPickerData.count
-        case ViewPickerTag.typeTag: return dataProvider.typePickerData.count
+        switch AccessPassFormPickerView(rawValue: pickerView.tag)! {
+        case AccessPassFormPickerView.company: return dataProvider.companyPickerViewData.count
+        case AccessPassFormPickerView.project: return dataProvider.projectPickerViewData.count
+        case AccessPassFormPickerView.managerType: return dataProvider.managerTypePickerViewData.count
         }
     }
     
     func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch ViewPickerTag(rawValue: pickerView.tag)! {
-        case ViewPickerTag.companyTag: return dataProvider.companyPickerData[row]
-        case ViewPickerTag.projectTag: return dataProvider.projectPickerData[row]
-        case ViewPickerTag.typeTag: return dataProvider.typePickerData[row]
+        switch AccessPassFormPickerView(rawValue: pickerView.tag)! {
+        case AccessPassFormPickerView.company: return dataProvider.companyPickerViewData[row]
+        case AccessPassFormPickerView.project: return dataProvider.projectPickerViewData[row]
+        case AccessPassFormPickerView.managerType: return dataProvider.managerTypePickerViewData[row]
         }
     }
     
     func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch ViewPickerTag(rawValue: pickerView.tag)! {
-        case ViewPickerTag.companyTag: companyTextField.text = dataProvider.companyPickerData[row]
-        case ViewPickerTag.projectTag: projectNumberTextField.text = dataProvider.projectPickerData[row]
-        case ViewPickerTag.typeTag: managerTypeTextField.text = dataProvider.typePickerData[row]
+        switch AccessPassFormPickerView(rawValue: pickerView.tag)! {
+        case AccessPassFormPickerView.company: companyTextField.text = dataProvider.companyPickerViewData[row]
+        case AccessPassFormPickerView.project: projectNumberTextField.text = dataProvider.projectPickerViewData[row]
+        case AccessPassFormPickerView.managerType: managerTypeTextField.text = dataProvider.managerTypePickerViewData[row]
         }
         view.endEditing(true)
     }

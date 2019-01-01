@@ -36,9 +36,10 @@ struct FormDataProvider {
         (city: "Baltimore", state: "Maryland", zipcode: "21207"),
         (city: "Austin", state: "Texas", zipcode: "73301")
     ]
-    let projectPickerData = ["1001", "1002", "1003", "2001", "2002"]
-    let companyPickerData = ["Acme", "Fedex", "Orkin", "NW Electrical"]
-    let typePickerData = ["Shift", "General", "Senior"]
+    
+    let projectPickerViewData = ["1001", "1002", "1003", "2001", "2002"]
+    let companyPickerViewData = ["Acme", "Fedex", "Orkin", "NW Electrical"]
+    let managerTypePickerViewData = ["Shift", "General", "Senior"]
     
     var firstNameData: String {
         return firstNamesCollection.randomElement()!
@@ -54,8 +55,19 @@ struct FormDataProvider {
     }
 }
 
-enum ViewPickerTag: Int {
-    case projectTag = 0
-    case companyTag
-    case typeTag
+enum AccessPassFormPickerView: Int {
+    case project = 0
+    case company
+    case managerType
+}
+
+enum AccessPassFormDatePicker {
+    case dateOfBirth
+    case dateOfVisit
+}
+
+extension AccessPassFormPickerView {
+    var tag: Int {
+        return self.rawValue
+    }
 }
