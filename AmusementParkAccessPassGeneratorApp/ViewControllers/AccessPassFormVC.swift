@@ -11,7 +11,8 @@ import UIKit
 class AccessPassFormVC: UIViewController {
     
     // MARK: - IB Outlets
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var containerViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var subMenuView: UIStackView!
     @IBOutlet weak var dateOfBirthLabel: UILabel!
     @IBOutlet weak var dateOfBirthTextField: UITextField!
@@ -89,6 +90,12 @@ class AccessPassFormVC: UIViewController {
         super.viewDidLoad()
         configureRelevantTextFieldsWithUIPickerViews()
         configureRelevantTextFieldsWithDatePickerViews()
+        
+        // Registering this class as an observer for the KeyboardWillShow notification.
+        NotificationCenter.default.addObserver(self, selector: #selector(AccessPassFormVC.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        // Registering this class as an observer for the KeyboardWillHide notification.
+        NotificationCenter.default.addObserver(self, selector: #selector(AccessPassFormVC.keyBoardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
@@ -223,6 +230,28 @@ class AccessPassFormVC: UIViewController {
     
     @objc func dismissDatePicker() {
         view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            
+            let frame = keyboardFrame.cgRectValue
+            containerViewTopConstraint.constant = frame.size.height * -1
+            containerViewBottomConstraint.constant = frame.size.height + 10
+
+            UIView.animate(withDuration: 0.8) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    @objc func keyBoardWillHide(_ notification: Notification) {
+        containerViewTopConstraint.constant = 0
+        containerViewBottomConstraint.constant = 0
+        UIView.animate(withDuration: 0.8) {
+            self.view.layoutIfNeeded()
+        }
+
     }
     
     func activateForm(for passType: PassCategory) {

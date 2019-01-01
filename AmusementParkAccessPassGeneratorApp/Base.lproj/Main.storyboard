@@ -429,7 +429,8 @@
                         <outlet property="cityTextField" destination="ZN6-eJ-kmz" id="HKd-U4-eeZ"/>
                         <outlet property="companyLabel" destination="LoM-wZ-6US" id="Yfe-2P-ThZ"/>
                         <outlet property="companyTextField" destination="Jd1-SQ-9H6" id="Wgf-vB-dRb"/>
-                        <outlet property="containerView" destination="f1d-HG-dmH" id="p4h-hf-66I"/>
+                        <outlet property="containerViewBottomConstraint" destination="Qg8-IK-uCd" id="p9p-Z4-l9h"/>
+                        <outlet property="containerViewTopConstraint" destination="aCN-D4-ODk" id="Eg7-7s-TM9"/>
                         <outlet property="dateOfBirthLabel" destination="ZWI-w1-xj1" id="XB2-VR-94A"/>
                         <outlet property="dateOfBirthTextField" destination="DbC-TK-ny1" id="eRA-0b-kSR"/>
                         <outlet property="dateOfVisitLabel" destination="n50-mc-pNN" id="Cmd-Be-ppu"/>
