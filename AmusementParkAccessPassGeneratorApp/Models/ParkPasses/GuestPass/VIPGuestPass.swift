@@ -24,4 +24,5 @@ class VIPGuestPass: GuestPass {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
+    
 }

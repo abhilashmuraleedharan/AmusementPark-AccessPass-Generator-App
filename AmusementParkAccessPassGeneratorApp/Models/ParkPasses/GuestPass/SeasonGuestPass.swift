@@ -24,4 +24,5 @@ class SeasonGuestPass: GuestPass {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
+    
 }

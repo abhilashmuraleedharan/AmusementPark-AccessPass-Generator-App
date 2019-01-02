@@ -28,7 +28,18 @@ enum ParkDiscount: String {
     case managerDiscount = "25% discount on food and 25% discount on merchandise"
     case seasonPassGuestDiscount = "10% discount on food and 20% discount on merchandise"
     case seniorGuestDiscount = "10% discount on food and 10% discount on merchandise"
-    
+}
+
+extension RidePrivilege {
+    var description: String {
+        switch self {
+        case .allRidesAccess: return "Unlimited Rides"
+        case .skipAllRideLinesAccess: return "Skip Ride Lines"
+        }
+    }
+}
+
+extension ParkDiscount {
     func getDiscountValues() -> (foodDiscount: Double, merchandiseDiscount: Double) {
         switch self {
         case .employeeDiscount: return (foodDiscount: 15.0, merchandiseDiscount: 25.0)
@@ -36,5 +47,13 @@ enum ParkDiscount: String {
         case .managerDiscount: return (foodDiscount: 25.0, merchandiseDiscount: 25.0)
         case .seniorGuestDiscount: return (foodDiscount: 10.0, merchandiseDiscount: 10.0)
         }
+    }
+    
+    var foodDiscount: String {
+        return String(self.getDiscountValues().foodDiscount)
+    }
+    
+    var merchandiseDiscount: String {
+        return String(self.getDiscountValues().merchandiseDiscount)
     }
 }

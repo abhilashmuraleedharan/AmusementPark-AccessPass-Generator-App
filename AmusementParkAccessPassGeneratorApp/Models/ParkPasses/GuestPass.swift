@@ -38,6 +38,7 @@ class GuestPass: ParkPass {
             return true
         }
     }
+    
 }
 
 extension GuestPass: Swipable {

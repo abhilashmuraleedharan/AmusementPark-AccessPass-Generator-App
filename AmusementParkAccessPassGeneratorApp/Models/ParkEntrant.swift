@@ -8,6 +8,7 @@
 import Foundation
 
 class ParkEntrant: Entrant, Vendor, ContractEmployee, Manager {
+    
     var firstName: String?
     var lastName: String?
     var streetAddress: String?
@@ -131,5 +132,6 @@ class ParkEntrant: Entrant, Vendor, ContractEmployee, Manager {
             self.tier = tier
         }
     }
+    
 }
 

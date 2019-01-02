@@ -25,4 +25,5 @@ class HourlyEmployeeFoodServicesPass: ParkPass, Swipable {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
+    
 }

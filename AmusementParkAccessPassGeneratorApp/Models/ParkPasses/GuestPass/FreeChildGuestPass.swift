@@ -32,6 +32,7 @@ class FreeChildGuestPass: GuestPass {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
+    
 }
 
 extension FreeChildGuestPass {

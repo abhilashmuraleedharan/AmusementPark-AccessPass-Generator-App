@@ -146,10 +146,16 @@ class AccessPassFormVC: UIViewController {
     }
     
     @IBAction func populateDataButtonTapped(_ sender: Any) {
+        populateFormData()
     }
     
     
     // MARK: - Methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "checkGeneratedPass" {
+        }
+    }
+    
     func displaySubMenu(for passType: PassCategory) {
         let associatedPassSubTypes = passType.passSubTypeList
         updateSubMenuStackView(with: associatedPassSubTypes)
@@ -196,6 +202,79 @@ class AccessPassFormVC: UIViewController {
         return selector
     }
     
+    func generateAccessPassUsing(dateOfBirth: String?, dateOfVisit: String?, projectNumber: String?, managementTier: String?, firstName: String?,
+                                 lastName: String?, streetAddress: String?, city: String?, state: String?, zipcode: String?, company: String?,
+                                 forPassCategory category: PassCategory?, forPassSubType type: PassSubType?) {
+        
+        if let passCategory = category {
+            switch passCategory {
+            case .guest:
+                if let passType = type {
+                    do {
+                        switch passType {
+                        case .classicGuestPass:
+                            generatedAccessPass = try ClassicGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                        case .vipGuestPass:
+                            generatedAccessPass = try VIPGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                        case .freeChildGuestPass:
+                            generatedAccessPass = try FreeChildGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                        case .seasonGuestPass:
+                            generatedAccessPass = try SeasonGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                        case .seniorGuestPass:
+                            generatedAccessPass = try SeniorGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                        default: break
+                        }
+                    } catch let error {
+                        notifyUserWithPopUpAlertHaving(title: "Failed to create \(passType.rawValue)", message: "\(error)")
+                    }
+                }
+            case .employee:
+                if let passType = type {
+                    do {
+                        switch passType {
+                        case .hourlyEmployeeFoodServicePass:
+                            generatedAccessPass = try HourlyEmployeeFoodServicesPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
+                        case .hourlyEmployeeRideServicePass:
+                            generatedAccessPass = try HourlyEmployeeRideServicesPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
+                        case .hourlyEmployeeMaintenancePass:
+                            generatedAccessPass = try HourlyEmployeeMaintenancePass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
+                        default: break
+                        }
+                        
+                    } catch let error {
+                        notifyUserWithPopUpAlertHaving(title: "Failed to create \(passType.rawValue)", message: "\(error)")
+                    }
+                }
+            case .manager:
+                if let passType = type {
+                    do {
+                        var mTier: ManagementTier?
+                        if let tier = managementTier {
+                            mTier = ManagementTier(rawValue: tier)
+                        }
+                        generatedAccessPass =  try ManagerPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), tier: mTier)
+                    } catch let error {
+                        notifyUserWithPopUpAlertHaving(title: "Failed to create \(passType.rawValue)", message: "\(error)")
+                    }
+                }
+            case .vendor:
+                do {
+                    generatedAccessPass = try VendorPass(firstName: firstName, lastName: lastName, vendorCompany: company, dateOfBirth: getDate(fromString: dateOfBirth), dateOfVisit: getDate(fromString: dateOfVisit))
+                } catch let error {
+                    let passType = type?.rawValue ?? "Vendor Pass"
+                    notifyUserWithPopUpAlertHaving(title: "Failed to create \(passType)", message: "\(error)")
+                }
+            case .contractor:
+                do {
+                    generatedAccessPass = try ContractEmployeePass(projectNumber: projectNumber, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
+                } catch let error {
+                    let passType = type?.rawValue ?? "Contractor Pass"
+                    notifyUserWithPopUpAlertHaving(title: "Failed to create \(passType)", message: "\(error)")
+                }
+            }
+        }
+    }
+    
     func validateFormDataAndGeneratePass() {
         var firstName = firstNameTextField.text
         var lastName = lastNameTextField.text
@@ -221,7 +300,9 @@ class AccessPassFormVC: UIViewController {
             try dataValidator.validateStateField(with: &state)
             try dataValidator.validateZipcodeField(with: &zipcode)
             
-            generateAccessPassUsing(dateOfBirth: dateOfBirth, dateOfVisit: dateOfVisit, projectNumber: projectNo, managementTier: tier, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, forPassCategory: chosenAccessPass, forPassSubType: chosenAccessPassSubType)
+            generateAccessPassUsing(dateOfBirth: dateOfBirth, dateOfVisit: dateOfVisit, projectNumber: projectNo, managementTier: tier,
+                                    firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state,
+                                    zipcode: zipcode, company: company, forPassCategory: chosenAccessPass, forPassSubType: chosenAccessPassSubType)
             
         } catch ValidationError.invalidData(let errorMessage) {
             notifyUserWithPopUpAlertHaving(title: "Invalid Data", message: errorMessage)
@@ -238,84 +319,6 @@ class AccessPassFormVC: UIViewController {
         } catch let error {
             fatalError(error.localizedDescription)
         }
-    }
-    
-    func notifyUserWithPopUpAlertHaving(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(alertAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func generateAccessPassUsing(dateOfBirth: String?, dateOfVisit: String?, projectNumber: String?, managementTier: String?, firstName: String?, lastName: String?,
-                           streetAddress: String?, city: String?, state: String?, zipcode: String?, forPassCategory category: PassCategory?, forPassSubType type: PassSubType?) {
-    
-        if let passCategory = category {
-            switch passCategory {
-            case .guest:
-                if let passType = type {
-                    do {
-                        switch passType {
-                        case .classicGuestPass:
-                            generatedAccessPass = try ClassicGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
-                        case .vipGuestPass:
-                            generatedAccessPass = try VIPGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
-                        case .freeChildGuestPass:
-                            generatedAccessPass = try FreeChildGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
-                        case .seasonGuestPass:
-                            generatedAccessPass = try SeasonGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
-                        case .seniorGuestPass:
-                            generatedAccessPass = try SeniorGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
-                        default: break
-                        }
-                    } catch let error {
-                        notifyUserWithPopUpAlertHaving(title: "Invalid Guest Pass", message: "Failed to create \(passType.rawValue)" + "\n" + "\(error)")
-                    }
-                }
-            case .employee:
-                if let passType = type {
-                    do {
-                        switch passType {
-                        case .hourlyEmployeeFoodServicePass:
-                            generatedAccessPass = try HourlyEmployeeFoodServicesPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
-                        case .hourlyEmployeeRideServicePass:
-                            generatedAccessPass = try HourlyEmployeeRideServicesPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
-                        case .hourlyEmployeeMaintenancePass:
-                            generatedAccessPass = try HourlyEmployeeMaintenancePass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
-                        default: break
-                        }
-                        
-                    } catch let error {
-                        notifyUserWithPopUpAlertHaving(title: "Invalid Employee Pass", message: "Failed to create \(passType.rawValue)" + "\n" + "\(error)")
-                    }
-                }
-            case .manager:
-                if let passType = type {
-                    do {
-                        var mTier: ManagementTier?
-                        if let tier = managementTier {
-                            mTier = ManagementTier(rawValue: tier)
-                        } else {
-                            mTier = nil
-                        }
-                        generatedAccessPass =  try ManagerPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), tier: mTier)
-                    } catch let error {
-                        notifyUserWithPopUpAlertHaving(title: "Invalid Manager Pass", message: "Failed to create \(passType.rawValue)" + "\n" + "\(error)")
-                    }
-                }
-            case .vendor: break
-            case .contractor: break
-            }
-        }
-    }
-    
-    func getDate(fromString string: String?) -> Date? {
-        guard let dateString = string else {
-            return nil
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        return dateFormatter.date(from: dateString)
     }
     
     func configureRelevantTextFieldsWithUIPickerViews() {
@@ -339,86 +342,6 @@ class AccessPassFormVC: UIViewController {
         testBot.testSwipeOnBirthDay()
     }
     
-    @objc func classicGuestFormSelected() {
-        activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.classicGuestPass
-    }
-    
-    @objc func vipGuestFormSelected() {
-        activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.vipGuestPass
-    }
-    
-    @objc func freeChildGuestFormSelected() {
-        activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.freeChildGuestPass
-    }
-    
-    @objc func seniorGuestFormSelected() {
-        activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.seniorGuestPass
-    }
-    
-    @objc func seasonPassGuestFormSelected() {
-        activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.seasonGuestPass
-    }
-    
-    @objc func foodServiceEmployeeFormSelected() {
-        activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.hourlyEmployeeFoodServicePass
-    }
-    
-    @objc func rideServiceEmployeeFormSelected() {
-        activateForm(for: .employee)
-        chosenAccessPassSubType = PassSubType.hourlyEmployeeRideServicePass
-    }
-    
-    @objc func maintenanceEmployeeFormSelected() {
-        activateForm(for: .employee)
-        chosenAccessPassSubType = PassSubType.hourlyEmployeeMaintenancePass
-    }
-    
-    @objc func doneSelectingDateOfBirth() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        dateOfBirthTextField.text = dateFormatter.string(from: dateOfBirthPicker.date)
-        view.endEditing(true)
-    }
-    
-    @objc func doneSelectingDateOfVisit() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        dateOfVisitTextField.text = dateFormatter.string(from: dateOfVisitPicker.date)
-        view.endEditing(true)
-    }
-    
-    @objc func dismissDatePicker() {
-        view.endEditing(true)
-    }
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            
-            let frame = keyboardFrame.cgRectValue
-            containerViewTopConstraint.constant = frame.size.height * -1
-            containerViewBottomConstraint.constant = frame.size.height
-
-            UIView.animate(withDuration: 0.8) {
-                self.view.layoutIfNeeded()
-            }
-        }
-    }
-    
-    @objc func keyBoardWillHide(_ notification: Notification) {
-        containerViewTopConstraint.constant = 0
-        containerViewBottomConstraint.constant = 0
-        UIView.animate(withDuration: 0.8) {
-            self.view.layoutIfNeeded()
-        }
-
-    }
-    
     func activateForm(for passType: PassCategory) {
         deactivateForm()
         switch passType {
@@ -437,6 +360,57 @@ class AccessPassFormVC: UIViewController {
         }
         activateGeneralFormFields()
         activateButtons()
+    }
+    
+    func populateFormData() {
+        if let passType = chosenAccessPassSubType {
+            switch passType {
+            case .freeChildGuestPass:
+                dateOfBirthTextField.text = dataProvider.childDateOfBirthData
+            case .seniorGuestPass:
+                dateOfBirthTextField.text = dataProvider.seniorDateOfBirthData
+            default:
+                dateOfBirthTextField.text = dataProvider.dateOfBirth
+            }
+        }
+        firstNameTextField.text = dataProvider.firstNameData
+        lastNameTextField.text = dataProvider.lastNameData
+        streetAddressTextField.text = dataProvider.streetAddressData
+        
+        let cityStateZipCodeData = dataProvider.cityStateZipcodeData
+        cityTextField.text = cityStateZipCodeData.city
+        stateTextField.text = cityStateZipCodeData.state
+        zipcodeTextField.text = cityStateZipCodeData.zipcode
+        
+        if dateOfVisitTextField.isEnabled {
+            dateOfVisitTextField.text = dataProvider.dateOfVisit
+        }
+        if managementTierTextField.isEnabled {
+            managementTierTextField.text = dataProvider.tierData
+        }
+        if projectNumberTextField.isEnabled {
+            projectNumberTextField.text = dataProvider.projectData
+        }
+        if companyTextField.isEnabled {
+            companyTextField.text = dataProvider.companyData
+        }
+    }
+    
+    // MARK: - Helper methods
+    func notifyUserWithPopUpAlertHaving(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func getDate(fromString string: String?) -> Date? {
+        guard let dateString = string else {
+            return nil
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.date(from: dateString)
     }
     
     func getToolBar(for datePicker: AccessPassFormDatePicker) -> UIToolbar {
@@ -460,11 +434,6 @@ class AccessPassFormVC: UIViewController {
         disableTextFields()
         emptyOutFormTextFields()
         disableButtons()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "checkGeneratedPass" {
-        }
     }
     
     func activateGeneralFormFields() {
@@ -535,11 +504,93 @@ class AccessPassFormVC: UIViewController {
         zipcodeTextField.text = ""
         companyTextField.text = ""
     }
+    
+    // MARK: - Target Actions
+    @objc func classicGuestFormSelected() {
+        activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.classicGuestPass
+    }
+    
+    @objc func vipGuestFormSelected() {
+        activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.vipGuestPass
+    }
+    
+    @objc func freeChildGuestFormSelected() {
+        activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.freeChildGuestPass
+    }
+    
+    @objc func seniorGuestFormSelected() {
+        activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.seniorGuestPass
+    }
+    
+    @objc func seasonPassGuestFormSelected() {
+        activateForm(for: .guest)
+        chosenAccessPassSubType = PassSubType.seasonGuestPass
+    }
+    
+    @objc func foodServiceEmployeeFormSelected() {
+        activateForm(for: .employee)
+        chosenAccessPassSubType = PassSubType.hourlyEmployeeFoodServicePass
+    }
+    
+    @objc func rideServiceEmployeeFormSelected() {
+        activateForm(for: .employee)
+        chosenAccessPassSubType = PassSubType.hourlyEmployeeRideServicePass
+    }
+    
+    @objc func maintenanceEmployeeFormSelected() {
+        activateForm(for: .employee)
+        chosenAccessPassSubType = PassSubType.hourlyEmployeeMaintenancePass
+    }
+    
+    @objc func doneSelectingDateOfBirth() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateOfBirthTextField.text = dateFormatter.string(from: dateOfBirthPicker.date)
+        view.endEditing(true)
+    }
+    
+    @objc func doneSelectingDateOfVisit() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateOfVisitTextField.text = dateFormatter.string(from: dateOfVisitPicker.date)
+        view.endEditing(true)
+    }
+    
+    @objc func dismissDatePicker() {
+        view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            
+            let frame = keyboardFrame.cgRectValue
+            containerViewTopConstraint.constant = frame.size.height * -1
+            containerViewBottomConstraint.constant = frame.size.height
 
+            UIView.animate(withDuration: 0.8) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    @objc func keyBoardWillHide(_ notification: Notification) {
+        containerViewTopConstraint.constant = 0
+        containerViewBottomConstraint.constant = 0
+        UIView.animate(withDuration: 0.8) {
+            self.view.layoutIfNeeded()
+        }
+
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 }
+
 
 extension AccessPassFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
     

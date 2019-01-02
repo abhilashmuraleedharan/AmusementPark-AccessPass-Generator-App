@@ -24,4 +24,5 @@ class ClassicGuestPass: GuestPass {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
+    
 }

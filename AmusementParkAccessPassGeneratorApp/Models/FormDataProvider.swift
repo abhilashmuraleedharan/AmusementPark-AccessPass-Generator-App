@@ -5,6 +5,7 @@
 //  Created by Abhilash Muraleedharan on 29/12/18.
 //  Copyright © 2018 AbhilashApps. All rights reserved.
 //
+import Foundation
 
 struct FormDataProvider {
     
@@ -37,11 +38,21 @@ struct FormDataProvider {
         (city: "Austin", state: "Texas", zipcode: "73301")
     ]
     
-    let projectPickerViewData = ["\(ContractorPass.project1001.rawValue)", "\(ContractorPass.project1002.rawValue)",
-                                 "\(ContractorPass.project1003.rawValue)", "\(ContractorPass.project2001.rawValue)", "\(ContractorPass.project2002.rawValue)"]
-    let companyPickerViewData = ["\(VendorCompanyPass.acme.rawValue)", "\(VendorCompanyPass.fedex.rawValue)", "\(VendorCompanyPass.orkin.rawValue)",
-                                 "\(VendorCompanyPass.nwelectrical.rawValue)"]
-    let managementTierPickerViewData = ["\(ManagementTier.shift.rawValue)", "\(ManagementTier.general.rawValue)", "\(ManagementTier.senior.rawValue)"]
+    var projectPickerViewData = [String]()
+    var companyPickerViewData = [String]()
+    var managementTierPickerViewData = [String]()
+    
+    init() {
+        for project in ContractorPass.allCases {
+            projectPickerViewData.append(project.rawValue)
+        }
+        for company in VendorCompanyPass.allCases {
+            companyPickerViewData.append(company.rawValue.uppercased())
+        }
+        for tier in ManagementTier.allCases {
+            managementTierPickerViewData.append(tier.rawValue.uppercased())
+        }
+    }
     
     var firstNameData: String {
         return firstNamesCollection.randomElement()!
@@ -55,21 +66,37 @@ struct FormDataProvider {
     var cityStateZipcodeData: CityStateZipcodeData {
         return cityStateZipcodeCollection.randomElement()!
     }
-}
-
-enum AccessPassFormPickerView: Int {
-    case project = 0
-    case company
-    case managementTier
-}
-
-enum AccessPassFormDatePicker {
-    case dateOfBirth
-    case dateOfVisit
-}
-
-extension AccessPassFormPickerView {
-    var tag: Int {
-        return self.rawValue
+    
+    let dateOfBirth = "01/01/1970"
+    
+    var dateOfVisit: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.string(from: Date())
     }
+    
+    var projectData: String {
+        return projectPickerViewData.randomElement()!
+    }
+    
+    var companyData: String {
+        return companyPickerViewData.randomElement()!
+    }
+    
+    var tierData: String {
+        return managementTierPickerViewData.randomElement()!
+    }
+    
+    var childDateOfBirthData: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.string(from: Calendar.current.date(byAdding: .year, value: -4, to: Date())!)
+    }
+    
+    var seniorDateOfBirthData: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.string(from: Calendar.current.date(byAdding: .year, value: -60, to: Date())!)
+    }
+    
 }

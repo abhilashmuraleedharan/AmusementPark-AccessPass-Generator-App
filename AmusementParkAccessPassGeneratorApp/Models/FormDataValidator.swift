@@ -17,17 +17,32 @@ enum ValidationError: Error {
 }
 
 struct FormDataValidator {
+    
     let minUserInputDataLength = 5
     let maxUserInputDataLength = 15
     let maxUserAddressLength = 40
     let minZipcodeLength = 5
     let maxZipcodeLength = 10
+
+    var projectList = [String]()
+    var vendorCompanyList = [String]()
+    var managementTierList = [String]()
     
-    let projectList = ["\(ContractorPass.project1001.rawValue)", "\(ContractorPass.project1002.rawValue)",
-        "\(ContractorPass.project1003.rawValue)", "\(ContractorPass.project2001.rawValue)", "\(ContractorPass.project2002.rawValue)"]
-    let vendorCompanyList = ["\(VendorCompanyPass.acme.rawValue)", "\(VendorCompanyPass.fedex.rawValue)", "\(VendorCompanyPass.orkin.rawValue)",
-        "\(VendorCompanyPass.nwelectrical.rawValue)"]
-    let managementTierList = ["\(ManagementTier.shift.rawValue)", "\(ManagementTier.general.rawValue)", "\(ManagementTier.senior.rawValue)"]
+    init() {
+        for project in ContractorPass.allCases {
+            projectList.append(project.rawValue)
+        }
+        for company in VendorCompanyPass.allCases {
+            vendorCompanyList.append(company.rawValue)
+        }
+        for tier in ManagementTier.allCases {
+            managementTierList.append(tier.rawValue)
+        }
+    }
+    
+}
+
+extension FormDataValidator {
     
     func validateFirstNameField(with inputData: inout String?) throws {
         if let data = inputData {
@@ -182,8 +197,7 @@ struct FormDataValidator {
                 if !data.containsNoNumbers || !data.containsNoSpecialCharacters{
                     throw ValidationError.invalidVendorCompany(errorMessage: "Invalid Vendor Company")
                 }
-                let parkVendors = vendorCompanyList.map { $0.lowercased() }
-                if !parkVendors.contains(data.lowercased()) {
+                if !vendorCompanyList.contains(data.lowercased()) {
                     throw ValidationError.invalidVendorCompany(errorMessage: "Invalid Vendor Company")
                 }
             } else {
@@ -198,8 +212,7 @@ struct FormDataValidator {
                 if !data.containsNoNumbers || !data.containsNoSpecialCharacters{
                     throw ValidationError.invalidManagementTier(errorMessage: "Invalid Management Tier")
                 }
-                let tiers = managementTierList.map { $0.lowercased() }
-                if !tiers.contains(data.lowercased()) {
+                if !managementTierList.contains(data.lowercased()) {
                     throw ValidationError.invalidManagementTier(errorMessage: "Invalid Management Tier")
                 }
             } else {

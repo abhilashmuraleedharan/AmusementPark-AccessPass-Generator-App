@@ -37,25 +37,48 @@ enum PassSubType: String {
     case nwelectricalCompanyVendorPass = "NW Electrical Company Vendor Pass"
 }
 
-enum ManagementTier: String {
-    case senior = "Senior"
-    case general = "General"
-    case shift = "Shift"
+enum ManagementTier: String, CaseIterable {
+    case senior = "senior"
+    case general = "general"
+    case shift = "shift"
 }
 
-enum VendorCompanyPass: String {
-    case acme = "Acme"
-    case fedex = "Fedex"
-    case orkin = "Orkin"
-    case nwelectrical = "NW Electrical"
+enum VendorCompanyPass: String, CaseIterable {
+    case acme = "acme"
+    case fedex = "fedex"
+    case orkin = "orkin"
+    case nwelectrical = "nw electrical"
 }
 
-enum ContractorPass: String {
+enum ContractorPass: String, CaseIterable {
     case project1001 = "1001"
     case project1002 = "1002"
     case project1003 = "1003"
     case project2001 = "2001"
     case project2002 = "2002"
+}
+
+extension VendorCompanyPass {
+    var associatedPassType: PassSubType {
+        switch self {
+        case .acme: return PassSubType.acmeCompanyVendorPass
+        case .fedex: return PassSubType.fedexCompanyVendorPass
+        case .orkin: return PassSubType.orkinCompanyVendorPass
+        case .nwelectrical: return PassSubType.nwelectricalCompanyVendorPass
+        }
+    }
+}
+
+extension ContractorPass {
+    var associatedPassType: PassSubType {
+        switch self {
+        case .project1001: return PassSubType.project1001ContractEmployeePass
+        case .project1002: return PassSubType.project1002ContractEmployeePass
+        case .project1003: return PassSubType.project1003ContractEmployeePass
+        case .project2001: return PassSubType.project2001ContractEmployeePass
+        case .project2002: return PassSubType.project2002ContractEmployeePass
+        }
+    }
 }
 
 extension PassCategory {

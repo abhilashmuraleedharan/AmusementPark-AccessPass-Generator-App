@@ -31,6 +31,7 @@
 		CC0D251121862A2B00FA2718 /* ManagerPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D251021862A2B00FA2718 /* ManagerPass.swift */; };
 		CC19B2FD2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */; };
 		CC1EBB6121D86DB600E37B3E /* AccessPassCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1EBB6021D86DB600E37B3E /* AccessPassCheckVC.swift */; };
+		CCAE204A21DD251C001719CF /* AccessPassFormPickerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAE204921DD251C001719CF /* AccessPassFormPickerViews.swift */; };
 		CCD7A74321D7259900E00B71 /* SeasonGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74221D7259900E00B71 /* SeasonGuestPass.swift */; };
 		CCD7A74521D725FE00E00B71 /* SeniorGuestPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74421D725FE00E00B71 /* SeniorGuestPass.swift */; };
 		CCD7A74921D72EC800E00B71 /* ContractEmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7A74821D72EC800E00B71 /* ContractEmployeePass.swift */; };
@@ -69,6 +70,7 @@
 		CC0D251021862A2B00FA2718 /* ManagerPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPass.swift; sourceTree = "<group>"; };
 		CC19B2FC2188CD7A00BAA109 /* AccessPassGeneratorAppTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPassGeneratorAppTester.swift; sourceTree = "<group>"; };
 		CC1EBB6021D86DB600E37B3E /* AccessPassCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPassCheckVC.swift; sourceTree = "<group>"; };
+		CCAE204921DD251C001719CF /* AccessPassFormPickerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPassFormPickerViews.swift; sourceTree = "<group>"; };
 		CCD7A74221D7259900E00B71 /* SeasonGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonGuestPass.swift; sourceTree = "<group>"; };
 		CCD7A74421D725FE00E00B71 /* SeniorGuestPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorGuestPass.swift; sourceTree = "<group>"; };
 		CCD7A74821D72EC800E00B71 /* ContractEmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEmployeePass.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				CCD7A75A21D7E62A00E00B71 /* FormDataProvider.swift */,
 				CC0D25002185FE0500FA2718 /* Errors.swift */,
 				CC01F73B21DBB47800158F81 /* FormDataValidator.swift */,
+				CCAE204921DD251C001719CF /* AccessPassFormPickerViews.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			files = (
 				CC0D24FC2185E90000FA2718 /* FreeChildGuestPass.swift in Sources */,
 				CC0D24DB218583CC00FA2718 /* PassCategories.swift in Sources */,
+				CCAE204A21DD251C001719CF /* AccessPassFormPickerViews.swift in Sources */,
 				CC0D24D321857FE100FA2718 /* ParkEntrant.swift in Sources */,
 				CCD7A75B21D7E62A00E00B71 /* FormDataProvider.swift in Sources */,
 				CC1EBB6121D86DB600E37B3E /* AccessPassCheckVC.swift in Sources */,

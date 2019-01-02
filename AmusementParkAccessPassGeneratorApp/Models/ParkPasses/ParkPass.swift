@@ -9,6 +9,7 @@
 import Foundation
 
 class ParkPass: AccessPass {
+    
     let passOwner: ParkEntrant
     let passType: PassSubType
     let accessibleAreas: [AccessRequiredParkArea]
@@ -58,6 +59,7 @@ class ParkPass: AccessPass {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
+    
 }
 
 extension ParkPass {

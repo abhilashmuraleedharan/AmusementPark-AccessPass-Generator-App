@@ -10,23 +10,16 @@ import Foundation
 
 class VendorPass: ParkPass, Swipable {
     
-    private let companyPassTypeDictionary: [String: PassSubType] = [
-        "acme": .acmeCompanyVendorPass,
-        "orkin": .orkinCompanyVendorPass,
-        "fedex": .fedexCompanyVendorPass,
-        "nw electrical": .nwelectricalCompanyVendorPass
-    ]
-    
     init(firstName: String?, lastName: String?, vendorCompany: String?, dateOfBirth: Date?, dateOfVisit: Date?,
          streetAddress: String? = nil, city: String? = nil, state: String? = nil, zipcode: String? = nil) throws {
         do {
             guard let company = vendorCompany else {
                 throw MissingInformationError.noVendorCompany(errorMessage: "Vendor Pass requires company information.")
             }
-            guard let passType = companyPassTypeDictionary[company] else {
+            guard let name = VendorCompanyPass(rawValue: company.lowercased()) else {
                 throw ValidationError.invalidVendorCompany(errorMessage: "Company not recognized. Vendor pass requires a valid company name.")
             }
-            try super.init(passType: passType, firstName: firstName,
+            try super.init(passType: name.associatedPassType, firstName: firstName,
                            lastName: lastName, streetAddress: streetAddress,
                            city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: vendorCompany, dateOfVisit: dateOfVisit, tier: nil)
             printPassGenerationStatus()
@@ -40,4 +33,5 @@ class VendorPass: ParkPass, Swipable {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
+    
 }

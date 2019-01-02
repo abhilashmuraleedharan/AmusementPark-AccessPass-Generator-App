@@ -32,6 +32,7 @@ class SeniorGuestPass: GuestPass {
             throw MissingInformationError.inSufficientData(errorMessage: "\(error.localizedDescription)")
         }
     }
+    
 }
 
 extension SeniorGuestPass {
