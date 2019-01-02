@@ -361,6 +361,8 @@ class AccessPassFormVC: UIViewController {
             default:
                 dateOfBirthTextField.text = dataProvider.dateOfBirth
             }
+        } else {
+            dateOfBirthTextField.text = dataProvider.dateOfBirth
         }
         firstNameTextField.text = dataProvider.firstNameData
         lastNameTextField.text = dataProvider.lastNameData

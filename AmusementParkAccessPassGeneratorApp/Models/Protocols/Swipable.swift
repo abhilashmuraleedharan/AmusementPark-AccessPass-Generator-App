@@ -132,6 +132,24 @@ extension Swipable {
         }
         return bdayGreeting
     }
+    
+    var passOwnerName: String {
+        var name = ""
+        if let firstName = passOwner.firstName, let lastName = passOwner.lastName {
+            name = "\(firstName) \(lastName)"
+        } else {
+            if let firstName = passOwner.firstName {
+                name = "\(firstName)"
+            } else {
+                if let lastName = passOwner.lastName {
+                    name = "\(lastName)"
+                } else {
+                    name = "Anonymous"
+                }
+            }
+        }
+        return name
+    }
 }
 
 

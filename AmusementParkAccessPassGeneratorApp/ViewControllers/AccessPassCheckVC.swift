@@ -22,8 +22,8 @@ class AccessPassCheckVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        passSlotView.layer.cornerRadius = 5
-        passSlotView.layer.masksToBounds = true
+        passOwnerNameLabel.text = parkAccessPass?.passOwnerName
+        passTypeLabel.text = parkAccessPass?.passType.rawValue
     }
     
     // MARK: - IB Actions
