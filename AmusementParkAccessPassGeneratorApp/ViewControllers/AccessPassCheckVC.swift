@@ -18,11 +18,12 @@ class AccessPassCheckVC: UIViewController {
     @IBOutlet weak var testResultsLabel: UILabel!
     
     // MARK: - Stored properties
+    var parkAccessPass: Swipable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        passSlotView.layer.cornerRadius = 5
+        passSlotView.layer.masksToBounds = true
     }
     
     // MARK: - IB Actions

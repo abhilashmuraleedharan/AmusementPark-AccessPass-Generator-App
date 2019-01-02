@@ -153,6 +153,10 @@ class AccessPassFormVC: UIViewController {
     // MARK: - Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "checkGeneratedPass" {
+            guard let accessPassCheckVC = segue.destination as? AccessPassCheckVC else {
+                return
+            }
+            accessPassCheckVC.parkAccessPass = generatedAccessPass
         }
     }
     
@@ -288,7 +292,7 @@ class AccessPassFormVC: UIViewController {
             generateAccessPassUsing(dateOfBirth: dateOfBirth, dateOfVisit: dateOfVisit, projectNumber: projectNo, managementTier: tier,
                                     firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state,
                                     zipcode: zipcode, company: company, forPassCategory: chosenAccessPass, forPassSubType: chosenAccessPassSubType)
-            
+            performSegue(withIdentifier: "checkGeneratedPass", sender: self)
         } catch ValidationError.invalidData(let errorMessage) {
             notifyUserWithPopUpAlertHaving(title: "Invalid Data", message: errorMessage)
         } catch ValidationError.invalidDataLength(let errorMessage) {
