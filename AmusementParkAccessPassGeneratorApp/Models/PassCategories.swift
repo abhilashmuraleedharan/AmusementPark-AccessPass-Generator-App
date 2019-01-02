@@ -37,20 +37,6 @@ enum PassSubType: String {
     case nwelectricalCompanyVendorPass = "NW Electrical Company Vendor Pass"
 }
 
-enum PassFormDataField: String {
-    case firstName = "First Name"
-    case lastName = "Last Name"
-    case dateOfBirth = "Date of Birth"
-    case streetAddress = "Street Address"
-    case city = "City"
-    case state = "State"
-    case zipcode = "Zipcode"
-    case projectNumber = "Project Number"
-    case vendorCompany = "Vendor Company"
-    case dateOfVisit = "Date of Visit"
-    case managementTier = "Management Tier"
-}
-
 enum ManagementTier: String {
     case senior = "Senior"
     case general = "General"
@@ -81,18 +67,6 @@ extension PassCategory {
         case .employee:
             return [PassSubType.hourlyEmployeeFoodServicePass, PassSubType.hourlyEmployeeMaintenancePass, PassSubType.hourlyEmployeeRideServicePass]
         case .manager, .contractor, .vendor: return []
-        }
-    }
-    
-    /// Based on the Pass Category, this computed property returns the collection of essential form data fields to be present in the generate pass page.
-    var necessaryFormDataFields: [PassFormDataField] {
-        switch self {
-        case .vendor:
-            return [PassFormDataField.vendorCompany, PassFormDataField.dateOfVisit, PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
-        case .contractor:
-            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth, PassFormDataField.projectNumber]
-        default:
-            return [PassFormDataField.firstName, PassFormDataField.lastName, PassFormDataField.streetAddress, PassFormDataField.city, PassFormDataField.state, PassFormDataField.zipcode, PassFormDataField.dateOfBirth]
         }
     }
 }

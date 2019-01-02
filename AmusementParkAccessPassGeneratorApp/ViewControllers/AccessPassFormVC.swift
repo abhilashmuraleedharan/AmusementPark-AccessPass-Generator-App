@@ -92,12 +92,12 @@ class AccessPassFormVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // testAllParkAccessPasses()
         configureRelevantTextFieldsWithUIPickerViews()
         configureRelevantTextFieldsWithDatePickerViews()
         
         // Registering this class as an observer for the KeyboardWillShow notification.
         NotificationCenter.default.addObserver(self, selector: #selector(AccessPassFormVC.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         // Registering this class as an observer for the KeyboardWillHide notification.
         NotificationCenter.default.addObserver(self, selector: #selector(AccessPassFormVC.keyBoardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -331,6 +331,14 @@ class AccessPassFormVC: UIViewController {
         dateOfVisitTextField.inputAccessoryView = getToolBar(for: .dateOfVisit)
     }
     
+    func testAllParkAccessPasses() {
+        let testBot = AccessPassGeneratorAppTester()
+        testBot.testAllMainParkPasses()
+        testBot.testAllVendorPasses()
+        testBot.testAllContractEmployeePasses()
+        testBot.testSwipeOnBirthDay()
+    }
+    
     @objc func classicGuestFormSelected() {
         activateForm(for: .guest)
         chosenAccessPassSubType = PassSubType.classicGuestPass
@@ -456,25 +464,6 @@ class AccessPassFormVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "checkGeneratedPass" {
-//            do {
-//                if let name = nameTextField.text {
-//                    if name.isEmpty {
-//                        throw AdventureError.nameNotProvided
-//                    } else {
-//                        guard let pageController = segue.destination as? PageController else {
-//                            return
-//                        }
-//                        pageController.page = Adventure.story(withName: name)
-//                    }
-//                }
-//            } catch AdventureError.nameNotProvided {
-//                let alertController = UIAlertController(title: "Name not provided", message: "Provide a name to start the story", preferredStyle: .alert)
-//                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                alertController.addAction(alertAction)
-//                present(alertController, animated: true, completion: nil)
-//            } catch let error {
-//                fatalError("\(error.localizedDescription)")
-//            }
         }
     }
     
