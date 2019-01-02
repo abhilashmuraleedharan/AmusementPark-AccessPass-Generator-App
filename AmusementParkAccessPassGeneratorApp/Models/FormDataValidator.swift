@@ -29,19 +29,39 @@ struct FormDataValidator {
         "\(VendorCompanyPass.nwelectrical.rawValue)"]
     let managementTierList = ["\(ManagementTier.shift.rawValue)", "\(ManagementTier.general.rawValue)", "\(ManagementTier.senior.rawValue)"]
     
-    func validateNameField(with inputData: inout String?) throws {
+    func validateFirstNameField(with inputData: inout String?) throws {
         if let data = inputData {
             if data.isEmpty == false {
                 if !data.containsNoNumbers {
-                    throw ValidationError.invalidData(errorMessage: "Name should not contain any numbers.")
+                    throw ValidationError.invalidData(errorMessage: "First Name should not contain any numbers.")
                 }
                 
                 if !data.containsNoSpecialCharacters {
-                    throw ValidationError.invalidData(errorMessage: "Name should not contain any special characters.")
+                    throw ValidationError.invalidData(errorMessage: "First Name should not contain any special characters.")
                 }
                 
                 if data.count > maxUserInputDataLength {
-                    throw ValidationError.invalidDataLength(errorMessage: "Number of characters cannot exceed \(maxUserInputDataLength).")
+                    throw ValidationError.invalidDataLength(errorMessage: "First Name cannot exceed \(maxUserInputDataLength) characters.")
+                }
+            } else {
+                inputData = nil
+            }
+        }
+    }
+    
+    func validateLastNameField(with inputData: inout String?) throws {
+        if let data = inputData {
+            if data.isEmpty == false {
+                if !data.containsNoNumbers {
+                    throw ValidationError.invalidData(errorMessage: "Last Name should not contain any numbers.")
+                }
+                
+                if !data.containsNoSpecialCharacters {
+                    throw ValidationError.invalidData(errorMessage: "Last Name should not contain any special characters.")
+                }
+                
+                if data.count > maxUserInputDataLength {
+                    throw ValidationError.invalidDataLength(errorMessage: "Last Name cannot exceed \(maxUserInputDataLength) characters.")
                 }
             } else {
                 inputData = nil
@@ -53,9 +73,9 @@ struct FormDataValidator {
         if let data = inputData {
             if data.isEmpty == false {
                 if data.count < minUserInputDataLength {
-                    throw ValidationError.invalidDataLength(errorMessage: "Address is too short! Should contain atleast \(minUserInputDataLength).")
+                    throw ValidationError.invalidDataLength(errorMessage: "Street Address is too short! Should contain atleast \(minUserInputDataLength).")
                 } else if data.count > maxUserAddressLength {
-                    throw ValidationError.invalidDataLength(errorMessage: "Address is too long! Number of characters cannot exceed \(maxUserAddressLength).")
+                    throw ValidationError.invalidDataLength(errorMessage: "Street Address is too long! Number of characters cannot exceed \(maxUserAddressLength).")
                 }
             } else {
                 inputData = nil
@@ -63,21 +83,43 @@ struct FormDataValidator {
         }
     }
     
-    func validateLocationField(with inputData: inout String?) throws {
+    func validateCityField(with inputData: inout String?) throws {
         if let data = inputData {
             if data.isEmpty == false {
                 if !data.containsNoNumbers {
-                    throw ValidationError.invalidData(errorMessage: "Should not contain any numbers.")
+                    throw ValidationError.invalidData(errorMessage: "City name should not contain any numbers.")
                 }
                 
                 if !data.containsNoSpecialCharacters {
-                    throw ValidationError.invalidData(errorMessage: "Should not contain any special characters.")
+                    throw ValidationError.invalidData(errorMessage: "City name should not contain any special characters.")
                 }
                 
                 if data.count < minUserInputDataLength {
-                    throw ValidationError.invalidDataLength(errorMessage: "Please enter atleast \(minUserInputDataLength) characters.")
+                    throw ValidationError.invalidDataLength(errorMessage: "City name should have atleast \(minUserInputDataLength) characters.")
                 } else if data.count > maxUserInputDataLength {
-                    throw ValidationError.invalidDataLength(errorMessage: "Number of characters cannot exceed \(maxUserInputDataLength).")
+                    throw ValidationError.invalidDataLength(errorMessage: "City name cannot exceed \(maxUserInputDataLength) characters.")
+                }
+            } else {
+                inputData = nil
+            }
+        }
+    }
+    
+    func validateStateField(with inputData: inout String?) throws {
+        if let data = inputData {
+            if data.isEmpty == false {
+                if !data.containsNoNumbers {
+                    throw ValidationError.invalidData(errorMessage: "State name should not contain any numbers.")
+                }
+                
+                if !data.containsNoSpecialCharacters {
+                    throw ValidationError.invalidData(errorMessage: "State name should not contain any special characters.")
+                }
+                
+                if data.count < minUserInputDataLength {
+                    throw ValidationError.invalidDataLength(errorMessage: "State name should have atleast \(minUserInputDataLength) characters.")
+                } else if data.count > maxUserInputDataLength {
+                    throw ValidationError.invalidDataLength(errorMessage: "State name cannot exceed \(maxUserInputDataLength) characters.")
                 }
             } else {
                 inputData = nil
@@ -138,11 +180,11 @@ struct FormDataValidator {
         if let data = inputData {
             if data.isEmpty == false {
                 if !data.containsNoNumbers || !data.containsNoSpecialCharacters{
-                    throw ValidationError.invalidVendorCompany(errorMessage: "Invalid Company")
+                    throw ValidationError.invalidVendorCompany(errorMessage: "Invalid Vendor Company")
                 }
                 let parkVendors = vendorCompanyList.map { $0.lowercased() }
                 if !parkVendors.contains(data.lowercased()) {
-                    throw ValidationError.invalidVendorCompany(errorMessage: "Invalid Company")
+                    throw ValidationError.invalidVendorCompany(errorMessage: "Invalid Vendor Company")
                 }
             } else {
                 inputData = nil

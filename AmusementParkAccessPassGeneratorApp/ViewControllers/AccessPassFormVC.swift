@@ -142,6 +142,7 @@ class AccessPassFormVC: UIViewController {
     }
     
     @IBAction func generatePassButtonTapped(_ sender: Any) {
+        validateFormDataAndGeneratePass()
     }
     
     @IBAction func populateDataButtonTapped(_ sender: Any) {
@@ -195,7 +196,7 @@ class AccessPassFormVC: UIViewController {
         return selector
     }
     
-    func validateFormData() {
+    func validateFormDataAndGeneratePass() {
         var firstName = firstNameTextField.text
         var lastName = lastNameTextField.text
         var streetAddress = streetAddressTextField.text
@@ -212,52 +213,109 @@ class AccessPassFormVC: UIViewController {
             try dataValidator.validateDate(with: &dateOfVisit)
             try dataValidator.validateProject(with: &projectNo)
             try dataValidator.validateManagementTier(with: &tier)
-            try dataValidator.validateNameField(with: &firstName)
-            try dataValidator.validateNameField(with: &lastName)
+            try dataValidator.validateFirstNameField(with: &firstName)
+            try dataValidator.validateLastNameField(with: &lastName)
             try dataValidator.validateStreetAddressField(with: &streetAddress)
             try dataValidator.validateCompany(with: &company)
-            try dataValidator.validateLocationField(with: &city)
-            try dataValidator.validateLocationField(with: &state)
+            try dataValidator.validateCityField(with: &city)
+            try dataValidator.validateStateField(with: &state)
             try dataValidator.validateZipcodeField(with: &zipcode)
-            generatePassUsing(dateOfBirth: dateOfBirth, dateOfVisit: dateOfVisit, projectNumber: projectNo, managementTier: tier, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, forPass: chosenAccessPass, passSubType: chosenAccessPassSubType)
+            
+            generateAccessPassUsing(dateOfBirth: dateOfBirth, dateOfVisit: dateOfVisit, projectNumber: projectNo, managementTier: tier, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, forPassCategory: chosenAccessPass, forPassSubType: chosenAccessPassSubType)
+            
         } catch ValidationError.invalidData(let errorMessage) {
-            let alertController = UIAlertController(title: "Invalid Data", message: errorMessage, preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            present(alertController, animated: true, completion: nil)
+            notifyUserWithPopUpAlertHaving(title: "Invalid Data", message: errorMessage)
         } catch ValidationError.invalidDataLength(let errorMessage) {
-            let alertController = UIAlertController(title: "Invalid Data Length", message: errorMessage, preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            present(alertController, animated: true, completion: nil)
+            notifyUserWithPopUpAlertHaving(title: "Invalid Data Length", message: errorMessage)
         } catch ValidationError.invalidDate(let errorMessage) {
-            let alertController = UIAlertController(title: "Invalid Date", message: errorMessage, preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            present(alertController, animated: true, completion: nil)
+            notifyUserWithPopUpAlertHaving(title: "Invalid Date", message: errorMessage)
         } catch ValidationError.invalidManagementTier(let errorMessage) {
-            let alertController = UIAlertController(title: "Invalid Data", message: errorMessage, preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            present(alertController, animated: true, completion: nil)
+            notifyUserWithPopUpAlertHaving(title: "Invalid Data", message: errorMessage)
         } catch ValidationError.invalidProjectNumber(let errorMessage) {
-            let alertController = UIAlertController(title: "Invalid Data", message: errorMessage, preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            present(alertController, animated: true, completion: nil)
+            notifyUserWithPopUpAlertHaving(title: "Invalid Data", message: errorMessage)
         } catch ValidationError.invalidVendorCompany(let errorMessage) {
-            let alertController = UIAlertController(title: "Invalid Data", message: errorMessage, preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            present(alertController, animated: true, completion: nil)
+            notifyUserWithPopUpAlertHaving(title: "Invalid Data", message: errorMessage)
         } catch let error {
             fatalError(error.localizedDescription)
         }
     }
     
-    func generatePassUsing(dateOfBirth: String?, dateOfVisit: String?, projectNumber: String?, managementTier: String?, firstName: String?, lastName: String?,
-                           streetAddress: String?, city: String?, state: String?, zipcode: String?, forPass: PassCategory?, passSubType: PassSubType?) {
-        
+    func notifyUserWithPopUpAlertHaving(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func generateAccessPassUsing(dateOfBirth: String?, dateOfVisit: String?, projectNumber: String?, managementTier: String?, firstName: String?, lastName: String?,
+                           streetAddress: String?, city: String?, state: String?, zipcode: String?, forPassCategory category: PassCategory?, forPassSubType type: PassSubType?) {
+    
+        if let passCategory = category {
+            switch passCategory {
+            case .guest:
+                if let passType = type {
+                    do {
+                        switch passType {
+                        case .classicGuestPass:
+                            generatedAccessPass = try ClassicGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                        case .vipGuestPass:
+                            generatedAccessPass = try VIPGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                        case .freeChildGuestPass:
+                            generatedAccessPass = try FreeChildGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                        case .seasonGuestPass:
+                            generatedAccessPass = try SeasonGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                        case .seniorGuestPass:
+                            generatedAccessPass = try SeniorGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                        default: break
+                        }
+                    } catch let error {
+                        notifyUserWithPopUpAlertHaving(title: "Invalid Guest Pass", message: "Failed to create \(passType.rawValue)" + "\n" + "\(error)")
+                    }
+                }
+            case .employee:
+                if let passType = type {
+                    do {
+                        switch passType {
+                        case .hourlyEmployeeFoodServicePass:
+                            generatedAccessPass = try HourlyEmployeeFoodServicesPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
+                        case .hourlyEmployeeRideServicePass:
+                            generatedAccessPass = try HourlyEmployeeRideServicesPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
+                        case .hourlyEmployeeMaintenancePass:
+                            generatedAccessPass = try HourlyEmployeeMaintenancePass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
+                        default: break
+                        }
+                        
+                    } catch let error {
+                        notifyUserWithPopUpAlertHaving(title: "Invalid Employee Pass", message: "Failed to create \(passType.rawValue)" + "\n" + "\(error)")
+                    }
+                }
+            case .manager:
+                if let passType = type {
+                    do {
+                        var mTier: ManagementTier?
+                        if let tier = managementTier {
+                            mTier = ManagementTier(rawValue: tier)
+                        } else {
+                            mTier = nil
+                        }
+                        generatedAccessPass =  try ManagerPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), tier: mTier)
+                    } catch let error {
+                        notifyUserWithPopUpAlertHaving(title: "Invalid Manager Pass", message: "Failed to create \(passType.rawValue)" + "\n" + "\(error)")
+                    }
+                }
+            case .vendor: break
+            case .contractor: break
+            }
+        }
+    }
+    
+    func getDate(fromString string: String?) -> Date? {
+        guard let dateString = string else {
+            return nil
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.date(from: dateString)
     }
     
     func configureRelevantTextFieldsWithUIPickerViews() {

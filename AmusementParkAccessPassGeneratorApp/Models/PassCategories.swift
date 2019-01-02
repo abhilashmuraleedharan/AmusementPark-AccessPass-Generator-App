@@ -157,9 +157,9 @@ extension PassSubType {
         case .freeChildGuestPass: return "Free Child"
         case .seasonGuestPass: return "Season Pass"
         case .seniorGuestPass: return "Senior"
-        case .hourlyEmployeeFoodServicePass: return "Food Service"
-        case .hourlyEmployeeRideServicePass: return "Ride Service"
-        case .hourlyEmployeeMaintenancePass: return "Maintenance"
+        case .hourlyEmployeeFoodServicePass: return "Hourly Food Service"
+        case .hourlyEmployeeRideServicePass: return "Hourly Ride Service"
+        case .hourlyEmployeeMaintenancePass: return "Hourly Maintenance"
         default: return nil
         }
     }
