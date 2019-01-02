@@ -11,7 +11,6 @@ import UIKit
 class AccessPassCheckVC: UIViewController {
     
     // MARK: - IB Outlets
-    @IBOutlet weak var passSlotView: UIView!
     @IBOutlet weak var passOwnerNameLabel: UILabel!
     @IBOutlet weak var passTypeLabel: UILabel!
     @IBOutlet weak var accessPassPrivilegesLabel: UILabel!
