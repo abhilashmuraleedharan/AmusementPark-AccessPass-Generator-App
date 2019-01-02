@@ -207,10 +207,10 @@ class AccessPassFormVC: UIViewController {
                                  forPassCategory category: PassCategory?, forPassSubType type: PassSubType?) {
         
         if let passCategory = category {
-            switch passCategory {
-            case .guest:
-                if let passType = type {
-                    do {
+            do {
+                switch passCategory {
+                case .guest:
+                    if let passType = type {
                         switch passType {
                         case .classicGuestPass:
                             generatedAccessPass = try ClassicGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
@@ -224,13 +224,9 @@ class AccessPassFormVC: UIViewController {
                             generatedAccessPass = try SeniorGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
                         default: break
                         }
-                    } catch let error {
-                        notifyUserWithPopUpAlertHaving(title: "Failed to create \(passType.rawValue)", message: "\(error)")
                     }
-                }
-            case .employee:
-                if let passType = type {
-                    do {
+                case .employee:
+                    if let passType = type {
                         switch passType {
                         case .hourlyEmployeeFoodServicePass:
                             generatedAccessPass = try HourlyEmployeeFoodServicesPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
@@ -240,37 +236,26 @@ class AccessPassFormVC: UIViewController {
                             generatedAccessPass = try HourlyEmployeeMaintenancePass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
                         default: break
                         }
-                        
-                    } catch let error {
-                        notifyUserWithPopUpAlertHaving(title: "Failed to create \(passType.rawValue)", message: "\(error)")
                     }
-                }
-            case .manager:
-                if let passType = type {
-                    do {
-                        var mTier: ManagementTier?
-                        if let tier = managementTier {
-                            mTier = ManagementTier(rawValue: tier)
-                        }
-                        generatedAccessPass =  try ManagerPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), tier: mTier)
-                    } catch let error {
-                        notifyUserWithPopUpAlertHaving(title: "Failed to create \(passType.rawValue)", message: "\(error)")
+                case .manager:
+                    var mTier: ManagementTier?
+                    if let tier = managementTier {
+                        mTier = ManagementTier(rawValue: tier)
                     }
-                }
-            case .vendor:
-                do {
+                    generatedAccessPass =  try ManagerPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), tier: mTier)
+                case .vendor:
                     generatedAccessPass = try VendorPass(firstName: firstName, lastName: lastName, vendorCompany: company, dateOfBirth: getDate(fromString: dateOfBirth), dateOfVisit: getDate(fromString: dateOfVisit))
-                } catch let error {
-                    let passType = type?.rawValue ?? "Vendor Pass"
-                    notifyUserWithPopUpAlertHaving(title: "Failed to create \(passType)", message: "\(error)")
-                }
-            case .contractor:
-                do {
+                case .contractor:
                     generatedAccessPass = try ContractEmployeePass(projectNumber: projectNumber, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
-                } catch let error {
-                    let passType = type?.rawValue ?? "Contractor Pass"
-                    notifyUserWithPopUpAlertHaving(title: "Failed to create \(passType)", message: "\(error)")
                 }
+            } catch MissingInformationError.inSufficientData(let error) {
+                notifyUserWithPopUpAlertHaving(title: "Incomplete Data", message: error)
+            } catch PassEligibilityError.notChild(let error) {
+                notifyUserWithPopUpAlertHaving(title: "Not a child", message: error)
+            } catch PassEligibilityError.notSenior(let error) {
+                notifyUserWithPopUpAlertHaving(title: "Not a senior", message: error)
+            } catch let error {
+                notifyUserWithPopUpAlertHaving(title: "Unknown error", message: "\(error.localizedDescription)")
             }
         }
     }
