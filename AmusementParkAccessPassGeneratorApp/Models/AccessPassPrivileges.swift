@@ -40,12 +40,12 @@ extension RidePrivilege {
 }
 
 extension ParkDiscount {
-    func getDiscountValues() -> (foodDiscount: Double, merchandiseDiscount: Double) {
+    func getDiscountValues() -> (foodDiscount: Int, merchandiseDiscount: Int) {
         switch self {
-        case .employeeDiscount: return (foodDiscount: 15.0, merchandiseDiscount: 25.0)
-        case .vipGuestDiscount, .seasonPassGuestDiscount: return (foodDiscount: 10.0, merchandiseDiscount: 20.0)
-        case .managerDiscount: return (foodDiscount: 25.0, merchandiseDiscount: 25.0)
-        case .seniorGuestDiscount: return (foodDiscount: 10.0, merchandiseDiscount: 10.0)
+        case .employeeDiscount: return (foodDiscount: 15, merchandiseDiscount: 25)
+        case .vipGuestDiscount, .seasonPassGuestDiscount: return (foodDiscount: 10, merchandiseDiscount: 20)
+        case .managerDiscount: return (foodDiscount: 25, merchandiseDiscount: 25)
+        case .seniorGuestDiscount: return (foodDiscount: 10, merchandiseDiscount: 10)
         }
     }
     

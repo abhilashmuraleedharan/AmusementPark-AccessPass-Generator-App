@@ -182,6 +182,7 @@ class AccessPassFormVC: UIViewController {
             button.setTitle(title, for: .normal)
             button.backgroundColor = subMenuButtonBackgroundColor
             button.tintColor = UIColor.white
+            button.titleLabel?.font = .systemFont(ofSize: 19)
             if let selector = getButtonActionSelector(for: pass) {
                 button.addTarget(self, action: selector, for: .touchUpInside)
             }
