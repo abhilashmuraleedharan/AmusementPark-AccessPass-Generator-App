@@ -115,7 +115,7 @@ extension Swipable {
     func getPersonalizedBirthDayGreetingIfBirthDay() -> String? {
         var bdayGreeting: String?
         if isTodayBirthday() {
-            bdayGreeting = "\nHappy BirthDay"
+            bdayGreeting = "\nHappy Birthday"
             if let firstName = passOwner.firstName, let lastName = passOwner.lastName {
                 bdayGreeting! += " \(firstName) \(lastName)! "
             } else {
