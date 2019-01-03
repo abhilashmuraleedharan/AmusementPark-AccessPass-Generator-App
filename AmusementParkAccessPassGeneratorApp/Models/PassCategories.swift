@@ -59,6 +59,7 @@ enum ContractorPass: String, CaseIterable {
 }
 
 extension VendorCompanyPass {
+    /// Based on the vendor company pass type, this computed property returns its corresponding pass subtype
     var associatedPassType: PassSubType {
         switch self {
         case .acme: return PassSubType.acmeCompanyVendorPass
@@ -70,6 +71,7 @@ extension VendorCompanyPass {
 }
 
 extension ContractorPass {
+    /// Based on the contractor pass type, this computed property returns its corresponding pass subtype
     var associatedPassType: PassSubType {
         switch self {
         case .project1001: return PassSubType.project1001ContractEmployeePass

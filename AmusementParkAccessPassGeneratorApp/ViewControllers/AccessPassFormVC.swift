@@ -160,11 +160,13 @@ class AccessPassFormVC: UIViewController {
         }
     }
     
+    /// Method that would update SubMenuStackView with sub types of the pass that's selected in main menu
     func displaySubMenu(for passType: PassCategory) {
         let associatedPassSubTypes = passType.passSubTypeList
         updateSubMenuStackView(with: associatedPassSubTypes)
     }
     
+    /// Method that adds sub menu buttons to SubMenuStackView for all sub types of the pass that's selected in main menu
     func updateSubMenuStackView(with passSubTypeList: [PassSubType]) {
         let menuButtonSubViews = prepareSubMenuButtons(using: passSubTypeList)
         subMenuView.removeAllArrangedSubviews()
@@ -173,6 +175,7 @@ class AccessPassFormVC: UIViewController {
         }
     }
     
+    /// Method that sets up title, background color and target action methods for all the sub menu buttons
     func prepareSubMenuButtons(using passSubTypesList: [PassSubType]) -> [UIButton] {
         var subMenuButtonViews = [UIButton]()
         for pass in passSubTypesList {
@@ -191,6 +194,7 @@ class AccessPassFormVC: UIViewController {
         return subMenuButtonViews
     }
     
+    /// Method that picks appropriate target action as per pass type
     func getButtonActionSelector(for passType: PassSubType) -> Selector? {
         var selector: Selector?
         switch passType {
@@ -207,6 +211,7 @@ class AccessPassFormVC: UIViewController {
         return selector
     }
     
+    /// Method that generates appropriate Park Access Pass as per the data filled in the form
     func generateAccessPassUsing(dateOfBirth: String?, dateOfVisit: String?, projectNumber: String?, managementTier: String?, firstName: String?,
                                  lastName: String?, streetAddress: String?, city: String?, state: String?, zipcode: String?, company: String?,
                                  forPassCategory category: PassCategory?, forPassSubType type: PassSubType?) {
@@ -265,6 +270,7 @@ class AccessPassFormVC: UIViewController {
         }
     }
     
+    /// Method that validates form data and generates correct Access Pass if all necessary data is available and are valid.
     func validateFormDataAndGeneratePass() {
         var firstName = firstNameTextField.text
         var lastName = lastNameTextField.text
@@ -311,12 +317,14 @@ class AccessPassFormVC: UIViewController {
         }
     }
     
+    /// Method that sets up UIPickerViews as input views for relevant text fields
     func configureRelevantTextFieldsWithUIPickerViews() {
         projectNumberTextField.inputView = projectPicker
         companyTextField.inputView = companyPicker
         managementTierTextField.inputView = managementTierPicker
     }
     
+    /// Method that sets up UIDatePickers as input views for relevant text fields
     func configureRelevantTextFieldsWithDatePickerViews() {
         dateOfBirthTextField.inputView = dateOfBirthPicker
         dateOfBirthTextField.inputAccessoryView = getToolBar(for: .dateOfBirth)
@@ -324,6 +332,7 @@ class AccessPassFormVC: UIViewController {
         dateOfVisitTextField.inputAccessoryView = getToolBar(for: .dateOfVisit)
     }
     
+    /// Method used to validate all pass types as per the Business Rules provided and prints the result in console
     func testAllParkAccessPasses() {
         let testBot = AccessPassGeneratorAppTester()
         testBot.testAllMainParkPasses()
@@ -332,6 +341,7 @@ class AccessPassFormVC: UIViewController {
         testBot.testSwipeOnBirthDay()
     }
     
+    /// Method used to activate necessary form fields as per the pass type selected by the user.
     func activateForm(for passType: PassCategory) {
         deactivateForm()
         switch passType {
@@ -352,6 +362,7 @@ class AccessPassFormVC: UIViewController {
         activateButtons()
     }
     
+    /// Method used to quickly populate all form fields as per the chosen pass type with random but valid data
     func populateFormData() {
         if let passType = chosenAccessPassSubType {
             switch passType {
@@ -388,7 +399,7 @@ class AccessPassFormVC: UIViewController {
         }
     }
     
-    // MARK: - Helper methods
+    /// Method used to notify user about an invalid user input or missing data
     func notifyUserWithPopUpAlertHaving(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -396,6 +407,9 @@ class AccessPassFormVC: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    // MARK: - Helper methods
+    
+    /// Helper method to get a Date() from a string in MM/DD/YYYY format
     func getDate(fromString string: String?) -> Date? {
         guard let dateString = string else {
             return nil
@@ -405,6 +419,7 @@ class AccessPassFormVC: UIViewController {
         return dateFormatter.date(from: dateString)
     }
     
+    /// Helper method that adds a UIToolbar with appropriate buttons and actions to UIDatePickerViews
     func getToolBar(for datePicker: AccessPassFormDatePicker) -> UIToolbar {
         let toolBar = UIToolbar();
         toolBar.sizeToFit()

@@ -7,6 +7,7 @@
 //
 import Foundation
 
+/// Type to provide data for each field in the user form to generate pass
 struct FormDataProvider {
     
     typealias CityStateZipcodeData = (city: String, state: String, zipcode: String)
@@ -38,8 +39,13 @@ struct FormDataProvider {
         (city: "Austin", state: "Texas", zipcode: "73301")
     ]
     
+    /// List of projects to be displayed in project picker
     var projectPickerViewData = [String]()
+    
+    /// List of vendor companies to be displayed in company picker
     var companyPickerViewData = [String]()
+    
+    /// List of management tiers to be displayed in tier picker
     var managementTierPickerViewData = [String]()
     
     init() {

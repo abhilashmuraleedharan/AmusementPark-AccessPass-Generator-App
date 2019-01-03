@@ -16,6 +16,7 @@ enum ValidationError: Error {
     case invalidManagementTier(errorMessage: String)
 }
 
+/// Type to validate data input by the user into form fields 
 struct FormDataValidator {
     
     let minUserInputDataLength = 5
@@ -24,8 +25,13 @@ struct FormDataValidator {
     let minZipcodeLength = 5
     let maxZipcodeLength = 10
 
+    /// List of valid contract employee projects
     var projectList = [String]()
+    
+    // List of valid vendor companies
     var vendorCompanyList = [String]()
+    
+    /// List of valid management tiers
     var managementTierList = [String]()
     
     init() {
