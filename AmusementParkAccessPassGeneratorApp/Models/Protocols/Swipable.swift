@@ -117,18 +117,19 @@ extension Swipable {
         if isTodayBirthday() {
             bdayGreeting = "\nHappy Birthday"
             if let firstName = passOwner.firstName, let lastName = passOwner.lastName {
-                bdayGreeting! += " \(firstName) \(lastName)! "
+                bdayGreeting! += " \(firstName) \(lastName)!"
             } else {
                 if let firstName = passOwner.firstName {
-                    bdayGreeting! += " \(firstName)! "
+                    bdayGreeting! += " \(firstName)!"
                 } else {
                     if let lastName = passOwner.lastName {
-                        bdayGreeting! += " \(lastName)! "
+                        bdayGreeting! += " \(lastName)!"
                     } else {
-                        bdayGreeting! += "! "
+                        bdayGreeting! += "!"
                     }
                 }
             }
+            bdayGreeting! += "\n"
         }
         return bdayGreeting
     }

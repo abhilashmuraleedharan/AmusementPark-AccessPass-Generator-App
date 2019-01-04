@@ -86,7 +86,6 @@ class AccessPassFormVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // testAllParkAccessPasses()
         configureRelevantTextFieldsWithUIPickerViews()
         configureRelevantTextFieldsWithDatePickerViews()
         
@@ -328,18 +327,15 @@ class AccessPassFormVC: UIViewController {
         dateOfVisitTextField.inputAccessoryView = getToolBar(for: .dateOfVisit)
     }
     
-    /// Method used to validate all pass types as per the Business Rules provided and prints the result in console
-    func testAllParkAccessPasses() {
-//        let testBot = AccessPassGeneratorAppTester()
-//        testBot.testAllMainParkPasses()
-//        testBot.testAllVendorPasses()
-//        testBot.testAllContractEmployeePasses()
-//        testBot.testSwipeOnBirthDay()
-    }
-    
     /// Method used to activate necessary form fields as per the pass type selected by the user.
     func activateForm(for passType: PassCategory) {
         deactivateForm()
+        firstNameLabel.textColor = enabledLabelTextColor
+        firstNameTextField.isEnabled = true
+        lastNameLabel.textColor = enabledLabelTextColor
+        lastNameTextField.isEnabled = true
+        dateOfBirthLabel.textColor = enabledLabelTextColor
+        dateOfBirthTextField.isEnabled = true
         switch passType {
         case .vendor:
             dateOfVisitLabel.textColor = enabledLabelTextColor
@@ -372,30 +368,43 @@ class AccessPassFormVC: UIViewController {
                 stateTextField.isEnabled = true
                 zipcodeLabel.textColor = enabledLabelTextColor
                 zipcodeTextField.isEnabled = true
+            case .vipGuestPass, .classicGuestPass:
+                dateOfBirthLabel.textColor = disabledLabelTextColor
+                dateOfBirthTextField.isEnabled = false
+                fallthrough
+            case .freeChildGuestPass:
+                firstNameLabel.textColor = disabledLabelTextColor
+                firstNameTextField.isEnabled = false
+                lastNameLabel.textColor = disabledLabelTextColor
+                lastNameTextField.isEnabled = false
             default: break
             }
         }
-        activateGeneralFormFields()
         activateButtons()
     }
     
     /// Method used to quickly populate all form fields as per the chosen pass type with random but valid data
     func populateFormData() {
-        if let passType = chosenAccessPassSubType {
-            switch passType {
-            case .freeChildGuestPass:
-                dateOfBirthTextField.text = dataProvider.childDateOfBirthData
-            case .seniorGuestPass:
-                dateOfBirthTextField.text = dataProvider.seniorDateOfBirthData
-            default:
+        if dateOfBirthTextField.isEnabled {
+            if let passType = chosenAccessPassSubType {
+                switch passType {
+                case .freeChildGuestPass:
+                    dateOfBirthTextField.text = dataProvider.childDateOfBirthData
+                case .seniorGuestPass:
+                    dateOfBirthTextField.text = dataProvider.seniorDateOfBirthData
+                default:
+                    dateOfBirthTextField.text = dataProvider.dateOfBirth
+                }
+            } else {
                 dateOfBirthTextField.text = dataProvider.dateOfBirth
             }
-        } else {
-            dateOfBirthTextField.text = dataProvider.dateOfBirth
         }
-        firstNameTextField.text = dataProvider.firstNameData
-        lastNameTextField.text = dataProvider.lastNameData
-        
+        if firstNameTextField.isEnabled {
+            firstNameTextField.text = dataProvider.firstNameData
+        }
+        if lastNameTextField.isEnabled {
+            lastNameTextField.text = dataProvider.lastNameData
+        }
         if dateOfVisitTextField.isEnabled {
             dateOfVisitTextField.text = dataProvider.dateOfVisit
         }
@@ -461,15 +470,6 @@ class AccessPassFormVC: UIViewController {
         disableTextFields()
         emptyOutFormTextFields()
         disableButtons()
-    }
-    
-    func activateGeneralFormFields() {
-        firstNameLabel.textColor = enabledLabelTextColor
-        lastNameLabel.textColor = enabledLabelTextColor
-        dateOfBirthLabel.textColor = enabledLabelTextColor
-        dateOfBirthTextField.isEnabled = true
-        firstNameTextField.isEnabled = true
-        lastNameTextField.isEnabled = true
     }
     
     func disableLabels() {
