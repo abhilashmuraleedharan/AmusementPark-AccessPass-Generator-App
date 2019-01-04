@@ -33,7 +33,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4F-EI-hNF">
                                                                 <rect key="frame" x="0.0" y="0.0" width="153.5" height="100"/>
                                                                 <color key="backgroundColor" red="0.49803921569999998" green="0.38301163910000002" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="tintColor" red="0.81960784313725488" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Guest"/>
                                                                 <connections>
@@ -43,7 +43,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ya4-fz-biG">
                                                                 <rect key="frame" x="153.5" y="0.0" width="153.5" height="100"/>
                                                                 <color key="backgroundColor" red="0.49803921569999998" green="0.38301163910000002" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="tintColor" red="0.81960784313725488" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Employee"/>
                                                                 <connections>
@@ -53,7 +53,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhk-xl-fl3">
                                                                 <rect key="frame" x="307" y="0.0" width="154" height="100"/>
                                                                 <color key="backgroundColor" red="0.49803921569999998" green="0.38301163910000002" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="tintColor" red="0.81960784313725488" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Manager"/>
                                                                 <connections>
@@ -63,7 +63,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1D-a0-BNw">
                                                                 <rect key="frame" x="461" y="0.0" width="153.5" height="100"/>
                                                                 <color key="backgroundColor" red="0.49803921569999998" green="0.38301163910000002" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="tintColor" red="0.81960784313725488" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Contractor"/>
                                                                 <connections>
@@ -73,7 +73,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDg-tg-ukR">
                                                                 <rect key="frame" x="614.5" y="0.0" width="153.5" height="100"/>
                                                                 <color key="backgroundColor" red="0.49803921569999998" green="0.38301163910000002" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="tintColor" red="0.81960784313725488" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Vendor"/>
                                                                 <connections>
@@ -113,7 +113,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="120" id="Cby-Pu-Bna"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -123,7 +123,7 @@
                                                                             <constraint firstAttribute="height" constant="45" id="WAV-Yo-lF4"/>
                                                                         </constraints>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                 </subviews>
@@ -136,14 +136,14 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="120" id="c8c-Cn-ZnN"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM/DD/YYYY" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aeI-yh-tXf">
                                                                         <rect key="frame" x="0.0" y="55" width="120" height="45"/>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                 </subviews>
@@ -156,7 +156,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="120" id="n8s-Cn-utG"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -166,7 +166,7 @@
                                                                             <constraint firstAttribute="height" constant="45" id="oeI-N8-MeH"/>
                                                                         </constraints>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                 </subviews>
@@ -179,7 +179,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="120" id="J1F-if-Tux"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -189,7 +189,7 @@
                                                                             <constraint firstAttribute="height" constant="45" id="xpA-IH-fAf"/>
                                                                         </constraints>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                 </subviews>
@@ -211,7 +211,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="300" id="9ib-V0-Zfg"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -221,7 +221,7 @@
                                                                             <constraint firstAttribute="height" constant="45" id="rnb-25-lpo"/>
                                                                         </constraints>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                 </subviews>
@@ -234,14 +234,14 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="300" id="ulJ-3w-cte"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o3q-V6-Dxb">
                                                                         <rect key="frame" x="0.0" y="55" width="300" height="45"/>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                 </subviews>
@@ -256,7 +256,7 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RO-o7-bvJ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="700" height="45"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -266,7 +266,7 @@
                                                                     <constraint firstAttribute="height" constant="45" id="gyM-IL-Nxi"/>
                                                                 </constraints>
                                                                 <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
@@ -276,7 +276,7 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoM-wZ-6US">
                                                                 <rect key="frame" x="0.0" y="0.0" width="700" height="45"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -286,7 +286,7 @@
                                                                     <constraint firstAttribute="height" constant="45" id="zl6-jw-BQS"/>
                                                                 </constraints>
                                                                 <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
@@ -302,7 +302,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="150" id="wlY-Uf-pPd"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -312,7 +312,7 @@
                                                                             <constraint firstAttribute="height" constant="45" id="ghG-Zu-sHI"/>
                                                                         </constraints>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                 </subviews>
@@ -325,14 +325,14 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="150" id="iuO-e1-Ern"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="spv-s2-DgA">
                                                                         <rect key="frame" x="0.0" y="55" width="150" height="45"/>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                 </subviews>
@@ -345,14 +345,14 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="150" id="Po1-q0-t7i"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Cw-MI-u7d">
                                                                         <rect key="frame" x="0.0" y="55" width="150" height="45"/>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                 </subviews>
@@ -372,7 +372,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="XYq-e2-0qP"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Generate Pass"/>
                                                                 <connections>
@@ -382,7 +382,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9w-U1-aNs">
                                                                 <rect key="frame" x="375" y="25" width="325" height="50"/>
                                                                 <color key="backgroundColor" red="0.92941176470588238" green="0.9137254901960784" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="tintColor" red="0.25882352941176467" green="0.52941176470588236" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Populate Data"/>
                                                                 <connections>
