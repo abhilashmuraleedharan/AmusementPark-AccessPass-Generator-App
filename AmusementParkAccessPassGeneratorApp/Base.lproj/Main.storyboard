@@ -174,7 +174,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="abE-69-LDx">
                                                                 <rect key="frame" x="580" y="0.0" width="120" height="100"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tier" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQc-39-Qyu">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SSN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQc-39-Qyu">
                                                                         <rect key="frame" x="0.0" y="0.0" width="120" height="45"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="120" id="J1F-if-Tux"/>
@@ -183,7 +183,7 @@
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="djZ-20-HpC">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="###-##-####" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="djZ-20-HpC">
                                                                         <rect key="frame" x="0.0" y="55" width="120" height="45"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="45" id="xpA-IH-fAf"/>
@@ -439,11 +439,11 @@
                         <outlet property="generatePassButton" destination="dl7-0R-CIW" id="IgB-sq-H2l"/>
                         <outlet property="lastNameLabel" destination="LWO-dR-oqC" id="a0p-oq-nBW"/>
                         <outlet property="lastNameTextField" destination="o3q-V6-Dxb" id="BBo-zT-kxI"/>
-                        <outlet property="managementTierLabel" destination="JQc-39-Qyu" id="pn6-v0-AVh"/>
-                        <outlet property="managementTierTextField" destination="djZ-20-HpC" id="XpS-Li-fQy"/>
                         <outlet property="populateDataButton" destination="U9w-U1-aNs" id="nfi-ka-VAm"/>
                         <outlet property="projectNumberLabel" destination="ntS-yY-QaJ" id="1Qj-2J-5aj"/>
                         <outlet property="projectNumberTextField" destination="4uq-fM-mUf" id="VOK-5g-Az4"/>
+                        <outlet property="ssnLabel" destination="JQc-39-Qyu" id="pn6-v0-AVh"/>
+                        <outlet property="ssnTextField" destination="djZ-20-HpC" id="XpS-Li-fQy"/>
                         <outlet property="stateLabel" destination="yfb-vV-dUv" id="igf-A8-dMZ"/>
                         <outlet property="stateTextField" destination="spv-s2-DgA" id="x6j-1a-pli"/>
                         <outlet property="streetAddressLabel" destination="7RO-o7-bvJ" id="o57-nr-gzm"/>

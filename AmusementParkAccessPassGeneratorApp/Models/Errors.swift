@@ -19,6 +19,8 @@ enum MissingInformationError : Error {
     case noProjectNumber(errorMessage: String)
     case noVendorCompany(errorMessage: String)
     case noDateOfVisit(errorMessage: String)
+    case noSocialSecurityNumber(errorMessage: String)
+    case noManagementTier(errorMessage: String)
     case inSufficientData(errorMessage: String)
 }
 

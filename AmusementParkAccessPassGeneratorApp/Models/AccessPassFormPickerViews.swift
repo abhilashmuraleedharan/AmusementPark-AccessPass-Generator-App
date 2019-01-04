@@ -8,7 +8,6 @@
 enum AccessPassFormPickerView: Int {
     case project = 0
     case company
-    case managementTier
 }
 
 enum AccessPassFormDatePicker {

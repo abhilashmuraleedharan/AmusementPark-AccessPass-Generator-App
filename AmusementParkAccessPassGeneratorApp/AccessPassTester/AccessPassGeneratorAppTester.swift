@@ -10,7 +10,7 @@ import Foundation
 
 /// Simulator to test various passes issued by the Amusement Park Access Pass Generator App.
 struct AccessPassGeneratorAppTester {
-    
+/*
     typealias SwipeResult = (result: String, isPositive: Bool)
     
     /// Method that runs all the main park passes and related tests.
@@ -155,9 +155,9 @@ extension AccessPassGeneratorAppTester {
         print("\n\n********** Testing Hourly Employee Food Service Pass without all required information. ************ \n")
         do {
             let dob = Calendar.current.date(byAdding: .year, value: -26, to: Date())!
-            let foodServiceEmployeePass = try HourlyEmployeeFoodServicesPass(firstName: "Gary", lastName: nil,
+            let foodServiceEmployeePass = try HourlyEmployeePass(type: .hourlyEmployeeFoodServicePass, firstName: "Gary", lastName: nil,
                                                                      streetAddress: "59653 Candice Ports Apt",
-                                                                     city: "Manhattan", state: "New York", zipcode: "10030", dateOfBirth: dob)
+                                                                     city: "Manhattan", state: "New York", zipcode: "10030", dateOfBirth: dob, ssn: "123-45-6789")
         } catch let error {
             print(error)
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
@@ -784,4 +784,5 @@ extension AccessPassGeneratorAppTester {
         print("Checking the quick second swipe at the same checkpoint to sneak in a buddy to the same ride")
         swipe(pass, for: .allRidesAccess)
     }
+ */
 }

@@ -15,18 +15,18 @@ protocol Entrant {
     var state: String? { get set }
     var zipcode: String? { get set }
     var dateOfBirth: Date? { get set }
+    var socialSecurityNumber: String? { get set }
 }
 
-protocol Manager {
+protocol Manager: Entrant {
     var tier: ManagementTier? { get set }
 }
 
-protocol Vendor {
+protocol Vendor: Entrant {
     var vendorCompany: String? { get set }
     var dateOfVisit: Date? { get set }
 }
 
-protocol ContractEmployee {
+protocol ContractEmployee: Entrant {
     var projectNumber: String? { get set }
 }
-

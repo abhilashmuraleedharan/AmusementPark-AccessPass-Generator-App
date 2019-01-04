@@ -13,7 +13,6 @@ enum ValidationError: Error {
     case invalidDate(errorMessage: String)
     case invalidProjectNumber(errorMessage: String)
     case invalidVendorCompany(errorMessage: String)
-    case invalidManagementTier(errorMessage: String)
 }
 
 /// Type to validate data input by the user into form fields 
@@ -31,18 +30,12 @@ struct FormDataValidator {
     // List of valid vendor companies
     var vendorCompanyList = [String]()
     
-    /// List of valid management tiers
-    var managementTierList = [String]()
-    
     init() {
         for project in ContractorPass.allCases {
             projectList.append(project.rawValue)
         }
         for company in VendorCompanyPass.allCases {
             vendorCompanyList.append(company.rawValue)
-        }
-        for tier in ManagementTier.allCases {
-            managementTierList.append(tier.rawValue)
         }
     }
     
@@ -212,20 +205,19 @@ extension FormDataValidator {
         }
     }
     
-    func validateManagementTier(with inputData: inout String?) throws {
+    func validateSocialSecurityNumber(with inputData: inout String?) throws {
         if let data = inputData {
             if data.isEmpty == false {
-                if !data.containsNoNumbers || !data.containsNoSpecialCharacters{
-                    throw ValidationError.invalidManagementTier(errorMessage: "Invalid Management Tier")
-                }
-                if !managementTierList.contains(data.lowercased()) {
-                    throw ValidationError.invalidManagementTier(errorMessage: "Invalid Management Tier")
+                let ssnRegext = "^(?!(000|666|9))\\d{3}-(?!00)\\d{2}-(?!0000)\\d{4}$"
+                if data.range(of: ssnRegext, options: .regularExpression, range: nil, locale: nil) == nil {
+                    throw ValidationError.invalidData(errorMessage: "Invalid format. SSN should contain 9 digits separated by hiphen in AAA-GG-SSSS format.")
                 }
             } else {
                 inputData = nil
             }
         }
     }
+
 }
 
 extension String {

@@ -38,9 +38,9 @@ enum PassSubType: String {
 }
 
 enum ManagementTier: String, CaseIterable {
-    case senior = "senior"
-    case general = "general"
-    case shift = "shift"
+    case senior = "Senior Manager"
+    case general = "General Manager"
+    case shift = "Shift Manager"
 }
 
 enum VendorCompanyPass: String, CaseIterable {
@@ -62,10 +62,10 @@ extension VendorCompanyPass {
     /// Based on the vendor company pass type, this computed property returns its corresponding pass subtype
     var associatedPassType: PassSubType {
         switch self {
-        case .acme: return PassSubType.acmeCompanyVendorPass
-        case .fedex: return PassSubType.fedexCompanyVendorPass
-        case .orkin: return PassSubType.orkinCompanyVendorPass
-        case .nwelectrical: return PassSubType.nwelectricalCompanyVendorPass
+        case .acme: return .acmeCompanyVendorPass
+        case .fedex: return .fedexCompanyVendorPass
+        case .orkin: return .orkinCompanyVendorPass
+        case .nwelectrical: return .nwelectricalCompanyVendorPass
         }
     }
 }
@@ -74,11 +74,11 @@ extension ContractorPass {
     /// Based on the contractor pass type, this computed property returns its corresponding pass subtype
     var associatedPassType: PassSubType {
         switch self {
-        case .project1001: return PassSubType.project1001ContractEmployeePass
-        case .project1002: return PassSubType.project1002ContractEmployeePass
-        case .project1003: return PassSubType.project1003ContractEmployeePass
-        case .project2001: return PassSubType.project2001ContractEmployeePass
-        case .project2002: return PassSubType.project2002ContractEmployeePass
+        case .project1001: return .project1001ContractEmployeePass
+        case .project1002: return .project1002ContractEmployeePass
+        case .project1003: return .project1003ContractEmployeePass
+        case .project2001: return .project2001ContractEmployeePass
+        case .project2002: return .project2002ContractEmployeePass
         }
     }
 }
@@ -88,9 +88,9 @@ extension PassCategory {
     var passSubTypeList: [PassSubType] {
         switch self {
         case .guest:
-            return [PassSubType.classicGuestPass, PassSubType.vipGuestPass, PassSubType.freeChildGuestPass, PassSubType.seasonGuestPass, PassSubType.seniorGuestPass]
+            return [.classicGuestPass, .vipGuestPass, .freeChildGuestPass, .seasonGuestPass, .seniorGuestPass]
         case .employee:
-            return [PassSubType.hourlyEmployeeFoodServicePass, PassSubType.hourlyEmployeeMaintenancePass, PassSubType.hourlyEmployeeRideServicePass]
+            return [.hourlyEmployeeFoodServicePass, .hourlyEmployeeMaintenancePass, .hourlyEmployeeRideServicePass]
         case .manager, .contractor, .vendor: return []
         }
     }
@@ -101,40 +101,38 @@ extension PassSubType {
     var accessibleParkAreas: [AccessRequiredParkArea] {
         switch self {
         case .classicGuestPass, .vipGuestPass, .freeChildGuestPass, .seasonGuestPass, .seniorGuestPass:
-            return [AccessRequiredParkArea.amusementArea]
+            return [.amusementArea]
         case .hourlyEmployeeRideServicePass, .project1001ContractEmployeePass:
-            return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.rideControlArea]
+            return [.amusementArea, .rideControlArea]
         case .hourlyEmployeeMaintenancePass:
-            return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.maintenanceArea, AccessRequiredParkArea.kitchenArea, AccessRequiredParkArea.rideControlArea]
+            return [.amusementArea, .maintenanceArea, .kitchenArea, .rideControlArea]
         case .hourlyEmployeeFoodServicePass:
-            return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.kitchenArea]
+            return [.amusementArea, .kitchenArea]
         case .managerPass, .project1003ContractEmployeePass, .nwelectricalCompanyVendorPass:
-            return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.kitchenArea, AccessRequiredParkArea.maintenanceArea,
-                    AccessRequiredParkArea.officeArea, AccessRequiredParkArea.rideControlArea]
+            return [.amusementArea, .kitchenArea, .maintenanceArea, .officeArea, .rideControlArea]
         case .project1002ContractEmployeePass:
-            return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.rideControlArea, AccessRequiredParkArea.maintenanceArea]
+            return [.amusementArea, .rideControlArea, .maintenanceArea]
         case .project2001ContractEmployeePass:
-            return [AccessRequiredParkArea.officeArea]
+            return [.officeArea]
         case .project2002ContractEmployeePass:
-            return [AccessRequiredParkArea.kitchenArea, AccessRequiredParkArea.maintenanceArea]
+            return [.kitchenArea, .maintenanceArea]
         case .acmeCompanyVendorPass:
-            return [AccessRequiredParkArea.kitchenArea]
+            return [.kitchenArea]
         case .orkinCompanyVendorPass:
-            return [AccessRequiredParkArea.amusementArea, AccessRequiredParkArea.kitchenArea, AccessRequiredParkArea.rideControlArea]
+            return [.amusementArea, .kitchenArea, .rideControlArea]
         case .fedexCompanyVendorPass:
-            return [AccessRequiredParkArea.maintenanceArea, AccessRequiredParkArea.officeArea]
+            return [.maintenanceArea, .officeArea]
         }
     }
     
     /// Based on the Pass sub-type, this computed property returns the collection of park discounts available for that pass type.
     var parkDiscount: ParkDiscount? {
         switch self {
-        case .vipGuestPass: return ParkDiscount.vipGuestDiscount
-        case .hourlyEmployeeFoodServicePass,.hourlyEmployeeMaintenancePass, .hourlyEmployeeRideServicePass:
-            return ParkDiscount.employeeDiscount
-        case .managerPass: return ParkDiscount.managerDiscount
-        case .seniorGuestPass: return ParkDiscount.seniorGuestDiscount
-        case .seasonGuestPass: return ParkDiscount.seasonPassGuestDiscount
+        case .vipGuestPass: return .vipGuestDiscount
+        case .hourlyEmployeeFoodServicePass,.hourlyEmployeeMaintenancePass, .hourlyEmployeeRideServicePass: return .employeeDiscount
+        case .managerPass: return .managerDiscount
+        case .seniorGuestPass: return .seniorGuestDiscount
+        case .seasonGuestPass: return .seasonPassGuestDiscount
         default: return nil
         }
     }
@@ -142,8 +140,9 @@ extension PassSubType {
     /// Based on the Pass sub-type, this computed property returns the collection of ride privileges available for that pass type.
     var ridePrivileges: [RidePrivilege] {
         switch self {
-        case .vipGuestPass, .seniorGuestPass, .seasonGuestPass: return [RidePrivilege.allRidesAccess, RidePrivilege.skipAllRideLinesAccess]
-        case .classicGuestPass, .freeChildGuestPass, .hourlyEmployeeFoodServicePass, .hourlyEmployeeMaintenancePass, .hourlyEmployeeRideServicePass, .managerPass: return [RidePrivilege.allRidesAccess]
+        case .vipGuestPass, .seniorGuestPass, .seasonGuestPass: return [.allRidesAccess, .skipAllRideLinesAccess]
+        case .classicGuestPass, .freeChildGuestPass, .hourlyEmployeeFoodServicePass, .hourlyEmployeeMaintenancePass, .hourlyEmployeeRideServicePass, .managerPass:
+            return [.allRidesAccess]
         default: return []
         }
     }

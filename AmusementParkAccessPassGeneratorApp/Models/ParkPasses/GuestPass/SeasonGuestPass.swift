@@ -12,11 +12,9 @@ class SeasonGuestPass: GuestPass {
     
     init(firstName: String?, lastName: String?,
          dateOfBirth: Date?, streetAddress: String?, city: String?,
-         state: String?, zipcode: String?) throws {
+         state: String?, zipcode: String?, socialSecurityNumber: String? = nil) throws {
         do {
-            try super.init(passType: .seasonGuestPass, firstName: firstName,
-                           lastName: lastName, streetAddress: streetAddress,
-                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: nil, dateOfVisit: nil, tier: nil)
+            try super.init(passType: .seasonGuestPass, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, socialSecurityNumber: socialSecurityNumber)
             printPassGenerationStatus()
         } catch MissingInformationError.inSufficientData(let error) {
             throw MissingInformationError.inSufficientData(errorMessage: error)

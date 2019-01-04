@@ -2,12 +2,13 @@
 //  ParkEntrant.swift
 //  AmusementParkAccessPassGeneratorApp
 //
-//  Created by Abhilash Muraleedharan on 28/10/18.
-//  Copyright © 2018 AbhilashApps. All rights reserved.
+//  Created by Abhilash Muraleedharan on 04/01/19.
+//  Copyright © 2019 AbhilashApps. All rights reserved.
 //
+
 import Foundation
 
-class ParkEntrant: Entrant, Vendor, ContractEmployee, Manager {
+class ParkEntrant: Entrant {
     
     var firstName: String?
     var lastName: String?
@@ -16,15 +17,10 @@ class ParkEntrant: Entrant, Vendor, ContractEmployee, Manager {
     var state: String?
     var zipcode: String?
     var dateOfBirth: Date?
-    var projectNumber: String?
-    var vendorCompany: String?
-    var dateOfVisit: Date?
-    var tier: ManagementTier?
-    let vendorEntrantErrorMsg = "Vendor Pass"
+    var socialSecurityNumber: String?
     
     init(associatedPassType: PassSubType, firstName: String?, lastName: String?,
-                  streetAddress: String?, city: String?, state: String?, zipcode: String?,
-                  dateOfBirth: Date?, projectNumber: String?, vendorCompany: String?, dateOfVisit: Date?, tier: ManagementTier?) throws {
+         streetAddress: String?, city: String?, state: String?, zipcode: String?, dateOfBirth: Date?, socialSecurityNumber: String?) throws {
         switch associatedPassType {
         case .classicGuestPass, .vipGuestPass:
             self.firstName = firstName
@@ -34,6 +30,7 @@ class ParkEntrant: Entrant, Vendor, ContractEmployee, Manager {
             self.state = state
             self.zipcode = zipcode
             self.dateOfBirth = dateOfBirth
+            self.socialSecurityNumber = socialSecurityNumber
         case .freeChildGuestPass:
             self.firstName = firstName
             self.lastName = lastName
@@ -41,6 +38,7 @@ class ParkEntrant: Entrant, Vendor, ContractEmployee, Manager {
             self.city = city
             self.state = state
             self.zipcode = zipcode
+            self.socialSecurityNumber = socialSecurityNumber
             if let dob = dateOfBirth {
                 self.dateOfBirth = dob
             } else {
@@ -66,33 +64,15 @@ class ParkEntrant: Entrant, Vendor, ContractEmployee, Manager {
             self.city = city
             self.state = state
             self.zipcode = zipcode
-        case .acmeCompanyVendorPass, .fedexCompanyVendorPass, .orkinCompanyVendorPass, .nwelectricalCompanyVendorPass:
-            if let dob = dateOfBirth {
-                self.dateOfBirth = dob
+        
+        case .hourlyEmployeeFoodServicePass, .hourlyEmployeeRideServicePass, .hourlyEmployeeMaintenancePass:
+            if let ssn = socialSecurityNumber {
+                self.socialSecurityNumber = ssn
             } else {
-                throw MissingInformationError.noDateOfBirth(errorMessage: vendorEntrantErrorMsg)
+                throw MissingInformationError.noSocialSecurityNumber(errorMessage: "\(associatedPassType.rawValue)")
             }
-            if let firstName = firstName {
-                self.firstName = firstName
-            } else {
-                throw MissingInformationError.noFirstName(errorMessage: vendorEntrantErrorMsg)
-            }
-            if let lastName = lastName {
-                self.lastName = lastName
-            } else {
-                throw MissingInformationError.noLastName(errorMessage: vendorEntrantErrorMsg)
-            }
-            if let dov = dateOfVisit {
-                self.dateOfVisit = dov
-            } else {
-                throw MissingInformationError.noDateOfVisit(errorMessage: vendorEntrantErrorMsg)
-            }
-            self.vendorCompany = vendorCompany
-            self.streetAddress = streetAddress
-            self.city = city
-            self.state = state
-            self.zipcode = zipcode
-        default:
+            fallthrough
+        case .seasonGuestPass:
             if let dob = dateOfBirth {
                 self.dateOfBirth = dob
             } else {
@@ -128,10 +108,8 @@ class ParkEntrant: Entrant, Vendor, ContractEmployee, Manager {
             } else {
                 throw MissingInformationError.noZipcode(errorMessage: "\(associatedPassType.rawValue)")
             }
-            self.projectNumber = projectNumber
-            self.tier = tier
+        default: break
         }
     }
     
 }
-

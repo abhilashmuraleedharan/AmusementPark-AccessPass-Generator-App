@@ -20,8 +20,8 @@ class AccessPassFormVC: UIViewController {
     @IBOutlet weak var dateOfVisitTextField: UITextField!
     @IBOutlet weak var projectNumberLabel: UILabel!
     @IBOutlet weak var projectNumberTextField: UITextField!
-    @IBOutlet weak var managementTierLabel: UILabel!
-    @IBOutlet weak var managementTierTextField: UITextField!
+    @IBOutlet weak var ssnLabel: UILabel!
+    @IBOutlet weak var ssnTextField: UITextField!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameLabel: UILabel!
@@ -48,6 +48,7 @@ class AccessPassFormVC: UIViewController {
     var chosenAccessPass: PassCategory?
     var chosenAccessPassSubType: PassSubType?
     var generatedAccessPass: Swipable?
+    var managementTier: ManagementTier?
     
     lazy var subMenuBlankView: UIView = {
         let view = UIView()
@@ -66,13 +67,6 @@ class AccessPassFormVC: UIViewController {
     lazy var companyPicker: UIPickerView = {
         let picker = UIPickerView()
         picker.tag = AccessPassFormPickerView.company.tag
-        picker.delegate = self
-        return picker
-    }()
-    
-    lazy var managementTierPicker: UIPickerView = {
-        let picker = UIPickerView()
-        picker.tag = AccessPassFormPickerView.managementTier.tag
         picker.delegate = self
         return picker
     }()
@@ -106,23 +100,20 @@ class AccessPassFormVC: UIViewController {
     // MARK: - IB Actions
     @IBAction func guestMenuOptionSelected(_ sender: Any) {
         deactivateForm()
+        chosenAccessPass = .guest
         displaySubMenu(for: .guest)
-        chosenAccessPass = PassCategory.guest
     }
     
     @IBAction func employeeMenuOptionSelected(_ sender: Any) {
         deactivateForm()
+        chosenAccessPass = .employee
         displaySubMenu(for: .employee)
-        chosenAccessPass = PassCategory.employee
     }
     
     @IBAction func managerMenuOptionSelected(_ sender: Any) {
-        subMenuView.removeAllArrangedSubviews()
-        subMenuView.addArrangedSubview(subMenuBlankView)
         deactivateForm()
-        activateForm(for: .manager)
-        chosenAccessPass = PassCategory.manager
-        chosenAccessPassSubType = PassSubType.managerPass
+        chosenAccessPass = .manager
+        displaySubMenu(for: .manager)
     }
     
     @IBAction func contractorMenuOptionSelected(_ sender: Any) {
@@ -130,7 +121,7 @@ class AccessPassFormVC: UIViewController {
         subMenuView.addArrangedSubview(subMenuBlankView)
         deactivateForm()
         activateForm(for: .contractor)
-        chosenAccessPass = PassCategory.contractor
+        chosenAccessPass = .contractor
     }
     
     @IBAction func vendorMenuOptionSelected(_ sender: Any) {
@@ -138,7 +129,7 @@ class AccessPassFormVC: UIViewController {
         subMenuView.addArrangedSubview(subMenuBlankView)
         deactivateForm()
         activateForm(for: .vendor)
-        chosenAccessPass = PassCategory.vendor
+        chosenAccessPass = .vendor
     }
     
     @IBAction func generatePassButtonTapped(_ sender: Any) {
@@ -178,6 +169,26 @@ class AccessPassFormVC: UIViewController {
     /// Method that sets up title, background color and target action methods for all the sub menu buttons
     func prepareSubMenuButtons(using passSubTypesList: [PassSubType]) -> [UIButton] {
         var subMenuButtonViews = [UIButton]()
+        if passSubTypesList.isEmpty && chosenAccessPass! == .manager {
+            for tier in dataProvider.managementTierData {
+                let mTier = ManagementTier.init(rawValue: tier)
+                let button = UIButton(type: .system)
+                button.translatesAutoresizingMaskIntoConstraints = false
+                button.setTitle(tier, for: .normal)
+                button.backgroundColor = subMenuButtonBackgroundColor
+                button.tintColor = UIColor.white
+                button.titleLabel?.font = .systemFont(ofSize: 18)
+                switch mTier! {
+                case .general:
+                    button.addTarget(self, action: #selector(AccessPassFormVC.generalManagerFormSelected), for: .touchUpInside)
+                case .senior:
+                    button.addTarget(self, action: #selector(AccessPassFormVC.seniorManagerFormSelected), for: .touchUpInside)
+                case .shift:
+                    button.addTarget(self, action: #selector(AccessPassFormVC.shiftManagerFormSelected), for: .touchUpInside)
+                }
+                subMenuButtonViews.append(button)
+            }
+        }
         for pass in passSubTypesList {
             let button = UIButton(type: .system)
             button.translatesAutoresizingMaskIntoConstraints = false
@@ -212,7 +223,7 @@ class AccessPassFormVC: UIViewController {
     }
     
     /// Method that generates appropriate Park Access Pass as per the data filled in the form
-    func generateAccessPassUsing(dateOfBirth: String?, dateOfVisit: String?, projectNumber: String?, managementTier: String?, firstName: String?,
+    func generateAccessPassUsing(dateOfBirth: String?, dateOfVisit: String?, projectNumber: String?, ssn: String?, firstName: String?,
                                  lastName: String?, streetAddress: String?, city: String?, state: String?, zipcode: String?, company: String?,
                                  forPassCategory category: PassCategory?, forPassSubType type: PassSubType?) {
         
@@ -223,40 +234,28 @@ class AccessPassFormVC: UIViewController {
                     if let passType = type {
                         switch passType {
                         case .classicGuestPass:
-                            generatedAccessPass = try ClassicGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                            generatedAccessPass = try ClassicGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, socialSecurityNumber: ssn)
                         case .vipGuestPass:
-                            generatedAccessPass = try VIPGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                            generatedAccessPass = try VIPGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, socialSecurityNumber: ssn)
                         case .freeChildGuestPass:
-                            generatedAccessPass = try FreeChildGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                            generatedAccessPass = try FreeChildGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, socialSecurityNumber: ssn)
                         case .seasonGuestPass:
-                            generatedAccessPass = try SeasonGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                            generatedAccessPass = try SeasonGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, socialSecurityNumber: ssn)
                         case .seniorGuestPass:
-                            generatedAccessPass = try SeniorGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
+                            generatedAccessPass = try SeniorGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, socialSecurityNumber: ssn)
                         default: break
                         }
                     }
                 case .employee:
                     if let passType = type {
-                        switch passType {
-                        case .hourlyEmployeeFoodServicePass:
-                            generatedAccessPass = try HourlyEmployeeFoodServicesPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
-                        case .hourlyEmployeeRideServicePass:
-                            generatedAccessPass = try HourlyEmployeeRideServicesPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
-                        case .hourlyEmployeeMaintenancePass:
-                            generatedAccessPass = try HourlyEmployeeMaintenancePass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
-                        default: break
-                        }
+                        generatedAccessPass = try HourlyEmployeePass(type: passType, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), socialSecurityNumber: ssn)
                     }
                 case .manager:
-                    var mTier: ManagementTier?
-                    if let tier = managementTier {
-                        mTier = ManagementTier(rawValue: tier)
-                    }
-                    generatedAccessPass =  try ManagerPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), tier: mTier)
+                    generatedAccessPass =  try ManagerPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), socialSecurityNumber: ssn, tier: managementTier)
                 case .vendor:
-                    generatedAccessPass = try VendorPass(firstName: firstName, lastName: lastName, vendorCompany: company, dateOfBirth: getDate(fromString: dateOfBirth), dateOfVisit: getDate(fromString: dateOfVisit))
+                    generatedAccessPass = try VendorPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), socialSecurityNumber: ssn, vendorCompany: company, dateOfVisit: getDate(fromString: dateOfVisit))
                 case .contractor:
-                    generatedAccessPass = try ContractEmployeePass(projectNumber: projectNumber, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth))
+                    generatedAccessPass = try ContractEmployeePass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), socialSecurityNumber: ssn, projectNumber: projectNumber)
                 }
             } catch MissingInformationError.inSufficientData(let error) {
                 notifyUserWithPopUpAlertHaving(title: "Incomplete Data", message: error)
@@ -278,7 +277,7 @@ class AccessPassFormVC: UIViewController {
         var city = cityTextField.text
         var state = stateTextField.text
         var zipcode = zipcodeTextField.text
-        var tier = managementTierTextField.text
+        var ssn = ssnTextField.text
         var projectNo = projectNumberTextField.text
         var dateOfVisit = dateOfVisitTextField.text
         var dateOfBirth = dateOfBirthTextField.text
@@ -287,7 +286,7 @@ class AccessPassFormVC: UIViewController {
             try dataValidator.validateDate(with: &dateOfBirth)
             try dataValidator.validateDate(with: &dateOfVisit)
             try dataValidator.validateProject(with: &projectNo)
-            try dataValidator.validateManagementTier(with: &tier)
+            try dataValidator.validateSocialSecurityNumber(with: &ssn)
             try dataValidator.validateFirstNameField(with: &firstName)
             try dataValidator.validateLastNameField(with: &lastName)
             try dataValidator.validateStreetAddressField(with: &streetAddress)
@@ -296,7 +295,7 @@ class AccessPassFormVC: UIViewController {
             try dataValidator.validateStateField(with: &state)
             try dataValidator.validateZipcodeField(with: &zipcode)
             
-            generateAccessPassUsing(dateOfBirth: dateOfBirth, dateOfVisit: dateOfVisit, projectNumber: projectNo, managementTier: tier,
+            generateAccessPassUsing(dateOfBirth: dateOfBirth, dateOfVisit: dateOfVisit, projectNumber: projectNo, ssn: ssn,
                                     firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state,
                                     zipcode: zipcode, company: company, forPassCategory: chosenAccessPass, forPassSubType: chosenAccessPassSubType)
             performSegue(withIdentifier: "checkGeneratedPass", sender: self)
@@ -306,8 +305,6 @@ class AccessPassFormVC: UIViewController {
             notifyUserWithPopUpAlertHaving(title: "Invalid Data Length", message: errorMessage)
         } catch ValidationError.invalidDate(let errorMessage) {
             notifyUserWithPopUpAlertHaving(title: "Invalid Date", message: errorMessage)
-        } catch ValidationError.invalidManagementTier(let errorMessage) {
-            notifyUserWithPopUpAlertHaving(title: "Invalid Data", message: errorMessage)
         } catch ValidationError.invalidProjectNumber(let errorMessage) {
             notifyUserWithPopUpAlertHaving(title: "Invalid Data", message: errorMessage)
         } catch ValidationError.invalidVendorCompany(let errorMessage) {
@@ -321,7 +318,6 @@ class AccessPassFormVC: UIViewController {
     func configureRelevantTextFieldsWithUIPickerViews() {
         projectNumberTextField.inputView = projectPicker
         companyTextField.inputView = companyPicker
-        managementTierTextField.inputView = managementTierPicker
     }
     
     /// Method that sets up UIDatePickers as input views for relevant text fields
@@ -334,11 +330,11 @@ class AccessPassFormVC: UIViewController {
     
     /// Method used to validate all pass types as per the Business Rules provided and prints the result in console
     func testAllParkAccessPasses() {
-        let testBot = AccessPassGeneratorAppTester()
-        testBot.testAllMainParkPasses()
-        testBot.testAllVendorPasses()
-        testBot.testAllContractEmployeePasses()
-        testBot.testSwipeOnBirthDay()
+//        let testBot = AccessPassGeneratorAppTester()
+//        testBot.testAllMainParkPasses()
+//        testBot.testAllVendorPasses()
+//        testBot.testAllContractEmployeePasses()
+//        testBot.testSwipeOnBirthDay()
     }
     
     /// Method used to activate necessary form fields as per the pass type selected by the user.
@@ -353,10 +349,31 @@ class AccessPassFormVC: UIViewController {
         case .contractor:
             projectNumberLabel.textColor = enabledLabelTextColor
             projectNumberTextField.isEnabled = true
-        case .manager:
-            managementTierLabel.textColor = enabledLabelTextColor
-            managementTierTextField.isEnabled = true
-        default: break
+            fallthrough
+        case .employee, .manager:
+            streetAddressLabel.textColor = enabledLabelTextColor
+            streetAddressTextField.isEnabled = true
+            cityLabel.textColor = enabledLabelTextColor
+            cityTextField.isEnabled = true
+            stateLabel.textColor = enabledLabelTextColor
+            stateTextField.isEnabled = true
+            zipcodeLabel.textColor = enabledLabelTextColor
+            zipcodeTextField.isEnabled = true
+            ssnLabel.textColor = enabledLabelTextColor
+            ssnTextField.isEnabled = true
+        case .guest:
+            switch chosenAccessPassSubType! {
+            case .seasonGuestPass:
+                streetAddressLabel.textColor = enabledLabelTextColor
+                streetAddressTextField.isEnabled = true
+                cityLabel.textColor = enabledLabelTextColor
+                cityTextField.isEnabled = true
+                stateLabel.textColor = enabledLabelTextColor
+                stateTextField.isEnabled = true
+                zipcodeLabel.textColor = enabledLabelTextColor
+                zipcodeTextField.isEnabled = true
+            default: break
+            }
         }
         activateGeneralFormFields()
         activateButtons()
@@ -378,24 +395,27 @@ class AccessPassFormVC: UIViewController {
         }
         firstNameTextField.text = dataProvider.firstNameData
         lastNameTextField.text = dataProvider.lastNameData
-        streetAddressTextField.text = dataProvider.streetAddressData
-        
-        let cityStateZipCodeData = dataProvider.cityStateZipcodeData
-        cityTextField.text = cityStateZipCodeData.city
-        stateTextField.text = cityStateZipCodeData.state
-        zipcodeTextField.text = cityStateZipCodeData.zipcode
         
         if dateOfVisitTextField.isEnabled {
             dateOfVisitTextField.text = dataProvider.dateOfVisit
         }
-        if managementTierTextField.isEnabled {
-            managementTierTextField.text = dataProvider.tierData
+        if ssnTextField.isEnabled {
+            ssnTextField.text = dataProvider.ssn
         }
         if projectNumberTextField.isEnabled {
             projectNumberTextField.text = dataProvider.projectData
         }
         if companyTextField.isEnabled {
             companyTextField.text = dataProvider.companyData
+        }
+        if streetAddressTextField.isEnabled {
+            streetAddressTextField.text = dataProvider.streetAddressData
+        }
+        if cityTextField.isEnabled && stateTextField.isEnabled && zipcodeTextField.isEnabled {
+            let cityStateZipCodeData = dataProvider.cityStateZipcodeData
+            cityTextField.text = cityStateZipCodeData.city
+            stateTextField.text = cityStateZipCodeData.state
+            zipcodeTextField.text = cityStateZipCodeData.zipcode
         }
     }
     
@@ -446,18 +466,10 @@ class AccessPassFormVC: UIViewController {
     func activateGeneralFormFields() {
         firstNameLabel.textColor = enabledLabelTextColor
         lastNameLabel.textColor = enabledLabelTextColor
-        streetAddressLabel.textColor = enabledLabelTextColor
-        cityLabel.textColor = enabledLabelTextColor
-        stateLabel.textColor = enabledLabelTextColor
-        zipcodeLabel.textColor = enabledLabelTextColor
         dateOfBirthLabel.textColor = enabledLabelTextColor
         dateOfBirthTextField.isEnabled = true
         firstNameTextField.isEnabled = true
         lastNameTextField.isEnabled = true
-        streetAddressTextField.isEnabled = true
-        cityTextField.isEnabled = true
-        stateTextField.isEnabled = true
-        zipcodeTextField.isEnabled = true
     }
     
     func disableLabels() {
@@ -471,14 +483,14 @@ class AccessPassFormVC: UIViewController {
         dateOfVisitLabel.textColor = disabledLabelTextColor
         companyLabel.textColor = disabledLabelTextColor
         projectNumberLabel.textColor = disabledLabelTextColor
-        managementTierLabel.textColor = disabledLabelTextColor
+        ssnLabel.textColor = disabledLabelTextColor
     }
     
     func disableTextFields() {
         dateOfBirthTextField.isEnabled = false
         dateOfVisitTextField.isEnabled = false
         projectNumberTextField.isEnabled = false
-        managementTierTextField.isEnabled = false
+        ssnTextField.isEnabled = false
         firstNameTextField.isEnabled = false
         lastNameTextField.isEnabled = false
         companyTextField.isEnabled = false
@@ -502,7 +514,7 @@ class AccessPassFormVC: UIViewController {
         dateOfBirthTextField.text = ""
         dateOfVisitTextField.text = ""
         projectNumberTextField.text = ""
-        managementTierTextField.text = ""
+        ssnTextField.text = ""
         firstNameTextField.text = ""
         lastNameTextField.text = ""
         streetAddressTextField.text = ""
@@ -514,43 +526,61 @@ class AccessPassFormVC: UIViewController {
     
     // MARK: - Target Actions
     @objc func classicGuestFormSelected() {
+        chosenAccessPassSubType = .classicGuestPass
         activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.classicGuestPass
     }
     
     @objc func vipGuestFormSelected() {
+        chosenAccessPassSubType = .vipGuestPass
         activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.vipGuestPass
     }
     
     @objc func freeChildGuestFormSelected() {
+        chosenAccessPassSubType = .freeChildGuestPass
         activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.freeChildGuestPass
     }
     
     @objc func seniorGuestFormSelected() {
+        chosenAccessPassSubType = .seniorGuestPass
         activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.seniorGuestPass
     }
     
     @objc func seasonPassGuestFormSelected() {
+        chosenAccessPassSubType = .seasonGuestPass
         activateForm(for: .guest)
-        chosenAccessPassSubType = PassSubType.seasonGuestPass
     }
     
     @objc func foodServiceEmployeeFormSelected() {
         activateForm(for: .employee)
-        chosenAccessPassSubType = PassSubType.hourlyEmployeeFoodServicePass
+        chosenAccessPassSubType = .hourlyEmployeeFoodServicePass
     }
     
     @objc func rideServiceEmployeeFormSelected() {
         activateForm(for: .employee)
-        chosenAccessPassSubType = PassSubType.hourlyEmployeeRideServicePass
+        chosenAccessPassSubType = .hourlyEmployeeRideServicePass
     }
     
     @objc func maintenanceEmployeeFormSelected() {
         activateForm(for: .employee)
-        chosenAccessPassSubType = PassSubType.hourlyEmployeeMaintenancePass
+        chosenAccessPassSubType = .hourlyEmployeeMaintenancePass
+    }
+    
+    @objc func seniorManagerFormSelected() {
+        activateForm(for: .manager)
+        managementTier = .senior
+        chosenAccessPassSubType = .managerPass
+    }
+    
+    @objc func generalManagerFormSelected() {
+        activateForm(for: .manager)
+        managementTier = .general
+        chosenAccessPassSubType = .managerPass
+    }
+    
+    @objc func shiftManagerFormSelected() {
+        activateForm(for: .manager)
+        managementTier = .shift
+        chosenAccessPassSubType = .managerPass
     }
     
     @objc func doneSelectingDateOfBirth() {
@@ -609,7 +639,6 @@ extension AccessPassFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch AccessPassFormPickerView(rawValue: pickerView.tag)! {
         case AccessPassFormPickerView.company: return dataProvider.companyPickerViewData.count
         case AccessPassFormPickerView.project: return dataProvider.projectPickerViewData.count
-        case AccessPassFormPickerView.managementTier: return dataProvider.managementTierPickerViewData.count
         }
     }
     
@@ -617,7 +646,6 @@ extension AccessPassFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch AccessPassFormPickerView(rawValue: pickerView.tag)! {
         case AccessPassFormPickerView.company: return dataProvider.companyPickerViewData[row]
         case AccessPassFormPickerView.project: return dataProvider.projectPickerViewData[row]
-        case AccessPassFormPickerView.managementTier: return dataProvider.managementTierPickerViewData[row]
         }
     }
     
@@ -625,7 +653,6 @@ extension AccessPassFormVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch AccessPassFormPickerView(rawValue: pickerView.tag)! {
         case AccessPassFormPickerView.company: companyTextField.text = dataProvider.companyPickerViewData[row]
         case AccessPassFormPickerView.project: projectNumberTextField.text = dataProvider.projectPickerViewData[row]
-        case AccessPassFormPickerView.managementTier: managementTierTextField.text = dataProvider.managementTierPickerViewData[row]
         }
         view.endEditing(true)
     }

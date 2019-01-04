@@ -14,11 +14,9 @@ class FreeChildGuestPass: GuestPass {
     
     init(dateOfBirth: Date?, firstName: String? = nil, lastName: String? = nil,
          streetAddress: String? = nil, city: String? = nil,
-         state: String? = nil, zipcode: String? = nil) throws {
+         state: String? = nil, zipcode: String? = nil, socialSecurityNumber: String? = nil) throws {
         do {
-            try super.init(passType: .freeChildGuestPass, firstName: firstName,
-                           lastName: lastName, streetAddress: streetAddress,
-                           city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, projectNumber: nil, vendorCompany: nil, dateOfVisit: nil, tier: nil)
+            try super.init(passType: .freeChildGuestPass, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: dateOfBirth, socialSecurityNumber: socialSecurityNumber)
             // Issue pass only if the entrant is under child age limit.
             if !isQualifiedAsChild() {
                 throw PassEligibilityError.notChild(errorMessage: "Not a child under \(childAgeLimit) years of age. Cannot issue Free Child Guest Pass")

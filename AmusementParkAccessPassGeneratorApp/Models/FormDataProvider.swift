@@ -46,7 +46,7 @@ struct FormDataProvider {
     var companyPickerViewData = [String]()
     
     /// List of management tiers to be displayed in tier picker
-    var managementTierPickerViewData = [String]()
+    var managementTierData = [String]()
     
     init() {
         for project in ContractorPass.allCases {
@@ -56,7 +56,7 @@ struct FormDataProvider {
             companyPickerViewData.append(company.rawValue.uppercased())
         }
         for tier in ManagementTier.allCases {
-            managementTierPickerViewData.append(tier.rawValue.uppercased())
+            managementTierData.append(tier.rawValue)
         }
     }
     
@@ -74,6 +74,7 @@ struct FormDataProvider {
     }
     
     let dateOfBirth = "01/01/1970"
+    let ssn = "123-45-6789"
     
     var dateOfVisit: String {
         let dateFormatter = DateFormatter()
@@ -87,10 +88,6 @@ struct FormDataProvider {
     
     var companyData: String {
         return companyPickerViewData.randomElement()!
-    }
-    
-    var tierData: String {
-        return managementTierPickerViewData.randomElement()!
     }
     
     var childDateOfBirthData: String {
