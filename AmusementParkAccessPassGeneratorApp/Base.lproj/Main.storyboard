@@ -254,7 +254,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="J5a-zT-nmj">
                                                         <rect key="frame" x="34" y="252" width="700" height="100"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RO-o7-bvJ">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RO-o7-bvJ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="700" height="45"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -274,7 +274,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bXM-sv-hZc">
                                                         <rect key="frame" x="34" y="378" width="700" height="100"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoM-wZ-6US">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoM-wZ-6US">
                                                                 <rect key="frame" x="0.0" y="0.0" width="700" height="45"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -426,8 +426,8 @@
                     <connections>
                         <outlet property="cityLabel" destination="5Tk-3H-IwW" id="GP0-oC-1as"/>
                         <outlet property="cityTextField" destination="ZN6-eJ-kmz" id="HKd-U4-eeZ"/>
-                        <outlet property="companyLabel" destination="LoM-wZ-6US" id="Yfe-2P-ThZ"/>
-                        <outlet property="companyTextField" destination="Jd1-SQ-9H6" id="Wgf-vB-dRb"/>
+                        <outlet property="companyLabel" destination="7RO-o7-bvJ" id="qkV-Lh-9i5"/>
+                        <outlet property="companyTextField" destination="yMf-nt-EKy" id="7kw-rr-6YU"/>
                         <outlet property="containerViewBottomConstraint" destination="Qg8-IK-uCd" id="p9p-Z4-l9h"/>
                         <outlet property="containerViewTopConstraint" destination="aCN-D4-ODk" id="Eg7-7s-TM9"/>
                         <outlet property="dateOfBirthLabel" destination="ZWI-w1-xj1" id="XB2-VR-94A"/>
@@ -446,8 +446,8 @@
                         <outlet property="ssnTextField" destination="djZ-20-HpC" id="XpS-Li-fQy"/>
                         <outlet property="stateLabel" destination="yfb-vV-dUv" id="igf-A8-dMZ"/>
                         <outlet property="stateTextField" destination="spv-s2-DgA" id="x6j-1a-pli"/>
-                        <outlet property="streetAddressLabel" destination="7RO-o7-bvJ" id="o57-nr-gzm"/>
-                        <outlet property="streetAddressTextField" destination="yMf-nt-EKy" id="EoR-yb-CQm"/>
+                        <outlet property="streetAddressLabel" destination="LoM-wZ-6US" id="uxp-PO-XgV"/>
+                        <outlet property="streetAddressTextField" destination="Jd1-SQ-9H6" id="XL7-nP-ntb"/>
                         <outlet property="subMenuView" destination="xbc-e2-kIY" id="ih2-H1-o0l"/>
                         <outlet property="zipcodeLabel" destination="zpC-jw-Q6H" id="P3O-7X-TFA"/>
                         <outlet property="zipcodeTextField" destination="3Cw-MI-u7d" id="yQi-0y-sCg"/>

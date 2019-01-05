@@ -26,10 +26,10 @@ class AccessPassFormVC: UIViewController {
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var streetAddressLabel: UILabel!
-    @IBOutlet weak var streetAddressTextField: UITextField!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var companyTextField: UITextField!
+    @IBOutlet weak var streetAddressLabel: UILabel!
+    @IBOutlet weak var streetAddressTextField: UITextField!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var stateLabel: UILabel!

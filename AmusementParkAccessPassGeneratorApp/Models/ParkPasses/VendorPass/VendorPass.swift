@@ -49,7 +49,7 @@ class VendorPass: AccessPass, Swipable {
             let errorDescription = error + " requires date of visit information."
             throw MissingInformationError.inSufficientData(errorMessage: errorDescription)
         } catch MissingInformationError.noVendorCompany(let error) {
-            throw MissingInformationError.noVendorCompany(errorMessage: error)
+            throw MissingInformationError.inSufficientData(errorMessage: error)
         } catch ValidationError.invalidVendorCompany(let error) {
             throw ValidationError.invalidVendorCompany(errorMessage: error)
         } catch let error {

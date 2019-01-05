@@ -18,7 +18,7 @@ enum ValidationError: Error {
 /// Type to validate data input by the user into form fields 
 struct FormDataValidator {
     
-    let minUserInputDataLength = 5
+    let minUserInputDataLength = 3
     let maxUserInputDataLength = 15
     let maxUserAddressLength = 40
     let minZipcodeLength = 5
