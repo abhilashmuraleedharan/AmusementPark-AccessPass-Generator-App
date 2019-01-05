@@ -210,7 +210,7 @@ extension FormDataValidator {
             if data.isEmpty == false {
                 let ssnRegext = "^(?!(000|666|9))\\d{3}-(?!00)\\d{2}-(?!0000)\\d{4}$"
                 if data.range(of: ssnRegext, options: .regularExpression, range: nil, locale: nil) == nil {
-                    throw ValidationError.invalidData(errorMessage: "Invalid format. SSN should contain 9 digits separated by hiphen in AAA-GG-SSSS format.")
+                    throw ValidationError.invalidData(errorMessage: "Invalid format. SSN should consists of nine digits written as three fields separated by hyphens: AAA-GG-SSSS")
                 }
             } else {
                 inputData = nil
