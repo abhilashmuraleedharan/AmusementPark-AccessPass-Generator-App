@@ -233,15 +233,15 @@ class AccessPassFormVC: UIViewController {
                     if let passType = type {
                         switch passType {
                         case .classicGuestPass:
-                            generatedAccessPass = try ClassicGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, socialSecurityNumber: ssn)
+                            generatedAccessPass = try ClassicGuestPass()
                         case .vipGuestPass:
-                            generatedAccessPass = try VIPGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, socialSecurityNumber: ssn)
+                            generatedAccessPass = try VIPGuestPass()
                         case .freeChildGuestPass:
-                            generatedAccessPass = try FreeChildGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, socialSecurityNumber: ssn)
+                            generatedAccessPass = try FreeChildGuestPass(dateOfBirth: getDate(fromString: dateOfBirth))
                         case .seasonGuestPass:
-                            generatedAccessPass = try SeasonGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, socialSecurityNumber: ssn)
+                            generatedAccessPass = try SeasonGuestPass(firstName: firstName, lastName: lastName, dateOfBirth: getDate(fromString: dateOfBirth), streetAddress: streetAddress, city: city, state: state, zipcode: zipcode)
                         case .seniorGuestPass:
-                            generatedAccessPass = try SeniorGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, socialSecurityNumber: ssn)
+                            generatedAccessPass = try SeniorGuestPass(dateOfBirth: getDate(fromString: dateOfBirth), firstName: firstName, lastName: lastName)
                         default: break
                         }
                     }
@@ -252,7 +252,7 @@ class AccessPassFormVC: UIViewController {
                 case .manager:
                     generatedAccessPass =  try ManagerPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), socialSecurityNumber: ssn, tier: managementTier)
                 case .vendor:
-                    generatedAccessPass = try VendorPass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), socialSecurityNumber: ssn, vendorCompany: company, dateOfVisit: getDate(fromString: dateOfVisit))
+                    generatedAccessPass = try VendorPass(dateOfBirth: getDate(fromString: dateOfBirth), dateOfVisit: getDate(fromString: dateOfVisit), firstName: firstName, lastName: lastName, vendorCompany: company)
                 case .contractor:
                     generatedAccessPass = try ContractEmployeePass(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipcode: zipcode, dateOfBirth: getDate(fromString: dateOfBirth), socialSecurityNumber: ssn, projectNumber: projectNumber)
                 }

@@ -16,9 +16,9 @@ class VendorPass: AccessPass, Swipable {
     let ridePrivileges: [RidePrivilege]
     var parkDiscount: ParkDiscount?
     
-    init(firstName: String?, lastName: String?,
-         streetAddress: String?, city:String?, state: String?,
-         zipcode: String?, dateOfBirth: Date?, socialSecurityNumber: String?, vendorCompany: String?, dateOfVisit: Date?) throws {
+    init(dateOfBirth: Date?, dateOfVisit: Date?, firstName: String?, lastName: String?,
+         vendorCompany: String?, streetAddress: String? = nil, city: String? = nil, state: String? = nil,
+         zipcode: String? = nil, socialSecurityNumber: String? = nil) throws {
         let entrant: Entrant
         do {
             guard let company = vendorCompany else {
