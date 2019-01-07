@@ -604,13 +604,18 @@ class AccessPassFormVC: UIViewController {
     @objc func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             
-            let frame = keyboardFrame.cgRectValue
-            containerViewTopConstraint.constant = frame.size.height * -1
-            containerViewBottomConstraint.constant = frame.size.height
+            if projectNumberTextField.isFirstResponder || companyTextField.isFirstResponder {
+                // No need to move the view up
+            } else {
+                let frame = keyboardFrame.cgRectValue
+                containerViewTopConstraint.constant = frame.size.height * -1
+                containerViewBottomConstraint.constant = frame.size.height
 
-            UIView.animate(withDuration: 0.8) {
-                self.view.layoutIfNeeded()
+                UIView.animate(withDuration: 0.8) {
+                    self.view.layoutIfNeeded()
+                }
             }
+            
         }
     }
     
